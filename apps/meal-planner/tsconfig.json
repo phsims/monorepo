@@ -16,11 +16,12 @@
         "name": "next"
       }
     ],
-    "types": ["jest", "node"]
+    "types": ["jest", "node"],
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
-  "paths": {
-    "@/*": ["./*"]
-  },
+
   "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "next-env.d.ts"],
   "exclude": [
     "node_modules",
