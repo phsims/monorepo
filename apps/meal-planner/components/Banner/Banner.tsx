@@ -3,10 +3,7 @@ import { Fade } from "react-awesome-reveal";
 import Link from 'next/link';
 
 
-/* eslint-disable-next-line */
-export interface BannerProps { }
-
-export function Banner(props: BannerProps) {
+export function Banner() {
   return (
     <div className="mx-auto max-w-7xl pt-20 sm:pb-24 px-6">
       <div className='grid grid-cols-1 lg:grid-cols-12 space-x-1'>
