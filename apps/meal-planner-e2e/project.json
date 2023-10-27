@@ -1,0 +1,22 @@
+{
+  "name": "meal-planner-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/meal-planner-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/playwright:playwright",
+      "outputs": ["{workspaceRoot}/dist/.playwright/apps/meal-planner-e2e"],
+      "options": {
+        "config": "apps/meal-planner-e2e/playwright.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/meal-planner-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "implicitDependencies": ["meal-planner"]
+}
