@@ -1,9 +1,19 @@
-import Layout from '../components/Layout/Layout';
-import Banner from '../components/Banner/Banner';
-import Features, { CardData } from '../components/Features/Features';
+import { Layout, NavigationItem, CardData } from 'libs/SharedComponents/src';
+
+import { Banner } from 'libs/SharedComponents/src';
+import { Features } from 'libs/SharedComponents/src';
 
 
-const cardData: CardData[] = [
+
+const navigation: Array<NavigationItem> = [
+  { name: 'Home', href: '#banner', current: false },
+  { name: 'Features', href: '#features', current: false },
+  // { name: 'Recipe', href: '#cook-section', current: false },
+  // { name: 'Gallery', href: '#gallery-section', current: false },
+]
+
+
+const cardData: Array<CardData> = [
   {
     imgSrc: '/images/Features/featureOne.svg',
     heading: "Customized Meal Plans",
@@ -34,16 +44,10 @@ const cardData: CardData[] = [
 export function Index() {
 
   return (
-    <>
-      <Layout title='Welcome to MealPlan Pro: Your Ultimate Meal Planning Companion!'>
-        <main>
-          <div id="home-section" className='bg-lightpink'>
-            <Banner />
-          </div>
-          <Features cardData={cardData} />
-        </main>
-      </Layout>
-    </>
+    <Layout title='Welcome to MealPlan Pro: Your Ultimate Meal Planning Companion!' navigation={navigation}>
+      <Banner />
+      <Features cardData={cardData} />
+    </Layout>
   );
 }
 

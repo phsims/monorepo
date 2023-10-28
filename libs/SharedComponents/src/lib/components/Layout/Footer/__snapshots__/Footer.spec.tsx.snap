@@ -1,0 +1,323 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer should render successfully 1`] = `
+<body>
+  <div>
+    <div
+      class="mx-auto max-w-2xl pt-24 px-4 sm:px-6 lg:max-w-7xl lg:px-8"
+    >
+      <div
+        class="my-12 grid grid-cols-1 gap-y-10 sm:grid-cols-6 lg:grid-cols-12"
+      >
+        <div
+          class="sm:col-span-6 lg:col-span-5"
+        >
+          <div
+            class="flex flex-shrink-0 items-center border-right"
+          >
+            <img
+              alt="logo"
+              data-nimg="1"
+              decoding="async"
+              height="56"
+              loading="lazy"
+              src="/images/Logo/Logo.svg"
+              style="color: transparent;"
+              width="56"
+            />
+            <a
+              class="text-2xl font-semibold text-black ml-4"
+              href="/"
+            >
+              Chef's Kitchen.
+            </a>
+          </div>
+          <h3
+            class="text-textbl text-xs font-medium mt-5 mb-4 lg:mb-16"
+          >
+             Open an account in minutes, get full financial 
+            <br />
+             control for much longer.
+          </h3>
+          <div
+            class="flex gap-4"
+          >
+            <a
+              href="https://facebook.com"
+            >
+              <div
+                class="bg-white h-10 w-10 shadow-xl text-base rounded-full flex items-center justify-center footer-icons hover:bg-pink"
+              >
+                <img
+                  alt="/images/Footer/facebook.svg"
+                  class="sepiaa"
+                  data-nimg="1"
+                  decoding="async"
+                  height="2"
+                  loading="lazy"
+                  src="/images/Footer/facebook.svg"
+                  style="color: transparent;"
+                  width="10"
+                />
+              </div>
+            </a>
+            <a
+              href="https://instagram.com"
+            >
+              <div
+                class="bg-white h-10 w-10 shadow-xl text-base rounded-full flex items-center justify-center footer-icons hover:bg-pink"
+              >
+                <img
+                  alt="/images/Footer/insta.svg"
+                  class="sepiaa"
+                  data-nimg="1"
+                  decoding="async"
+                  height="2"
+                  loading="lazy"
+                  src="/images/Footer/insta.svg"
+                  style="color: transparent;"
+                  width="14"
+                />
+              </div>
+            </a>
+            <a
+              href="https://twitter.com"
+            >
+              <div
+                class="bg-white h-10 w-10 shadow-xl text-base rounded-full flex items-center justify-center footer-icons hover:bg-pink"
+              >
+                <img
+                  alt="/images/Footer/twitter.svg"
+                  class="sepiaa"
+                  data-nimg="1"
+                  decoding="async"
+                  height="2"
+                  loading="lazy"
+                  src="/images/Footer/twitter.svg"
+                  style="color: transparent;"
+                  width="14"
+                />
+              </div>
+            </a>
+          </div>
+        </div>
+        <div
+          class="sm:col-span-2"
+        >
+          <p
+            class="text-black text-xl font-semibold mb-9"
+          >
+            Company
+          </p>
+          <ul>
+            <li
+              class="mb-5"
+            >
+              <a
+                class="text-footerlinks text-base font-normal mb-6 space-links"
+                href="/"
+              >
+                About
+              </a>
+            </li>
+            <li
+              class="mb-5"
+            >
+              <a
+                class="text-footerlinks text-base font-normal mb-6 space-links"
+                href="/"
+              >
+                Careers
+              </a>
+            </li>
+            <li
+              class="mb-5"
+            >
+              <a
+                class="text-footerlinks text-base font-normal mb-6 space-links"
+                href="/"
+              >
+                Mobile
+              </a>
+            </li>
+            <li
+              class="mb-5"
+            >
+              <a
+                class="text-footerlinks text-base font-normal mb-6 space-links"
+                href="/"
+              >
+                Blog
+              </a>
+            </li>
+            <li
+              class="mb-5"
+            >
+              <a
+                class="text-footerlinks text-base font-normal mb-6 space-links"
+                href="/"
+              >
+                How we work?
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div
+          class="sm:col-span-2"
+        >
+          <p
+            class="text-black text-xl font-semibold mb-9"
+          >
+            Contact
+          </p>
+          <ul>
+            <li
+              class="mb-5"
+            >
+              <a
+                class="text-footerlinks text-base font-normal mb-6 space-links"
+                href="/"
+              >
+                Help/FAQ
+              </a>
+            </li>
+            <li
+              class="mb-5"
+            >
+              <a
+                class="text-footerlinks text-base font-normal mb-6 space-links"
+                href="/"
+              >
+                Press
+              </a>
+            </li>
+            <li
+              class="mb-5"
+            >
+              <a
+                class="text-footerlinks text-base font-normal mb-6 space-links"
+                href="/"
+              >
+                Affiliates
+              </a>
+            </li>
+            <li
+              class="mb-5"
+            >
+              <a
+                class="text-footerlinks text-base font-normal mb-6 space-links"
+                href="/"
+              >
+                Hotel owners
+              </a>
+            </li>
+            <li
+              class="mb-5"
+            >
+              <a
+                class="text-footerlinks text-base font-normal mb-6 space-links"
+                href="/"
+              >
+                Partners
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div
+          class="sm:col-span-2"
+        >
+          <p
+            class="text-black text-xl font-semibold mb-9"
+          >
+            More
+          </p>
+          <ul>
+            <li
+              class="mb-5"
+            >
+              <a
+                class="text-footerlinks text-base font-normal mb-6 space-links"
+                href="/"
+              >
+                Recipe
+              </a>
+            </li>
+            <li
+              class="mb-5"
+            >
+              <a
+                class="text-footerlinks text-base font-normal mb-6 space-links"
+                href="/"
+              >
+                Chef
+              </a>
+            </li>
+            <li
+              class="mb-5"
+            >
+              <a
+                class="text-footerlinks text-base font-normal mb-6 space-links"
+                href="/"
+              >
+                Food
+              </a>
+            </li>
+            <li
+              class="mb-5"
+            >
+              <a
+                class="text-footerlinks text-base font-normal mb-6 space-links"
+                href="/"
+              >
+                Support
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+        class="py-10 md:flex items-center justify-between border-t border-t-bordertop"
+      >
+        <h4
+          class="text-darkgrey text-sm text-center md:text-start font-normal"
+        >
+          @2023 - Chef's kitchen. All Rights Reserved by 
+          <a
+            href="https://adminmart.com/"
+            target="_blank"
+          >
+             Adminmart.com
+          </a>
+        </h4>
+        <div
+          class="flex gap-5 mt-5 md:mt-0 justify-center md:justify-start"
+        >
+          <h4
+            class="text-darkgrey text-sm font-normal"
+          >
+            <a
+              href="/"
+              target="_blank"
+            >
+              Privacy policy
+            </a>
+          </h4>
+          <div
+            class="h-5 bg-bordertop w-0.5"
+          />
+          <h4
+            class="text-darkgrey text-sm font-normal"
+          >
+            <a
+              href="/"
+              target="_blank"
+            >
+              Terms & conditions
+            </a>
+          </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
