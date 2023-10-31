@@ -1,24 +1,8 @@
-/** @type {import('tailwindcss').Config} */
+const { createThemes } = require('tw-colors');
+
 module.exports = {
 
     theme: {
-        colors: {
-            transparent: "transparent",
-            current: "currentColor",
-            white: "#ffffff",
-            black: "#000000",
-            lightgrey: "#444245",
-            grey: 'rgba(0, 0, 0, 0.55)',
-            lightpink: '#F8F7F7',
-            pink: '#DF6751',
-            bgpink: 'rgba(223, 103, 81, 0.15)',
-            darkpink: '#FEEDEA',
-            lightblack: '#333333',
-            textbl: "#363636",
-            footerlinks: 'rgba(54, 54, 54, 0.9)',
-            bordertop: 'rgba(105, 120, 131, 0.16)',
-            darkgrey: 'rgba(44, 9, 11, 0.8)'
-        },
         fontSize: {
             xs: ["0.75rem", { lineHeight: "1rem" }],
             sm: ["0.875rem", { lineHeight: "1.25rem" }],
@@ -36,5 +20,46 @@ module.exports = {
         },
         extend: {},
     },
-    plugins: [],
+    variants: {
+        extend: {},
+    },
+    plugins: [
+        createThemes({
+            pink: {
+                white: "#ffffff",
+                black: "#000000",
+                primary: '#DF6751',
+                primarylight: '#F8F7F7',
+                lightgrey: "#444245",
+                grey: 'rgba(0, 0, 0, 0.55)',
+                primarybg: 'rgba(223, 103, 81, 0.15)',
+                darkprimary: '#FEEDEA',
+                lightblack: '#333333',
+                textbl: "#363636",
+                footerlinks: 'rgba(54, 54, 54, 0.9)',
+                bordertop: 'rgba(105, 120, 131, 0.16)',
+                darkgrey: 'rgba(44, 9, 11, 0.8)',
+                transparent: "transparent",
+                current: "currentColor"
+            },
+            blue: {
+                transparent: "transparent",
+                current: "currentColor",
+                white: "#ffffff",
+                black: "#000000",
+                primary: '#3d5a80',
+                primarylight: '#98c1d9',
+                secondary: '#e0fbfc',
+                lightgrey: "#444245",
+                grey: 'rgba(0, 0, 0, 0.55)',
+                primarybg: 'rgba(223, 103, 81, 0.15)',
+                darkprimary: '#ee6c4d',
+                lightblack: '#333333',
+                textbl: "#363636",
+                footerlinks: 'rgba(54, 54, 54, 0.9)',
+                bordertop: 'rgba(105, 120, 131, 0.16)',
+                darkgrey: 'rgba(44, 9, 11, 0.8)'
+            },
+        })
+    ],
 };

@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "slick-carousel/slick/slick.css";
-@import "slick-carousel/slick/slick-theme.css";
+
 
 * {
   font-family: 'Poppins', sans-serif;
@@ -51,7 +52,7 @@ html:not([data-scroll="0"]) .navbar {
   transform: translateY(-8px);
 }
 
-.footer-icons:hover > .sepiaa {
+.footer-icons:hover>.sepiaa {
   filter: invert(100.10);
 }
 
@@ -105,9 +106,6 @@ html:not([data-scroll="0"]) .navbar {
   transform: scale(1.1);
 }
 
-.par-87{
+.par-87 {
   padding-right: 87px;
 }
-
-
-

@@ -46,7 +46,7 @@ exports[`Footer should render successfully 1`] = `
               href="https://facebook.com"
             >
               <div
-                class="bg-white h-10 w-10 shadow-xl text-base rounded-full flex items-center justify-center footer-icons hover:bg-pink"
+                class="bg-white h-10 w-10 shadow-xl text-base rounded-full flex items-center justify-center footer-icons hover:bg-primary"
               >
                 <img
                   alt="/images/Footer/facebook.svg"
@@ -65,7 +65,7 @@ exports[`Footer should render successfully 1`] = `
               href="https://instagram.com"
             >
               <div
-                class="bg-white h-10 w-10 shadow-xl text-base rounded-full flex items-center justify-center footer-icons hover:bg-pink"
+                class="bg-white h-10 w-10 shadow-xl text-base rounded-full flex items-center justify-center footer-icons hover:bg-primary"
               >
                 <img
                   alt="/images/Footer/insta.svg"
@@ -84,7 +84,7 @@ exports[`Footer should render successfully 1`] = `
               href="https://twitter.com"
             >
               <div
-                class="bg-white h-10 w-10 shadow-xl text-base rounded-full flex items-center justify-center footer-icons hover:bg-pink"
+                class="bg-white h-10 w-10 shadow-xl text-base rounded-full flex items-center justify-center footer-icons hover:bg-primary"
               >
                 <img
                   alt="/images/Footer/twitter.svg"

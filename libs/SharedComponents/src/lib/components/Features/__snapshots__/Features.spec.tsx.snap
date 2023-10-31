@@ -15,7 +15,7 @@ exports[`Features should render successfully 1`] = `
           style="opacity: 0; animation-delay: 400ms;"
         >
           <h3
-            class="text-pink text-lg font-normal mb-3 ls-51 uppercase"
+            class="text-primary text-lg font-normal mb-3 ls-51 uppercase"
           >
             Features
           </h3>
@@ -73,7 +73,7 @@ exports[`Features should render successfully 1`] = `
                 href="/"
               >
                 <p
-                  class="text-center text-lg font-medium text-pink mt-2 hover-underline"
+                  class="text-center text-lg font-medium text-primary mt-2 hover-underline"
                 >
                   Learn more
                   <svg

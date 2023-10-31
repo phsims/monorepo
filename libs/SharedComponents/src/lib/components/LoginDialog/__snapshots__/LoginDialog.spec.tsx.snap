@@ -10,7 +10,7 @@ exports[`LoginDialog should render successfully 1`] = `
         class="hidden md:block"
       >
         <button
-          class="flex justify-end text-xl font-medium bg-bgpink text-pink py-4 px-4 lg:px-8 navbutton rounded-full hover:text-white hover:bg-pink"
+          class="flex justify-end text-xl font-medium bg-primarybg text-primary py-4 px-4 lg:px-8 navbutton rounded-full hover:text-white hover:bg-primary"
           type="button"
         >
           Sign In

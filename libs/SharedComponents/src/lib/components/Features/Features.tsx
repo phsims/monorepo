@@ -22,7 +22,7 @@ export function Features({ cardData, sectionID = 'features' }: FeaturesProps) {
     <div className='mx-auto max-w-7xl py-40 px-6' id={sectionID}>
       <div className='text-center mb-14' >
         <Fade direction={'up'} delay={400} cascade damping={1e-1} triggerOnce={true}>
-          <h3 className='text-pink text-lg font-normal mb-3 ls-51 uppercase'>Features</h3>
+          <h3 className='text-primary text-lg font-normal mb-3 ls-51 uppercase'>Features</h3>
         </Fade>
         <Fade direction={'up'} delay={800} cascade damping={1e-1} triggerOnce={true}>
           <p className='text-3xl lg:text-5xl font-semibold text-lightgrey'>MealPlan Pro is a valuable tool for simplifying meal planning and grocery shopping.</p>
@@ -40,7 +40,7 @@ export function Features({ cardData, sectionID = 'features' }: FeaturesProps) {
               <h3 className='text-2xl text-black font-semibold text-center mt-16'>{items.heading}</h3>
               <p className='text-lg font-normal text-black text-center text-opacity-50 mt-2'>{items.subheading}</p>
               <div className='flex items-center justify-center'>
-                <Link href='/'><p className='text-center text-lg font-medium text-pink mt-2 hover-underline'>{items.link}<ChevronRightIcon width={20} height={20} /></p></Link>
+                <Link href='/'><p className='text-center text-lg font-medium text-primary mt-2 hover-underline'>{items.link}<ChevronRightIcon width={20} height={20} /></p></Link>
               </div>
             </div>
           ))}

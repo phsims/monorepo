@@ -18,7 +18,7 @@ export function LoginDialog() {
     <>
       <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
         <div className='hidden md:block'>
-          <button type="button" className='flex justify-end text-xl font-medium bg-bgpink text-pink py-4 px-4 lg:px-8 navbutton rounded-full hover:text-white hover:bg-pink' onClick={openModal}>
+          <button type="button" className='flex justify-end text-xl font-medium bg-primarybg text-primary py-4 px-4 lg:px-8 navbutton rounded-full hover:text-white hover:bg-primary' onClick={openModal}>
             Sign In
           </button>
         </div>
@@ -118,7 +118,7 @@ export function LoginDialog() {
                         <div>
                           <button
                             type="submit"
-                            className="group relative flex w-full justify-center rounded-md border border-transparent bg-pink py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            className="group relative flex w-full justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                           >
                             <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                               <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />

@@ -71,7 +71,7 @@ export function Footer() {
 
             {socialLinks.map((items, i) => (
               <Link href={items.link} key={i}>
-                <div className="bg-white h-10 w-10 shadow-xl text-base rounded-full flex items-center justify-center footer-icons hover:bg-pink">
+                <div className="bg-white h-10 w-10 shadow-xl text-base rounded-full flex items-center justify-center footer-icons hover:bg-primary">
                   <Image src={items.imgSrc} alt={items.imgSrc} width={items.width} height={2} className="sepiaa" />
                 </div>
               </Link>
