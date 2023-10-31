@@ -15,8 +15,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@monorepo/Scraper": ["libs/Scraper/src/index.ts"],
-      "@monorepo/Scraper/server": ["libs/Scraper/src/server.ts"],
       "@monorepo/SharedComponents": ["libs/SharedComponents/src/index.ts"],
       "@monorepo/SharedComponents/server": [
         "libs/SharedComponents/src/server.ts"
