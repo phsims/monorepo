@@ -1,13 +1,16 @@
-import styles from './index.module.css';
+import { useRouter } from 'next/router';
+import { RecipesRoutes } from 'libs/recipes/src'; // Replace with the correct import path
 
-/* eslint-disable-next-line */
-export interface RecipesProps {}
 
-export function Recipes(props: RecipesProps) {
+
+
+export function Recipes() {
+  const router = useRouter();
+  const routePath = router.pathname;
+  const CurrentRoute = RecipesRoutes[routePath as keyof typeof RecipesRoutes];
+
   return (
-    <div className={styles['container']}>
-      <h1>Welcome to Recipes!</h1>
-    </div>
+    <CurrentRoute />
   );
 }
 

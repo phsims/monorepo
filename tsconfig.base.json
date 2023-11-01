@@ -15,6 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@monorepo/recipes": ["libs/recipes/src/index.ts"],
+      "@monorepo/recipes/server": ["libs/recipes/src/server.ts"],
       "@monorepo/shared": ["libs/shared/src/index.ts"],
       "@monorepo/shared/server": ["libs/shared/src/server.ts"],
       "@monorepo/storybook-host": ["libs/storybook-host/src/index.ts"]
