@@ -15,12 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@monorepo/Scraper": ["libs/Scraper/src/index.ts"],
-      "@monorepo/Scraper/server": ["libs/Scraper/src/server.ts"],
-      "@monorepo/SharedComponents": ["libs/SharedComponents/src/index.ts"],
-      "@monorepo/SharedComponents/server": [
-        "libs/SharedComponents/src/server.ts"
-      ],
+      "@monorepo/recipes": ["libs/recipes/src/index.ts"],
+      "@monorepo/recipes/server": ["libs/recipes/src/server.ts"],
+      "@monorepo/shared": ["libs/shared/src/index.ts"],
+      "@monorepo/shared/server": ["libs/shared/src/server.ts"],
       "@monorepo/storybook-host": ["libs/storybook-host/src/index.ts"]
     }
   },
