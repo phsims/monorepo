@@ -1,8 +1,5 @@
 import { useRouter } from 'next/router';
-import { RecipesRoutes } from 'libs/recipes/src'; // Replace with the correct import path
-
-
-
+import { RecipesRoutes } from 'libs/recipes/src';
 
 export function Recipes() {
   const router = useRouter();
