@@ -4,19 +4,13 @@
   "sourceRoot": "libs/storybook-host/src",
   "projectType": "library",
   "tags": [],
-  "implicitDependencies": [
-    "SharedComponents"
-  ],
+  "implicitDependencies": [],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/storybook-host/**/*.{ts,tsx,js,jsx}"
-        ]
+        "lintFilePatterns": ["libs/storybook-host/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "storybook": {
@@ -33,9 +27,7 @@
     },
     "build-storybook": {
       "executor": "@nx/storybook:build",
-      "outputs": [
-        "{options.outputDir}"
-      ],
+      "outputs": ["{options.outputDir}"],
       "options": {
         "outputDir": "dist/storybook/storybook-host",
         "configDir": "libs/storybook-host/.storybook"

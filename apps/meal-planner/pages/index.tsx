@@ -1,7 +1,6 @@
-import { Layout, NavigationItem, CardData } from 'libs/SharedComponents/src';
+import { Layout, NavigationItem, CardData, Banner, Features } from 'libs/shared/src';
 
-import { Banner } from 'libs/SharedComponents/src';
-import { Features } from 'libs/SharedComponents/src';
+
 
 
 
