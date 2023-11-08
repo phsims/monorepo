@@ -2,8 +2,9 @@ import { Disclosure } from '@headlessui/react';
 import { Bars3Icon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useSession, signIn, signOut } from "next-auth/react"
 import { useEffect, useState } from 'react';
-import LoginDialog from '../../LoginDialog/LoginDialog';
+// import LoginDialog from '../../LoginDialog/LoginDialog';
 
 export interface NavProps {
   navigation: Array<NavigationItem>
@@ -21,7 +22,7 @@ function classNames(...classes: string[]) {
 }
 
 export function Nav({ navigation }: NavProps) {
-
+  const { data: session } = useSession()
 
   useEffect(() => {
     // The debounce function receives our function as a parameter
@@ -104,7 +105,27 @@ export function Nav({ navigation }: NavProps) {
                 <p className='text-lg font-medium'>+1(909) 235-9814</p>
               </div>
 
-              <LoginDialog />
+              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <div className='hidden md:block'>
+                  <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                    <div className='hidden md:block'>
+                      {session ?
+                        (
+                          <button type="button" className='flex justify-end text-xl font-medium bg-primarybg text-primary py-4 px-4 lg:px-8 navbutton rounded-full hover:text-white hover:bg-primary' onClick={() => signOut()}>
+                            Sign Out
+                          </button>
+                        ) : (
+                          <button type="button" className='flex justify-end text-xl font-medium bg-primarybg text-primary py-4 px-4 lg:px-8 navbutton rounded-full hover:text-white hover:bg-primary' onClick={() => signIn('cognito')}>
+                            Sign In
+                          </button>
+                        )
+                      }
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
             </div>
           </div>
 
