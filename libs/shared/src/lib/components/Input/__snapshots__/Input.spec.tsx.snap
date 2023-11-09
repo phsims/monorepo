@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input should render successfully 1`] = `
+<body>
+  <div>
+    <div>
+      <label
+        class="sr-only"
+        for="text-input"
+      >
+        input example
+      </label>
+      <input
+        autocomplete="text"
+        class="relative block w-full appearance-none rounded-md  border border-lightgrey border-opacity-40 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+        id="text-input"
+        name="input"
+        placeholder="text input example"
+        type="text"
+      />
+    </div>
+  </div>
+</body>
+`;

@@ -4,7 +4,7 @@
   "sourceRoot": "libs/storybook-host/src",
   "projectType": "library",
   "tags": [],
-  "implicitDependencies": [],
+  "implicitDependencies": ["shared", "recipes"],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint",
@@ -30,7 +30,8 @@
       "outputs": ["{options.outputDir}"],
       "options": {
         "outputDir": "dist/storybook/storybook-host",
-        "configDir": "libs/storybook-host/.storybook"
+        "configDir": "libs/storybook-host/.storybook",
+        "styles": ["css/globals.css"]
       },
       "configurations": {
         "ci": {
