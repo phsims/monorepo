@@ -1,24 +1,28 @@
-import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState } from 'react'
-import { LockClosedIcon } from '@heroicons/react/20/solid'
+import { Dialog, Transition } from '@headlessui/react';
+import { Fragment, useState } from 'react';
+import { LockClosedIcon } from '@heroicons/react/20/solid';
 import Link from 'next/link';
 import Image from 'next/image';
 
 export function LoginDialog() {
-  let [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   const closeModal = () => {
-    setIsOpen(false)
-  }
+    setIsOpen(false);
+  };
 
   const openModal = () => {
-    setIsOpen(true)
-  }
+    setIsOpen(true);
+  };
   return (
     <>
       <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-        <div className='hidden md:block'>
-          <button type="button" className='flex justify-end text-xl font-medium bg-primarybg text-primary py-4 px-4 lg:px-8 navbutton rounded-full hover:text-white hover:bg-primary' onClick={openModal}>
+        <div className="hidden md:block">
+          <button
+            type="button"
+            className="flex justify-end text-xl font-medium bg-primarybg text-primary py-4 px-4 lg:px-8 navbutton rounded-full hover:text-white hover:bg-primary"
+            onClick={openModal}
+          >
             Sign In
           </button>
         </div>
@@ -50,13 +54,20 @@ export function LoginDialog() {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-
                   <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
                     <div className="w-full max-w-md space-y-8">
                       <div>
                         <div className="flex items-center justify-center">
-                          <Image src="/images/Logo/Logo.svg" alt="logo" width={46} height={46} />
-                          <Link href="/" className='text-2xl font-semibold text-black ml-4'>
+                          <Image
+                            src="/images/Logo/Logo.svg"
+                            alt="logo"
+                            width={46}
+                            height={46}
+                          />
+                          <Link
+                            href="/"
+                            className="text-2xl font-semibold text-black ml-4"
+                          >
                             Chef&apos;s Kitchen
                           </Link>
                         </div>
@@ -65,7 +76,11 @@ export function LoginDialog() {
                         </h2>
                       </div>
                       <form className="mt-8 space-y-6" action="#" method="POST">
-                        <input type="hidden" name="remember" defaultValue="true" />
+                        <input
+                          type="hidden"
+                          name="remember"
+                          defaultValue="true"
+                        />
                         <div className="-space-y-px rounded-md shadow-sm">
                           <div>
                             <label htmlFor="email-address" className="sr-only">
@@ -105,13 +120,22 @@ export function LoginDialog() {
                               type="checkbox"
                               className="h-4 w-4 rounded border-lightgrey text-indigo-600 focus:ring-indigo-500"
                             />
-                            <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+                            <label
+                              htmlFor="remember-me"
+                              className="ml-2 block text-sm text-gray-900"
+                            >
                               Remember me
                             </label>
                           </div>
 
                           <div className="text-sm">
-                            <Link href="#" className="font-medium text-indigo-600 hover:text-indigo-500"> Forgot your password?</Link>
+                            <Link
+                              href="#"
+                              className="font-medium text-indigo-600 hover:text-indigo-500"
+                            >
+                              {' '}
+                              Forgot your password?
+                            </Link>
                           </div>
                         </div>
 
@@ -121,7 +145,10 @@ export function LoginDialog() {
                             className="group relative flex w-full justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                           >
                             <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                              <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />
+                              <LockClosedIcon
+                                className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+                                aria-hidden="true"
+                              />
                             </span>
                             Sign in
                           </button>
@@ -129,7 +156,6 @@ export function LoginDialog() {
                       </form>
                     </div>
                   </div>
-
 
                   <div className="mt-4 flex justify-end">
                     <button
@@ -147,7 +173,7 @@ export function LoginDialog() {
         </Dialog>
       </Transition>
     </>
-  )
+  );
 }
 
 export default LoginDialog;
