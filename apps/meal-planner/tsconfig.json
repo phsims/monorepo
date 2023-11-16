@@ -19,7 +19,9 @@
     "types": ["jest", "node"],
     "paths": {
       "@meal-planner/*": ["apps/next/meal-planner/*"],
-      "@recipes": ["libs/recipes/src/index.ts"]
+      "@recipes": ["libs/recipes/src/index.ts"],
+      "@shared": ["libs/shared/src/index.ts"],
+      "@css/*": ["css/*"]
     }
   },
 

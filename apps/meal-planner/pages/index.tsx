@@ -1,17 +1,8 @@
-import {
-  Layout,
-  NavigationItem,
-  CardData,
-  Banner,
-  Features,
-} from '@monorepo/shared';
+import Head from 'next/head';
 
-const navigation: Array<NavigationItem> = [
-  { name: 'Home', href: '#banner', current: false },
-  { name: 'Features', href: '#features', current: false },
-  // { name: 'Recipe', href: '#cook-section', current: false },
-  // { name: 'Gallery', href: '#gallery-section', current: false },
-];
+import { CardData, Banner, Features } from '@shared';
+
+import RootLayout from './RootLayout';
 
 const cardData: Array<CardData> = [
   {
@@ -42,13 +33,17 @@ const cardData: Array<CardData> = [
 
 export function Index() {
   return (
-    <Layout
-      title="Welcome to MealPlan Pro: Your Ultimate Meal Planning Companion!"
-      navigation={navigation}
-    >
-      <Banner />
-      <Features cardData={cardData} />
-    </Layout>
+    <>
+      <Head>
+        <title>
+          Welcome to MealPlan Pro: Your Ultimate Meal Planning Companion!
+        </title>
+      </Head>
+      <RootLayout>
+        <Banner />
+        {/* <Features cardData={cardData} /> */}
+      </RootLayout>
+    </>
   );
 }
 
