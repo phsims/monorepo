@@ -18,7 +18,10 @@
     ],
     "types": ["jest", "node"],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@recipes": ["libs/recipes/src/index.ts"],
+      "@shared": ["libs/shared/src/index.ts"],
+      "@css/*": ["css/*"]
     }
   },
 
