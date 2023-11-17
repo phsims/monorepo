@@ -1,7 +1,6 @@
 const { createThemes } = require('tw-colors');
 
 module.exports = {
-
     theme: {
         fontSize: {
             xs: ["0.75rem", { lineHeight: "1rem" }],
@@ -40,11 +39,9 @@ module.exports = {
                 bordertop: 'rgba(105, 120, 131, 0.16)',
                 darkgrey: 'rgba(44, 9, 11, 0.8)',
                 transparent: "transparent",
-                current: "currentColor"
             },
             blue: {
                 transparent: "transparent",
-                current: "currentColor",
                 white: "#ffffff",
                 black: "#000000",
                 primary: '#3d5a80',
@@ -60,6 +57,7 @@ module.exports = {
                 bordertop: 'rgba(105, 120, 131, 0.16)',
                 darkgrey: 'rgba(44, 9, 11, 0.8)'
             },
-        })
+        }),
+        require('@tailwindcss/typography')
     ],
 };

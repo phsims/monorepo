@@ -116,36 +116,47 @@ export function LoginForm() {
                               type="checkbox"
                               placeholder="Remember me"
                             />
+                            <label
+                              htmlFor="remember-me"
+                              className="ml-2 block text-sm text-gray-900"
+                            >
+                              Remember me
+                            </label>
                           </div>
 
-                          <div className="text-sm">
-                            <a
-                              href="#"
-                              className="font-medium text-indigo-600 hover:text-indigo-500"
-                            >
+                          {/* <div className="text-sm">
+                            <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
                               Forgot your password?
                             </a>
-                          </div>
+                          </div> */}
                         </div>
 
                         <div>
-                          <Button id="signin" type="submit" text="Sign in">
-                            <LockClosedIcon
-                              className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-                              aria-hidden="true"
-                            />
-                          </Button>
+                          <button
+                            type="submit"
+                            className="group relative flex w-full justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                          >
+                            <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+                              <LockClosedIcon
+                                className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+                                aria-hidden="true"
+                              />
+                            </span>
+                            Sign in
+                          </button>
                         </div>
                       </form>
                     </div>
                   </div>
 
-                  <div className="mt-4 flex justify-end" onClick={closeModal}>
-                    <Button
-                      id="close-modal"
-                      text="Got it, thanks!"
-                      btnClass='"inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2'
-                    />
+                  <div className="mt-4 flex justify-end">
+                    <button
+                      type="button"
+                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      onClick={closeModal}
+                    >
+                      Got it, thanks!
+                    </button>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>

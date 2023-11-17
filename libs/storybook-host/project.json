@@ -33,6 +33,7 @@
         "configDir": "libs/storybook-host/.storybook",
         "styles": ["css/globals.css"]
       },
+      "styles": ["css/globals.css"],
       "configurations": {
         "ci": {
           "quiet": true

@@ -1,8 +1,5 @@
-import Head from 'next/head';
-
 import { CardData, Banner, Features } from '@shared';
-
-import RootLayout from './RootLayout';
+import Head from 'next/head';
 
 const cardData: Array<CardData> = [
   {
@@ -39,10 +36,8 @@ export function Index() {
           Welcome to MealPlan Pro: Your Ultimate Meal Planning Companion!
         </title>
       </Head>
-      <RootLayout>
-        <Banner />
-        {/* <Features cardData={cardData} /> */}
-      </RootLayout>
+      <Banner />
+      <Features cardData={cardData} />
     </>
   );
 }

@@ -2,7 +2,6 @@ import { AppProps } from 'next/app';
 import { SessionProvider } from 'next-auth/react';
 
 import '@css/globals.css';
-import '../../../css/globals.css';
 
 function CustomApp({
   Component,
@@ -10,7 +9,7 @@ function CustomApp({
 }: AppProps) {
   return (
     <SessionProvider session={session}>
-      <Component {...pageProps} />
+      <Component {...pageProps} className="pink" />
     </SessionProvider>
   );
 }

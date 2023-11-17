@@ -8,4 +8,3 @@ export * from './lib/components/LoginForm/LoginForm';
 export * from './lib/components/ContactForm/ContactForm';
 export * from './lib/components/Layout/Footer/Footer';
 export * from './lib/components/Layout/Nav/Nav';
-export * from './lib/components/Layout/Layout';
