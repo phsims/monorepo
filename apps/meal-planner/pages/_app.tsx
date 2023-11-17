@@ -1,17 +1,16 @@
 import { AppProps } from 'next/app';
-import { SessionProvider } from "next-auth/react"
+import { SessionProvider } from 'next-auth/react';
+import './styles.css';
 
-import 'css/globals.css';
-
-
-function CustomApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
+function CustomApp({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
   return (
     <SessionProvider session={session}>
-      <Component {...pageProps} />
+      <Component {...pageProps} className="pink" />
     </SessionProvider>
-  )
+  );
 }
 
 export default CustomApp;
-
-
