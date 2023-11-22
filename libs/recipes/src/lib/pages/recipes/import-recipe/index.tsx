@@ -1,48 +1,49 @@
 import { useState, useEffect } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+// import { useForm, Controller } from 'react-hook-form';
 import Head from 'next/head';
-import { Input, Button } from '@shared';
+// import { Input, Button } from '@shared';
 
 type FormData = {
   url: string;
 };
 
 export function ImportRecipe() {
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<FormData>();
+  // const {
+  //   handleSubmit,
+  //   control,
+  //   formState: { errors },
+  // } = useForm<FormData>();
 
-  const [data, setData] = useState('');
-  const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  // const [data, setData] = useState('');
+  // const [error, setError] = useState('');
+  // const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const fetchData = async (formData: FormData) => {
-    const { url } = formData;
-    console.log('fetching', url);
-    setIsLoading(true);
-    await fetch(url).then((res) => console.log(res.text()));
-    // try {
-    //
-    //   const response =
+  // const fetchData = async (formData: FormData) => {
+  //   const { url } = formData;
+  //   console.log('fetching', url);
+  //   setIsLoading(true);
+  //   await fetch(url).then((res) => console.log(res.text()));
+  //   // try {
+  //   //
+  //   //   const response =
 
-    //   if (!response.ok) {
-    //     throw new Error(`HTTP error! Status: ${response.status}`);
-    //   }
-    //   const result = await response.text();
-    //   console.log('response', result)
-    //   setData(result);
-    // } catch (error) {
-    //   setError(error.message);
-    // } finally {
-    //   setIsLoading(false);
-    // }
-  };
+  //   //   if (!response.ok) {
+  //   //     throw new Error(`HTTP error! Status: ${response.status}`);
+  //   //   }
+  //   //   const result = await response.text();
+  //   //   console.log('response', result)
+  //   //   setData(result);
+  //   // } catch (error) {
+  //   //   setError(error.message);
+  //   // } finally {
+  //   //   setIsLoading(false);
+  //   // }
+  // };
 
   return (
     <>
-      <Head>
+      <p> dynamic page </p>
+      {/* <Head>
         <title>Import a Recipe!</title>
       </Head>
       <div id="import-recipe" className="bg-primarylight">
@@ -78,7 +79,7 @@ export function ImportRecipe() {
             <pre>{data}</pre>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

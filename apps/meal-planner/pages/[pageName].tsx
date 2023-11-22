@@ -1,22 +1,17 @@
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import RootLayout from '../RootLayout';
 
 function DynamicPageWrapper() {
   const router = useRouter();
   const { pageName } = router.query;
-
+  console.log('pageName', router);
   if (typeof pageName === 'string') {
     // Dynamically import the page based on the pageName
     const DynamicPage = dynamic(
       () => import(`libs/recipes/src/lib/pages/${pageName}`)
     );
 
-    return (
-      <RootLayout>
-        <DynamicPage />
-      </RootLayout>
-    );
+    return <DynamicPage />;
   }
 
   // Handle the case when pageName is not available or not a string

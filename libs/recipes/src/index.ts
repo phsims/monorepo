@@ -1,3 +1,2 @@
-export * from './lib/AllRecipes/AllRecipes';
-export * from './lib/RecipesRoutes';
-
+export * from './lib/pages/recipes';
+export * from './lib/pages/recipes/import-recipe';
