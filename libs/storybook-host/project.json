@@ -30,7 +30,8 @@
       "outputs": ["{options.outputDir}"],
       "options": {
         "outputDir": "dist/storybook/storybook-host",
-        "configDir": "libs/storybook-host/.storybook"
+        "configDir": "libs/storybook-host/.storybook",
+        "styles": ["css/globals.css"]
       },
       "styles": ["css/globals.css"],
       "configurations": {

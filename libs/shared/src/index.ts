@@ -1,3 +1,5 @@
+export * from './lib/components/Button/Button';
+export * from './lib/components/Input/Input';
 export * from './lib/components/LoginDialog/LoginDialog';
 export * from './lib/components/Features/Features';
 export * from './lib/components/Banner/Banner';

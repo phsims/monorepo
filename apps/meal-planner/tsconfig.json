@@ -21,8 +21,7 @@
       "@/*": ["./*"],
       "@recipes": ["libs/recipes/src/index.ts"],
       "@shared": ["libs/shared/src/index.ts"],
-      "@css/*": ["css/*"],
-      "@css": ["css/globals.css"]
+      "@css/*": ["css/*"]
     }
   },
 

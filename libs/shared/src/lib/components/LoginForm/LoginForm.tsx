@@ -3,6 +3,8 @@ import { Fragment, useState } from 'react';
 import { LockClosedIcon } from '@heroicons/react/20/solid';
 import Link from 'next/link';
 import Image from 'next/image';
+import Input from '../Input/Input';
+import Button from '../Button/Button';
 
 export function LoginForm() {
   const [isOpen, setIsOpen] = useState(false);
@@ -84,30 +86,22 @@ export function LoginForm() {
                         />
                         <div className="-space-y-px rounded-md shadow-sm">
                           <div>
-                            <label htmlFor="email-address" className="sr-only">
-                              Email address
-                            </label>
-                            <input
-                              id="email-address"
+                            <Input
                               name="email"
+                              id="email-address"
+                              lable="Email address"
                               type="email"
-                              autoComplete="email"
-                              required
-                              className="relative block w-full appearance-none rounded-none rounded-t-md border border-lightgrey border-opacity-40 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                              required={true}
                               placeholder="Email address"
                             />
                           </div>
                           <div>
-                            <label htmlFor="password" className="sr-only">
-                              Password
-                            </label>
-                            <input
+                            <Input
                               id="password"
                               name="password"
                               type="password"
-                              autoComplete="current-password"
-                              required
-                              className="relative block w-full appearance-none rounded-none rounded-b-md border border-lightgrey border-opacity-40 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                              required={true}
+                              lable="Password"
                               placeholder="Password"
                             />
                           </div>
@@ -115,11 +109,12 @@ export function LoginForm() {
 
                         <div className="flex items-center justify-between">
                           <div className="flex items-center">
-                            <input
+                            <Input
                               id="remember-me"
+                              lable="Remember me"
                               name="remember-me"
                               type="checkbox"
-                              className="h-4 w-4 rounded border-lightgrey text-indigo-600 focus:ring-indigo-500"
+                              placeholder="Remember me"
                             />
                             <label
                               htmlFor="remember-me"
