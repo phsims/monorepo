@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import RecipesRoutes from './RecipesRoutes';
+import AllRecipes from './index';
 
-describe('RecipesRoutes', () => {
+describe('AllRecipes', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<RecipesRoutes />);
+    const { baseElement } = render(<AllRecipes />);
     expect(baseElement).toBeTruthy();
   });
 });

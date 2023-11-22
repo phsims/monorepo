@@ -1,9 +1,6 @@
-
-
-
 export function AllRecipes() {
   return (
-    <div >
+    <div>
       <h1>Welcome to AllRecipes!</h1>
     </div>
   );
