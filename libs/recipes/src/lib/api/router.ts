@@ -1,6 +1,6 @@
 import { zodiosRouter } from '@zodios/express';
 import { definition } from './definition';
-import { recipes } from '../../mockData';
+import { recipes } from '../mockData';
 export const router = zodiosRouter(definition);
 
 router.get('/v1/recipes', async ({ query }, res) => {
