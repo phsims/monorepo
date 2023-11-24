@@ -2,15 +2,21 @@ import Image from 'next/image';
 import { StarRating } from '@shared';
 import { Recipe } from '../../api/schemas';
 
-export function RecipeItem({ name, description, rating, image }: Recipe) {
+export function RecipeItem({
+  name,
+  description,
+  rating,
+  id,
+  image = '/images/placeholder.svg',
+}: Recipe) {
   const ratingProps = {
     rating: rating,
     title: name,
   };
 
   return (
-    <div className="card-b pb-8 px-8 relative rounded-3xl">
-      <div className="w-full h-32 relative overflow-hidden">
+    <div className="card-b pb-8 pb-8 relative rounded-3xl">
+      <div className="w-full h-32 relative overflow-hidden ">
         <Image src={image} alt={name} fill style={{ objectFit: 'cover' }} />
       </div>
 

@@ -20,7 +20,7 @@
     "paths": {
       "@/*": ["./*"],
       "@recipes": ["libs/recipes/src/index.ts"],
-      "@shared": [""],
+      "@shared": ["libs/shared/src/index.ts"],
       "@css/*": ["css/*"]
     }
   },

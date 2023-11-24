@@ -4,10 +4,10 @@ exports[`RecipeItem should render match snapshot 1`] = `
 <body>
   <div>
     <div
-      class="card-b pb-8 px-8 relative rounded-3xl"
+      class="card-b pb-8 pb-8 relative rounded-3xl"
     >
       <div
-        class="w-full h-32 relative overflow-hidden"
+        class="w-full h-32 relative overflow-hidden "
       >
         <img
           alt="Chicken burger"
