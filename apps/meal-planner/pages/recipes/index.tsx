@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 
-function DynamicPageWrapper() {
+function RecipesHomePage() {
   const { query } = useRouter();
   const { pageName } = query;
 
@@ -27,4 +27,4 @@ function DynamicPageWrapper() {
   return <div>Page not found</div>;
 }
 
-export default DynamicPageWrapper;
+export default RecipesHomePage;
