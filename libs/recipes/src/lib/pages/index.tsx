@@ -55,13 +55,11 @@ export function Recipes() {
           <ul className="grid grid-cols-4  gap-4">
             {allRecipes.map((recipe, index) => (
               <li className="h-full flex flex-col">
+                <RecipeItem {...recipe} key={index} />
                 <Link
-                  key={index}
                   href={`/recipes/${recipe.id}`}
                   className="flex flex-col  border-2 border-gray-500 hover:border-orange-500 transition-all rounded-lg  h-full "
-                >
-                  <RecipeItem {...recipe} />
-                </Link>
+                ></Link>
               </li>
             ))}
           </ul>
