@@ -21,6 +21,11 @@ const config: StorybookConfig = {
       define: {
         'process.env': process.env,
       },
+      resolve: {
+        alias: {
+          '@shared': 'libs/shared/src/index.ts',
+        },
+      },
     }),
 };
 export default config;

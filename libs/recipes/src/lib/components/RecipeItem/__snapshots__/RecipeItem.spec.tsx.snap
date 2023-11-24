@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RecipeItem should render match snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="card-b pb-8 px-8 relative rounded-3xl"
+    >
+      <div
+        class="w-full h-32 relative overflow-hidden"
+      >
+        <img
+          alt="Chicken burger"
+          data-nimg="fill"
+          decoding="async"
+          loading="lazy"
+          sizes="100vw"
+          src="/_next/image?url=%2Fimages%2FCook%2Fburger.png&w=3840&q=75"
+          srcset="/_next/image?url=%2Fimages%2FCook%2Fburger.png&w=640&q=75 640w, /_next/image?url=%2Fimages%2FCook%2Fburger.png&w=750&q=75 750w, /_next/image?url=%2Fimages%2FCook%2Fburger.png&w=828&q=75 828w, /_next/image?url=%2Fimages%2FCook%2Fburger.png&w=1080&q=75 1080w, /_next/image?url=%2Fimages%2FCook%2Fburger.png&w=1200&q=75 1200w, /_next/image?url=%2Fimages%2FCook%2Fburger.png&w=1920&q=75 1920w, /_next/image?url=%2Fimages%2FCook%2Fburger.png&w=2048&q=75 2048w, /_next/image?url=%2Fimages%2FCook%2Fburger.png&w=3840&q=75 3840w"
+          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; object-fit: cover; color: transparent;"
+        />
+      </div>
+      <div
+        class="p-2"
+      >
+        <h4
+          class="text-2xl text-black font-semibold  mt-8"
+        >
+          Chicken burger
+        </h4>
+        <p
+          class="grow my-8"
+        >
+          this is a tasty burger
+        </p>
+        <div>
+          <div
+            class="flex space-x-1"
+            data-testid="newRating-Chicken-burger"
+          >
+            <svg
+              aria-hidden="true"
+              class="text-yellow-500 hover:text-yellow-500 focus:outline-none w-5 h-5"
+              data-testid="Chicken-burger-0"
+              fill="currentColor"
+              viewBox="0 0 22 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+              />
+            </svg>
+            <svg
+              aria-hidden="true"
+              class="text-yellow-500 hover:text-yellow-500 focus:outline-none w-5 h-5"
+              data-testid="Chicken-burger-1"
+              fill="currentColor"
+              viewBox="0 0 22 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+              />
+            </svg>
+            <svg
+              aria-hidden="true"
+              class="text-gray-400 hover:text-yellow-500 focus:outline-none w-5 h-5"
+              data-testid="Chicken-burger-2"
+              fill="currentColor"
+              viewBox="0 0 22 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+              />
+            </svg>
+            <svg
+              aria-hidden="true"
+              class="text-gray-400 hover:text-yellow-500 focus:outline-none w-5 h-5"
+              data-testid="Chicken-burger-3"
+              fill="currentColor"
+              viewBox="0 0 22 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+              />
+            </svg>
+            <svg
+              aria-hidden="true"
+              class="text-gray-400 hover:text-yellow-500 focus:outline-none w-5 h-5"
+              data-testid="Chicken-burger-4"
+              fill="currentColor"
+              viewBox="0 0 22 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

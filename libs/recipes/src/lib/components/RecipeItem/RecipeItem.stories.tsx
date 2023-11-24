@@ -7,6 +7,13 @@ import { expect } from '@storybook/jest';
 const meta: Meta<typeof RecipeItem> = {
   component: RecipeItem,
   title: 'RecipeItem',
+  decorators: [
+    (Story) => (
+      <div className="max-w-md">
+        <Story />
+      </div>
+    ),
+  ],
 };
 export default meta;
 type Story = StoryObj<typeof RecipeItem>;
@@ -21,7 +28,12 @@ export const Primary = {
 };
 
 export const Heading: Story = {
-  args: {},
+  args: {
+    name: 'Chicken burger',
+    description: 'this is a tasty burger',
+    rating: 2,
+    image: 'images/Cook/burger.png',
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText(/Welcome to RecipeItem!/gi)).toBeTruthy();

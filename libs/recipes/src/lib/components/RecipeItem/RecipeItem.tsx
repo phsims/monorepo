@@ -7,19 +7,21 @@ export function RecipeItem({ name, description, rating, image }: Recipe) {
     rating: rating,
     title: name,
   };
+
   return (
-    <div>
-      <div className="w-full h-32 relative">
-        <Image src={image} alt={name} fill />
+    <div className="card-b pb-8 px-8 relative rounded-3xl">
+      <div className="w-full h-32 relative overflow-hidden">
+        <Image src={image} alt={name} fill style={{ objectFit: 'cover' }} />
       </div>
 
-      <div className="p-8">
-        <p className="text-lg text-black-600 capitalize">{name}</p>
-        <p className="grow ">
+      <div className="p-2">
+        <h4 className="text-2xl text-black font-semibold  mt-8">{name}</h4>
+        <p className="grow my-8">
           {description.length > 70
             ? `${description.substring(0, 70)}...`
             : description}
         </p>
+
         <div>
           <StarRating {...ratingProps} />
         </div>
