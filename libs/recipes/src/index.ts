@@ -1,5 +1,2 @@
-export * from './lib/pages';
-export * from './lib/pages/import-recipe';
-
-export * from './lib/api/definition';
-export * from './lib/api/router';
+export * from './lib/pages/recipes';
+export * from './lib/pages/recipes/import-recipe';

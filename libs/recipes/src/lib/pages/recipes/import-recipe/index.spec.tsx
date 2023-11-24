@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import RecipesHomePage from './index';
+import ImportRecipe from './index';
 
-describe('Recipes', () => {
+describe('ImportRecipe', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<RecipesHomePage />);
+    const { baseElement } = render(<ImportRecipe />);
     expect(baseElement).toBeTruthy();
   });
 });
