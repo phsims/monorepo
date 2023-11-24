@@ -3,8 +3,6 @@ export const recipes = [
     id: '1',
     name: 'Christmas pie',
     url: 'https://www.bbcgoodfood.com/recipes/2793/christmas-pie',
-    image:
-      'https://images.immediate.co.uk/production/volatile/sites/30/2008/01/Christmas-pie-2ed9223.jpg',
     description:
       'Combine a few key Christmas flavours here to make a pie that both children and adults will adore',
     author: 'Mary Cadogan',
@@ -36,8 +34,6 @@ export const recipes = [
     id: '2',
     name: 'Simmer-&-stir Christmas cake',
     url: 'https://www.bbcgoodfood.com/recipes/1160/simmerandstir-christmas-cake',
-    image:
-      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-559480_11-ec53335.jpg',
     description:
       'An easy-to-make alternative to traditional Christmas cakes which requires no beating',
     author: 'Mary Cadogan',
@@ -71,8 +67,6 @@ export const recipes = [
     id: '3',
     name: 'Christmas cupcakes',
     url: 'https://www.bbcgoodfood.com/recipes/72622/christmas-cupcakes',
-    image:
-      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-444572_12-4487e3a.jpg',
     description:
       'These beautiful and classy little cakes make lovely gifts, and kids will enjoy decorating them too',
     author: 'Sara Buenfeld',
@@ -112,8 +106,6 @@ export const recipes = [
     id: '4',
     name: 'Christmas buns',
     url: 'https://www.bbcgoodfood.com/recipes/1803633/christmas-buns',
-    image:
-      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-836565_11-719faac.jpg',
     description:
       "Paul Hollywood's fruit rolls can be made ahead then heated up before adding a glossy glaze and citrus icing",
     author: 'Paul Hollywood',
@@ -148,8 +140,6 @@ export const recipes = [
     id: '51',
     name: 'Christmas cupcakes',
     url: 'https://www.bbcgoodfood.com/recipes/981634/christmas-cupcakes',
-    image:
-      'https://images.immediate.co.uk/production/volatile/sites/30/2021/08/christmas-cupcakes-d34f231.jpg',
     description:
       "Made these for the second time today, and I have to say they turned out great! I've got large muffin tins and the mixture made 15 muffins, will definetely make these again at christmas time and decorate festively.",
     author: 'Barney Desmazery',
@@ -176,8 +166,6 @@ export const recipes = [
     id: '6',
     name: 'Christmas slaw',
     url: 'https://www.bbcgoodfood.com/recipes/890635/christmas-slaw',
-    image:
-      'https://images.immediate.co.uk/production/volatile/sites/30/2010/11/Winter-slaw-e23d82a.jpg',
     description:
       'A nutty winter salad which is superhealthy, quick to prepare and finished with a light maple syrup dressing',
     author: 'Good Food',
@@ -201,8 +189,6 @@ export const recipes = [
     id: '7',
     name: 'Christmas mess',
     url: 'https://www.bbcgoodfood.com/recipes/2806664/christmas-mess',
-    image:
-      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-1163480_10-f4113c0.jpg',
     description:
       'Delicious and a synch to make! Have made this a couple of times as a dinner party dessert, very pretty as a winter alternative to Eton mess. The fact you use frozen fruits is great, I just used a bog standard pack of frozen mixed berries and added some home made blackberry liqueur. Like other people, I added more cinnamon. Thumbs up!',
     author: 'Caroline Hire',
@@ -226,8 +212,6 @@ export const recipes = [
     id: '8',
     name: 'Christmas brownies',
     url: 'https://www.bbcgoodfood.com/recipes/christmas-brownies',
-    image:
-      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chrismas-brownies-cfc47c9.jpg',
     description: 'can I made these the day before',
     author: 'Miriam Nice',
     rating: 3,
@@ -262,8 +246,6 @@ export const recipes = [
     id: '9',
     name: 'Christmas cosmopolitan',
     url: 'https://www.bbcgoodfood.com/recipes/889643/christmas-cosmopolitan',
-    image:
-      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-463806_11-85e1497.jpg',
     description: 'How many servings have you gotten using the above measures?',
     author: 'Good Food',
     rating: 4,
@@ -282,8 +264,6 @@ export const recipes = [
     id: '11',
     name: 'Christmas pizza',
     url: 'https://www.bbcgoodfood.com/recipes/christmas-pizza',
-    image:
-      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/pizza_2-5a1fe2f.jpg',
     description:
       'Use up leftover roast turkey and sausagemeat stuffing in this new spin on an Italian classic',
     author: 'Katy Greenwood',
@@ -306,8 +286,6 @@ export const recipes = [
     id: '12',
     name: 'Christmas poussin',
     url: 'https://www.bbcgoodfood.com/recipes/5028/christmas-poussin',
-    image:
-      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-8489_12-7aa0eb5.jpg',
     description:
       "Prepare ahead and pop in the oven when your guests arrive. Perfect if you don't want to be tied to the kitchen",
     author: 'Barney Desmazery',
@@ -329,8 +307,6 @@ export const recipes = [
     id: '13',
     name: "Mary Berry's Christmas chutney",
     url: 'https://www.bbcgoodfood.com/recipes/1158/mary-berrys-christmas-chutney',
-    image:
-      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-1067541_10-6f569e8.jpg',
     description:
       'A perfect match for cheese and cold meats, and delicious in turkey sandwiches',
     author: 'Mary Berry',
@@ -358,8 +334,6 @@ export const recipes = [
     id: '14',
     name: 'Make & mature Christmas cake',
     url: 'https://www.bbcgoodfood.com/recipes/2607642/make-and-mature-christmas-cake',
-    image:
-      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-1125455_11-067a823.jpg?',
     description: '25 min prep time? More like an hour.',
     author: 'James Martin',
     rating: 5,
@@ -399,8 +373,6 @@ export const recipes = [
     id: '15',
     name: 'Christmas muffin mix',
     url: 'https://www.bbcgoodfood.com/recipes/2920/christmas-muffin-mix',
-    image:
-      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-560779_12-28d756b.jpg',
     description: 'A festive treat to give or receive',
     author: 'Good Food',
     rating: 2,
