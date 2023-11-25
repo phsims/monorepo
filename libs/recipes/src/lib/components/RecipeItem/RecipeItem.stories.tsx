@@ -1,9 +1,21 @@
 import type { Meta } from '@storybook/react';
+/* eslint-disable-next-line */
+import { Markdown } from '@storybook/blocks';
+
+import ReadMe from './README.md?raw';
 import { RecipeItem } from './RecipeItem';
 
 const meta: Meta<typeof RecipeItem> = {
   component: RecipeItem,
-  title: 'RecipeItem',
+  title: '@Recipes/RecipeItem',
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: `<Markdown>${ReadMe}</Markdown>`,
+      },
+    },
+  },
   decorators: [
     (Story) => (
       <div className="max-w-md">

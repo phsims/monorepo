@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button should match snapshot 1`] = `
+<body>
+  <div>
+    <button
+      class="rounded-full p-4 lg:px-8  text-xl font-medium bg-primarybg text-primary hover:text-white hover:bg-primary disabled:bg-slate-200 disabled:text-grey disabled:border-slate-500"
+      id="button-button"
+      type="button"
+    >
+      button text
+    </button>
+  </div>
+</body>
+`;
