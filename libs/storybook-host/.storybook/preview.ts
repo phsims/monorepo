@@ -1,7 +1,7 @@
 import * as NextImage from 'next/image';
 import { createElement } from 'react';
 
-import '../../../css/globals.css';
+import '@css/globals.css';
 
 const OriginalNextImage = NextImage.default;
 

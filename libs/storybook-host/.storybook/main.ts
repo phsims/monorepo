@@ -24,6 +24,7 @@ const config: StorybookConfig = {
       resolve: {
         alias: {
           '@shared': 'libs/shared/src/index.ts',
+          '@css': 'css',
         },
       },
     }),
