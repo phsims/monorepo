@@ -3,10 +3,9 @@ import type { Metadata } from 'next';
 import { Nav, NavigationItem, Footer } from '@shared';
 
 const navigation: Array<NavigationItem> = [
-  { name: 'Home', href: '#banner', current: false },
-  { name: 'Features', href: '#features', current: false },
-  // { name: 'Recipe', href: '#cook-section', current: false },
-  // { name: 'Gallery', href: '#gallery-section', current: false },
+  { name: 'Home', href: '/#banner', current: false },
+  { name: 'Features', href: '/#features', current: false },
+  { name: 'Recipes', href: '/recipes', current: false },
 ];
 export const metadata: Metadata = {
   title: 'Create Next App',

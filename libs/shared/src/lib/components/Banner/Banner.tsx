@@ -1,15 +1,13 @@
 import Image from 'next/image';
 import { Fade } from 'react-awesome-reveal';
 import Link from 'next/link';
-
-interface BannerProps {
-  sectionID?: string;
-}
+/* eslint-disable-next-line */
+interface BannerProps {}
 
 //TODO: update to dynamic sections
-export function Banner({ sectionID = 'banner' }: BannerProps) {
+export function Banner() {
   return (
-    <div id={sectionID} className="bg-primarylight">
+    <div className="bg-primarylight">
       <div className="mx-auto max-w-7xl pt-20 sm:pb-24 px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 space-x-1">
           <div className="col-span-6 flex flex-col justify-center">

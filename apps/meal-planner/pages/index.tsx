@@ -36,8 +36,13 @@ export function Index() {
           Welcome to MealPlan Pro: Your Ultimate Meal Planning Companion!
         </title>
       </Head>
-      <Banner />
-      <Features cardData={cardData} />
+
+      <div id="banner">
+        <Banner />
+      </div>
+      <div id="features">
+        <Features cardData={cardData} />
+      </div>
     </>
   );
 }
