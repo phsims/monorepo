@@ -1,8 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta } from '@storybook/react';
 import { RecipeItem } from './RecipeItem';
-
-import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
 
 const meta: Meta<typeof RecipeItem> = {
   component: RecipeItem,
@@ -16,26 +13,21 @@ const meta: Meta<typeof RecipeItem> = {
   ],
 };
 export default meta;
-type Story = StoryObj<typeof RecipeItem>;
 
-export const Primary = {
+export const Default = {
   args: {
     name: 'Chicken burger',
-    description: 'this is a tasty burger',
-    rating: 2,
-    image: 'images/Cook/burger.png',
+    description:
+      'You can enjoy these ultimate beef burgers straight away or make and freeze them for sunny days when you want to fire up the barbecue. Want to try something a little different? How about our lamb burgers with feta and harissa; they’re easy to make and ready in just 30 minutes.',
   },
 };
 
-export const Heading: Story = {
+export const Complete = {
   args: {
     name: 'Chicken burger',
-    description: 'this is a tasty burger',
+    description:
+      'You can enjoy these ultimate beef burgers straight away or make and freeze them for sunny days when you want to fire up the barbecue. Want to try something a little different? How about our lamb burgers with feta and harissa; they’re easy to make and ready in just 30 minutes.',
+    image: '/images/Gallery/foodtwo.jpg',
     rating: 2,
-    image: 'images/Cook/burger.png',
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    expect(canvas.getByText(/Welcome to RecipeItem!/gi)).toBeTruthy();
   },
 };
