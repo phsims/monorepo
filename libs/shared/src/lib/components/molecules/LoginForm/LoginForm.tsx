@@ -89,7 +89,7 @@ export function LoginForm() {
                             <Input
                               name="email"
                               id="email-address"
-                              lable="Email address"
+                              label="Email address"
                               type="email"
                               required={true}
                               placeholder="Email address"
@@ -101,7 +101,7 @@ export function LoginForm() {
                               name="password"
                               type="password"
                               required={true}
-                              lable="Password"
+                              label="Password"
                               placeholder="Password"
                             />
                           </div>
@@ -111,7 +111,7 @@ export function LoginForm() {
                           <div className="flex items-center">
                             <Input
                               id="remember-me"
-                              lable="Remember me"
+                              label="Remember me"
                               name="remember-me"
                               type="checkbox"
                               placeholder="Remember me"

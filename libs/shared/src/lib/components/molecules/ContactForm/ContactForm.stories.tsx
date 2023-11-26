@@ -17,8 +17,4 @@ export const Primary = {
 
 export const Heading: Story = {
   args: {},
-  // play: async ({ canvasElement }) => {
-  //   const canvas = within(canvasElement);
-  //   expect(canvas.getByText(/Welcome to ContactForm!/gi)).toBeTruthy();
-  // },
 };

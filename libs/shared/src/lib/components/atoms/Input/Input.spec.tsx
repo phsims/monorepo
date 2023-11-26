@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import Input from './Input';
 const props = {
   id: 'text-input',
-  lable: 'input example',
+  label: 'input example',
   name: 'input',
 };
 describe('Input', () => {

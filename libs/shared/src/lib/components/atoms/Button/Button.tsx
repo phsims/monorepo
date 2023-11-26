@@ -2,10 +2,10 @@ import { ReactNode } from 'react';
 
 /* eslint-disable-next-line */
 export interface ButtonProps {
+  text?: string;
   id?: string;
-  text: string;
-  type?: 'button' | 'submit' | 'reset';
-  btnClass?: string;
+  type?: 'submit' | 'button' | 'reset' | undefined;
+  className?: string;
   disabled?: boolean;
   children?: ReactNode;
 }
@@ -14,14 +14,14 @@ export function Button({
   text,
   type = 'button',
   disabled = false,
-  btnClass = 'text-xl font-medium bg-primarybg text-primary hover:text-white hover:bg-primary disabled:bg-slate-200 disabled:text-grey disabled:border-slate-500',
+  className = 'rounded-full p-4 lg:px-8 text-xl font-medium bg-primarybg text-primary hover:text-white hover:bg-primary ',
   children,
   id = `${type}-button`,
 }: ButtonProps) {
   return (
     <button
       type={type}
-      className={`rounded-full p-4 lg:px-8  ${btnClass}`}
+      className={`${className} disabled:bg-slate-200 disabled:text-grey disabled:border-slate-500`}
       id={id}
       disabled={disabled}
     >

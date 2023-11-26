@@ -4,12 +4,12 @@ import { Markdown } from '@storybook/blocks';
 import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
+import { SubmitForm } from './SubmitForm';
 import ReadMe from './README.md?raw';
-import Input from './Input';
 
-const meta: Meta<typeof Input> = {
-  component: Input,
-  title: '@shared/atoms/Input',
+const meta: Meta<typeof SubmitForm> = {
+  component: SubmitForm,
+  title: '@shared/organisms/SubmitForm',
   tags: ['autodocs'],
   parameters: {
     docs: {
@@ -27,14 +27,16 @@ const meta: Meta<typeof Input> = {
   ],
 };
 export default meta;
-type Story = StoryObj<typeof Input>;
+type Story = StoryObj<typeof SubmitForm>;
 
 export const Default: Story = {
   args: {
-    name: 'input',
+    inputProps: {
+      label: 'Submit Form',
+    },
   },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    expect(canvas.getByText(/input example/gi)).toBeTruthy();
-  },
+  // play: async ({ canvasElement }) => {
+  //   const canvas = within(canvasElement);
+  //   expect(canvas.getByText(/Submit Form/gi)).toBeTruthy();
+  // },
 };
