@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import SubmitForm from './SubmitForm';
+import SubmitForm, { FormData } from './SubmitForm';
 
 const props = {
   inputProps: {
@@ -11,7 +11,7 @@ describe('SubmitForm', () => {
   it('should render successfully', () => {
     const { baseElement } = render(
       <SubmitForm
-        onSubmit={function (data: unknown): void {
+        onSubmit={function (data: FormData): Promise<void> {
           throw new Error('Function not implemented.');
         }}
         {...props}
@@ -23,7 +23,7 @@ describe('SubmitForm', () => {
   it('should should match snapshot', () => {
     const { baseElement } = render(
       <SubmitForm
-        onSubmit={function (data: unknown): void {
+        onSubmit={function (data: FormData): Promise<void> {
           throw new Error('Function not implemented.');
         }}
         {...props}
