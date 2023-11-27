@@ -32,7 +32,8 @@ type Story = StoryObj<typeof SubmitForm>;
 export const Default: Story = {
   args: {
     inputProps: {
-      label: 'Submit Form',
+      label: 'Text',
+      placeholder: 'Submit Form',
     },
   },
   // play: async ({ canvasElement }) => {

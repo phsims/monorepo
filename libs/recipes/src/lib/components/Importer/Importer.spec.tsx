@@ -1,32 +1,25 @@
 import { render } from '@testing-library/react';
 
-import SubmitForm, { FormData } from './SubmitForm';
+import Importer from './Importer';
 
-const props = {
-  inputProps: {
-    label: 'Submit Form',
-  },
-};
-describe('SubmitForm', () => {
+describe('Importer', () => {
   it('should render successfully', () => {
     const { baseElement } = render(
-      <SubmitForm
-        onSubmit={function (data: FormData): Promise<void> {
+      <Importer
+        onSubmit={function (data: unknown): void {
           throw new Error('Function not implemented.');
         }}
-        {...props}
       />
     );
     expect(baseElement).toBeTruthy();
   });
 
-  it('should should match snapshot', () => {
+  it('should match snapshot', () => {
     const { baseElement } = render(
-      <SubmitForm
-        onSubmit={function (data: FormData): Promise<void> {
+      <Importer
+        onSubmit={function (data: unknown): void {
           throw new Error('Function not implemented.');
         }}
-        {...props}
       />
     );
     expect(baseElement).toMatchSnapshot();
