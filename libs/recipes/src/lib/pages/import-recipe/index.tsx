@@ -1,43 +1,18 @@
 import { useState, useEffect } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+
 import Head from 'next/head';
-import { Input, Button } from '@shared';
+import { Importer } from '../../components/Importer/Importer';
 
 type FormData = {
   url: string;
 };
 
 export function ImportRecipe() {
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<FormData>();
+  const [formData, setFormData] = useState({});
 
-  const [data, setData] = useState('');
-  const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  const fetchData = async (formData: FormData) => {
-    const { url } = formData;
-    console.log('fetching', url);
-    setIsLoading(true);
-    await fetch(url).then((res) => console.log(res.text()));
-    // try {
-    //
-    //   const response =
-
-    //   if (!response.ok) {
-    //     throw new Error(`HTTP error! Status: ${response.status}`);
-    //   }
-    //   const result = await response.text();
-    //   console.log('response', result)
-    //   setData(result);
-    // } catch (error) {
-    //   setError(error.message);
-    // } finally {
-    //   setIsLoading(false);
-    // }
+  const handleSubmit = (dataFromChild) => {
+    // Handle the form data received from the child component
+    setFormData(dataFromChild);
   };
 
   return (
@@ -54,28 +29,10 @@ export function ImportRecipe() {
             To import a recipe simply add a URL from the web and click import.
           </p>
           <p>This is still a work in progress</p>
-          <form onSubmit={handleSubmit(fetchData)}>
-            <div className="flex space-x-1 flex-stretch">
-              <div className="  flex-col justify-center">
-                <Controller
-                  name="url"
-                  control={control}
-                  rules={{ required: 'URL is required' }}
-                  render={({ field }) => <input />}
-                />
-                {errors.url && <p>{errors.url.message}</p>}
-              </div>
-              <div>
-                <button type="submit" disabled={isLoading}>
-                  {isLoading ? 'Fetching...' : 'Fetch Data'}
-                </button>
-              </div>
-            </div>
-          </form>
-          {error && <div className="error">{error}</div>}
+          <Importer onSubmit={handleSubmit} />
           <div>
             <h3>Fetched Data:</h3>
-            <pre>{data}</pre>
+            <pre>{}</pre>
           </div>
         </div>
       </div>
