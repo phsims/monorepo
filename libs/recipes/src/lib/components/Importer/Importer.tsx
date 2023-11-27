@@ -6,10 +6,20 @@ import { SubmitForm, FormData } from '@shared';
 import { parseRecipe } from '../../utilities/parseRecipe';
 import { Recipe } from '../../api/schemas';
 
+/* The `export interface ImporterProps` is defining the props that can be passed to the `Importer`
+component. It includes a single prop `onSubmit`, which is a function that takes `data` of type
+`unknown` as its parameter and returns `void`. This function will be called when the form in the
+`Importer` component is submitted. */
 export interface ImporterProps {
   onSubmit: (data: unknown) => void;
 }
 
+/**
+ * The `Importer` component is a form that takes a URL as input, fetches the content of that URL, and
+ * then parses the fetched HTML content to extract a recipe.
+ * @param {ImporterProps}  - - `onSubmit`: a function that will be called when the form is submitted.
+ * It takes a `FormData` object as its parameter.
+ */
 export function Importer({ onSubmit }: ImporterProps) {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -34,6 +44,10 @@ export function Importer({ onSubmit }: ImporterProps) {
         console.error('Fetch error:', error);
       });
   };
+
+  /* The `submitFormProps` object is defining the properties for the input field in the `SubmitForm`
+  component. It specifies the label as "URL" and the placeholder text as "Enter recipe URL". These
+  properties will be passed as props to the `SubmitForm` component. */
   const submitFormProps = {
     inputProps: {
       label: 'URL',

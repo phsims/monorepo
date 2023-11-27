@@ -19,6 +19,8 @@ const meta: Meta<typeof Importer> = {
 };
 export default meta;
 
+/* The `export const Default` statement is exporting a story configuration object for the default story
+of the `Importer` component. */
 export const Default = {
   args: {
     inputProps: {
