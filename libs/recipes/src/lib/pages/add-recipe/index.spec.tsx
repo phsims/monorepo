@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import Recipes from '.';
+import Add from './index';
 
-describe('Recipes', () => {
+describe('Add', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Recipes />);
+    const { baseElement } = render(<Add />);
     expect(baseElement).toBeTruthy();
   });
 });

@@ -24,6 +24,7 @@
       "executor": "@nx/next:server",
       "defaultConfiguration": "development",
       "options": {
+        "port": 3000,
         "buildTarget": "meal-planner:build",
         "dev": true
       },
