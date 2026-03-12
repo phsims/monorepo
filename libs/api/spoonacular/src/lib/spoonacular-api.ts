@@ -24,7 +24,7 @@ export class SpoonacularClient {
    * @see https://spoonacular.com/food-api/docs#Get-Random-Recipes
    */
   async getRandomRecipes(
-    options: GetRandomRecipesOptions = {}
+    options: GetRandomRecipesOptions = {},
   ): Promise<RandomRecipesResponse> {
     const params = new URLSearchParams();
     params.set('apiKey', this.apiKey);
@@ -49,7 +49,7 @@ export class SpoonacularClient {
     if (!res.ok) {
       const text = await res.text();
       throw new Error(
-        `Spoonacular API error ${res.status}: ${text || res.statusText}`
+        `Spoonacular API error ${res.status}: ${text || res.statusText}`,
       );
     }
 
@@ -62,7 +62,7 @@ export class SpoonacularClient {
    */
   async getRecipeInformation(
     id: number,
-    options: GetRecipeInformationOptions = {}
+    options: GetRecipeInformationOptions = {},
   ): Promise<SpoonacularRecipe> {
     const params = new URLSearchParams();
     params.set('apiKey', this.apiKey);
@@ -84,7 +84,7 @@ export class SpoonacularClient {
     if (!res.ok) {
       const text = await res.text();
       throw new Error(
-        `Spoonacular API error ${res.status}: ${text || res.statusText}`
+        `Spoonacular API error ${res.status}: ${text || res.statusText}`,
       );
     }
 
@@ -95,10 +95,7 @@ export class SpoonacularClient {
    * Get recipes which are similar to the given one.
    * @see https://spoonacular.com/food-api/docs#Get-Similar-Recipes
    */
-  async getSimilarRecipes(
-    id: number,
-    number = 10
-  ): Promise<SimilarRecipe[]> {
+  async getSimilarRecipes(id: number, number = 10): Promise<SimilarRecipe[]> {
     const params = new URLSearchParams();
     params.set('apiKey', this.apiKey);
     params.set('number', String(Math.min(100, Math.max(1, number))));
@@ -109,7 +106,7 @@ export class SpoonacularClient {
     if (!res.ok) {
       const text = await res.text();
       throw new Error(
-        `Spoonacular API error ${res.status}: ${text || res.statusText}`
+        `Spoonacular API error ${res.status}: ${text || res.statusText}`,
       );
     }
 

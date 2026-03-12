@@ -1,4 +1,7 @@
-import { SpoonacularClient, createSpoonacularClient } from './spoonacular-api.js';
+import {
+  SpoonacularClient,
+  createSpoonacularClient,
+} from './spoonacular-api.js';
 
 describe('createSpoonacularClient', () => {
   it('returns a SpoonacularClient', () => {
@@ -8,10 +11,10 @@ describe('createSpoonacularClient', () => {
 
   it('throws when apiKey is empty', () => {
     expect(() => createSpoonacularClient('')).toThrow(
-      'Spoonacular API key is required'
+      'Spoonacular API key is required',
     );
     expect(() => createSpoonacularClient('   ')).toThrow(
-      'Spoonacular API key is required'
+      'Spoonacular API key is required',
     );
   });
 });
@@ -115,7 +118,7 @@ describe('SpoonacularClient#getRandomRecipes', () => {
     });
 
     await expect(client.getRandomRecipes()).rejects.toThrow(
-      'Spoonacular API error 402: Quota exceeded'
+      'Spoonacular API error 402: Quota exceeded',
     );
   });
 });
@@ -154,7 +157,9 @@ describe('SpoonacularClient#getRecipeInformation', () => {
 
     expect(fetchSpy).toHaveBeenCalledTimes(1);
     const [url] = fetchSpy.mock.calls[0];
-    expect(url).toContain('https://api.spoonacular.com/recipes/716429/information');
+    expect(url).toContain(
+      'https://api.spoonacular.com/recipes/716429/information',
+    );
     expect(url).toContain('apiKey=test-api-key');
   });
 
@@ -223,7 +228,7 @@ describe('SpoonacularClient#getRecipeInformation', () => {
     });
 
     await expect(client.getRecipeInformation(1234)).rejects.toThrow(
-      'Spoonacular API error 404: Recipe not found'
+      'Spoonacular API error 404: Recipe not found',
     );
   });
 });
@@ -252,9 +257,7 @@ describe('SpoonacularClient#getSimilarRecipes', () => {
 
     expect(fetchSpy).toHaveBeenCalledTimes(1);
     const [url] = fetchSpy.mock.calls[0];
-    expect(url).toContain(
-      'https://api.spoonacular.com/recipes/715538/similar'
-    );
+    expect(url).toContain('https://api.spoonacular.com/recipes/715538/similar');
     expect(url).toContain('apiKey=test-api-key');
     expect(url).toContain('number=5');
   });
@@ -295,9 +298,7 @@ describe('SpoonacularClient#getSimilarRecipes', () => {
     const result = await client.getSimilarRecipes(715538, 1);
     expect(result).toHaveLength(1);
     expect(result[0].id).toBe(209128);
-    expect(result[0].title).toBe(
-      'Dinner Tonight: Grilled Romesco-Style Pork'
-    );
+    expect(result[0].title).toBe('Dinner Tonight: Grilled Romesco-Style Pork');
   });
 
   it('throws when response is not ok', async () => {
@@ -309,7 +310,7 @@ describe('SpoonacularClient#getSimilarRecipes', () => {
     });
 
     await expect(client.getSimilarRecipes(715538, 3)).rejects.toThrow(
-      'Spoonacular API error 500: Internal error'
+      'Spoonacular API error 500: Internal error',
     );
   });
 });
