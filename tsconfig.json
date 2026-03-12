@@ -8,6 +8,18 @@
     },
     {
       "path": "./apps/CookbookKeeper"
+    },
+    {
+      "path": "./libs/components/react/atoms"
+    },
+    {
+      "path": "./libs/components/react/organisms"
+    },
+    {
+      "path": "./libs/components/react/molecules"
+    },
+    {
+      "path": "./apps/design-system"
     }
   ]
 }
