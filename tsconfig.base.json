@@ -16,6 +16,10 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "customConditions": ["@monorepo/source"]
+    "customConditions": ["@monorepo/source"],
+    "baseUrl": ".",
+    "paths": {
+      "themes/*": ["themes/*"]
+    }
   }
 }
