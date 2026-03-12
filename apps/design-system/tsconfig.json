@@ -10,5 +10,5 @@
     }
   ],
   "extends": "../../tsconfig.base.json",
-  "ignorePatterns": ["!**/*", ".storybook/*"], 
+  "ignorePatterns": ["!**/*", ".storybook/*"]
 }
