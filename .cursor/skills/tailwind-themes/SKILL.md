@@ -110,15 +110,49 @@ This repo keeps reusable theme definitions under a root-level `themes` folder wi
   }
   ```
 
-- Example shared theme file: `themes/cookbook.ts`
-  - Exports a `cookbookTheme` with both `light` and `dark` modes.
+- Example shared Tailwind theme file: `themes/tailwind-themes/cookbook.ts`
+  - Exports a `cookbookTheme` with both `light` and `dark` modes using Tailwind-style semantic tokens:
+
+    ```ts
+    export interface TailwindSemanticColor {
+      DEFAULT: string;
+      foreground: string;
+    }
+
+    export interface TailwindThemePalette {
+      primary: TailwindSemanticColor;
+      secondary: TailwindSemanticColor;
+      accent: TailwindSemanticColor;
+      success: TailwindSemanticColor;
+      warning: TailwindSemanticColor;
+      danger: TailwindSemanticColor;
+      neutral: TailwindSemanticColor;
+      background: { DEFAULT: string; paper: string };
+    }
+    ```
+
   - Can be imported from any app or Storybook config with:
 
     ```ts
-    import { cookbookTheme } from 'themes/cookbook';
+    import { cookbookTheme } from 'themes/tailwind-themes/cookbook';
     ```
 
-Use this pattern for additional themes: add `themes/<theme-name>.ts` and extend Storybook/tooling to recognize them.
+- Default Tailwind extension: `themes/tailwind-themes/default.js`
+  - Exports `defaultTailwindExtend` for use in `theme.extend`:
+
+    ```js
+    const { defaultTailwindExtend } = require('../themes/tailwind-themes/default');
+
+    module.exports = {
+      theme: {
+        extend: {
+          ...defaultTailwindExtend,
+        },
+      },
+    };
+    ```
+
+Use this pattern for additional themes: add `themes/tailwind-themes/<theme-name>.ts` (or `.js`) and extend Storybook/tooling to recognize them.
 
 ## Implementation Workflow
 
@@ -267,7 +301,12 @@ Current implementation in `apps/design-system/.storybook/preview.ts`:
 ```ts
 import React from 'react';
 import type { Preview } from '@storybook/react';
-import { cookbookTheme, type ThemeMode } from 'themes/cookbook';
+import {
+  cookbookTheme,
+  type TailwindThemeMode,
+  type TailwindThemePalette,
+} from 'themes/tailwind-themes/cookbook';
+import '../src/styles.css';
 
 export const globalTypes = {
   themeMode: {
@@ -298,26 +337,56 @@ export const globalTypes = {
 const preview: Preview = {
   decorators: [
     (Story, context) => {
-      const mode = (context.globals.themeMode as ThemeMode) || 'light';
+      const mode = (context.globals.themeMode as TailwindThemeMode) || 'light';
       const themeId = (context.globals.theme as string) || 'cookbook';
       const themeDef = themeId === cookbookTheme.id ? cookbookTheme : cookbookTheme;
-      const palette = themeDef.modes[mode];
+      const tokens: TailwindThemePalette = themeDef.modes[mode];
 
       if (typeof document !== 'undefined') {
         const root = document.documentElement;
         root.setAttribute('data-theme', mode);
         root.setAttribute('data-theme-id', themeDef.id);
 
-        root.style.setProperty('--theme-primary-main', palette.primary.main);
-        root.style.setProperty('--theme-primary-light', palette.primary.light);
-        root.style.setProperty('--theme-primary-dark', palette.primary.dark);
-
-        root.style.setProperty('--theme-secondary-main', palette.secondary.main);
-        root.style.setProperty('--theme-secondary-light', palette.secondary.light);
-        root.style.setProperty('--theme-secondary-dark', palette.secondary.dark);
-
-        root.style.setProperty('--theme-background-default', palette.background.default);
-        root.style.setProperty('--theme-background-paper', palette.background.paper);
+        root.style.setProperty('--theme-primary-main', tokens.primary.DEFAULT);
+        root.style.setProperty(
+          '--theme-primary-foreground',
+          tokens.primary.foreground
+        );
+        root.style.setProperty('--theme-primary-light', tokens.accent.DEFAULT);
+        root.style.setProperty(
+          '--theme-primary-light-foreground',
+          tokens.accent.foreground
+        );
+        root.style.setProperty('--theme-secondary-main', tokens.secondary.DEFAULT);
+        root.style.setProperty(
+          '--theme-secondary-foreground',
+          tokens.secondary.foreground
+        );
+        root.style.setProperty('--theme-success-main', tokens.success.DEFAULT);
+        root.style.setProperty(
+          '--theme-success-foreground',
+          tokens.success.foreground
+        );
+        root.style.setProperty('--theme-warning-main', tokens.warning.DEFAULT);
+        root.style.setProperty(
+          '--theme-warning-foreground',
+          tokens.warning.foreground
+        );
+        root.style.setProperty('--theme-danger-main', tokens.danger.DEFAULT);
+        root.style.setProperty(
+          '--theme-danger-foreground',
+          tokens.danger.foreground
+        );
+        root.style.setProperty('--theme-neutral-main', tokens.neutral.DEFAULT);
+        root.style.setProperty(
+          '--theme-neutral-foreground',
+          tokens.neutral.foreground
+        );
+        root.style.setProperty(
+          '--theme-background-default',
+          tokens.background.DEFAULT
+        );
+        root.style.setProperty('--theme-background-paper', tokens.background.paper);
       }
 
       return React.createElement(
@@ -325,7 +394,7 @@ const preview: Preview = {
         {
           style: {
             minHeight: '100vh',
-            backgroundColor: palette.background.default,
+            backgroundColor: tokens.background.DEFAULT,
           },
         },
         React.createElement(Story, context.args)
@@ -338,8 +407,8 @@ export default preview;
 ```
 
 - `themeMode` controls the **light/dark** mode.
-- `theme` controls which shared theme module is active (currently only `cookbook`, but you can add more under `themes/*` and extend the toolbar).
-- The decorator exposes palette values as CSS variables and sets the Storybook preview background based on the active theme/mode.
+- `theme` controls which shared Tailwind theme module is active (currently only `cookbook`, but you can add more under `themes/tailwind-themes/*` and extend the toolbar).
+- The decorator exposes semantic Tailwind tokens as CSS variables and sets the Storybook preview background based on the active theme/mode.
 
 ### 3. Align Themes with CSS Variables (Optional but Recommended)
 
