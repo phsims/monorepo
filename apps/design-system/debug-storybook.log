@@ -1,0 +1,34 @@
+[11:20:52.729] [INFO] storybook v10.2.17
+[11:20:52.923] [ERROR] [38;2;241;97;97mSB_CORE-SERVER_0007 (MainFileEvaluationError): Storybook couldn't evaluate your [33m.storybook\main.ts[39m file.
+
+Original error:
+[37mError [ERR_MODULE_NOT_FOUND]: Cannot find package '@vitejs/plugin-react' imported from \.storybook\main.ts
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at nextResolve (node:internal/modules/esm/hooks:748:28)
+    at Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+    at handleMessage (node:internal/modules/esm/worker:199:24)
+    at checkForMessages (node:internal/modules/esm/worker:141:28)
+    at process.<anonymous> (node:internal/modules/esm/worker:160:5)
+    at process.emit (node:events:519:28)[39m[39m
+    at loadMainConfig (file:///C:/Users/Pam/DEV/monorepo/node_modules/storybook/dist/_node-chunks/chunk-LZBZZS4H.js:11709:11)
+    at async buildDevStandalone (file:///C:/Users/Pam/DEV/monorepo/node_modules/storybook/dist/core-server/index.js:7647:16)
+    at async withTelemetry (file:///C:/Users/Pam/DEV/monorepo/node_modules/storybook/dist/_node-chunks/chunk-FTTIUZEI.js:218:12)
+    at async dev (file:///C:/Users/Pam/DEV/monorepo/node_modules/storybook/dist/bin/core.js:2734:3)
+    at async _Command.<anonymous> (file:///C:/Users/Pam/DEV/monorepo/node_modules/storybook/dist/bin/core.js:2804:92)
+[11:20:52.930] [WARN] Broken build, fix the error above.
+You may need to refresh the browser.
+[11:20:52.937] [WARN]   Failed to load preset: "C:/Users/Pam/DEV/monorepo/apps/design-system/.storybook/main.ts"
+[11:20:52.937] [ERROR] Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@vitejs/plugin-react' imported from .\.storybook\main.ts
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at nextResolve (node:internal/modules/esm/hooks:748:28)
+    at Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+    at handleMessage (node:internal/modules/esm/worker:199:24)
+    at checkForMessages (node:internal/modules/esm/worker:141:28)
+    at process.<anonymous> (node:internal/modules/esm/worker:160:5)
+    at process.emit (node:events:519:28)
