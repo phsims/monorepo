@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compileOnSave": false,
+  "files": [],
+  "references": [
+    {
+      "path": "./apps/CookbookKeeper-e2e"
+    },
+    {
+      "path": "./apps/CookbookKeeper"
+    }
+  ]
+}
