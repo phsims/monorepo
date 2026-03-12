@@ -1,0 +1,72 @@
+import type { HTMLAttributes, ReactNode } from 'react';
+
+type CardVariant = 'elevated' | 'outlined' | 'filled';
+
+export interface CardProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
+  variant?: CardVariant;
+  className?: string;
+}
+
+export interface CardHeaderProps {
+  children: ReactNode;
+  className?: string;
+}
+
+export interface CardContentProps {
+  children: ReactNode;
+  className?: string;
+}
+
+export interface CardFooterProps {
+  children: ReactNode;
+  className?: string;
+}
+
+const variantClasses: Record<CardVariant, string> = {
+  elevated: 'bg-background-paper shadow-md border border-border/50',
+  outlined: 'bg-transparent border border-input',
+  filled: 'bg-neutral border border-neutral',
+};
+
+export function Card({
+  children,
+  variant = 'elevated',
+  className = '',
+  ...props
+}: CardProps) {
+  const variantClass = variantClasses[variant];
+
+  const classes = [
+    'rounded-lg overflow-hidden transition-colors',
+    variantClass,
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  return (
+    <div className={classes} {...props}>
+      {children}
+    </div>
+  );
+}
+
+export function CardHeader({ children, className = '' }: CardHeaderProps) {
+  const classes = ['px-4 py-3 border-b border-border', className]
+    .filter(Boolean)
+    .join(' ');
+  return <div className={classes}>{children}</div>;
+}
+
+export function CardContent({ children, className = '' }: CardContentProps) {
+  const classes = ['px-4 py-3', className].filter(Boolean).join(' ');
+  return <div className={classes}>{children}</div>;
+}
+
+export function CardFooter({ children, className = '' }: CardFooterProps) {
+  const classes = ['px-4 py-3 border-t border-border', className]
+    .filter(Boolean)
+    .join(' ');
+  return <div className={classes}>{children}</div>;
+}

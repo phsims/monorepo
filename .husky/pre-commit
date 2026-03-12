@@ -1,1 +1,2 @@
+npm nx format:write
 npx nx affected -t lint,test
