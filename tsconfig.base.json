@@ -19,7 +19,14 @@
     "customConditions": ["@monorepo/source"],
     "baseUrl": ".",
     "paths": {
-      "themes/*": ["themes/*"]
+      "themes/*": ["themes/*"],
+      "components/react/atoms/*": ["libs/components/react/atoms/src/lib/*"],
+      "components/react/molecules/*": [
+        "libs/components/react/molecules/src/lib/*"
+      ],
+      "components/react/organisms/*": [
+        "libs/components/react/organisms/src/lib/*"
+      ]
     }
   }
 }
