@@ -42,7 +42,7 @@ const preview: Preview = {
       const mode = (context.globals.themeMode as TailwindThemeMode) || 'light';
       const themeId = (context.globals.theme as string) || 'default';
       const themeDef =
-        themeId === cookbookTheme.id ? cookbookTheme : defaultTheme;
+        themeId === cookbookTheme.id ? cookbookTheme : cookbookTheme;
       const tokens: TailwindThemePalette = themeDef.modes[mode];
 
       if (typeof document !== 'undefined') {
@@ -51,24 +51,51 @@ const preview: Preview = {
         root.setAttribute('data-theme-id', themeDef.id);
 
         root.style.setProperty('--theme-primary-main', tokens.primary.DEFAULT);
-        root.style.setProperty('--theme-primary-foreground', tokens.primary.foreground);
+        root.style.setProperty(
+          '--theme-primary-foreground',
+          tokens.primary.foreground,
+        );
         root.style.setProperty('--theme-primary-light', tokens.accent.DEFAULT);
-        root.style.setProperty('--theme-primary-light-foreground', tokens.accent.foreground);
-        root.style.setProperty('--theme-secondary-main', tokens.secondary.DEFAULT);
+        root.style.setProperty(
+          '--theme-primary-light-foreground',
+          tokens.accent.foreground,
+        );
+        root.style.setProperty(
+          '--theme-secondary-main',
+          tokens.secondary.DEFAULT,
+        );
         root.style.setProperty(
           '--theme-secondary-foreground',
-          tokens.secondary.foreground
+          tokens.secondary.foreground,
         );
         root.style.setProperty('--theme-success-main', tokens.success.DEFAULT);
-        root.style.setProperty('--theme-success-foreground', tokens.success.foreground);
+        root.style.setProperty(
+          '--theme-success-foreground',
+          tokens.success.foreground,
+        );
         root.style.setProperty('--theme-warning-main', tokens.warning.DEFAULT);
-        root.style.setProperty('--theme-warning-foreground', tokens.warning.foreground);
+        root.style.setProperty(
+          '--theme-warning-foreground',
+          tokens.warning.foreground,
+        );
         root.style.setProperty('--theme-danger-main', tokens.danger.DEFAULT);
-        root.style.setProperty('--theme-danger-foreground', tokens.danger.foreground);
+        root.style.setProperty(
+          '--theme-danger-foreground',
+          tokens.danger.foreground,
+        );
         root.style.setProperty('--theme-neutral-main', tokens.neutral.DEFAULT);
-        root.style.setProperty('--theme-neutral-foreground', tokens.neutral.foreground);
-        root.style.setProperty('--theme-background-default', tokens.background.DEFAULT);
-        root.style.setProperty('--theme-background-paper', tokens.background.paper);
+        root.style.setProperty(
+          '--theme-neutral-foreground',
+          tokens.neutral.foreground,
+        );
+        root.style.setProperty(
+          '--theme-background-default',
+          tokens.background.DEFAULT,
+        );
+        root.style.setProperty(
+          '--theme-background-paper',
+          tokens.background.paper,
+        );
       }
 
       return React.createElement(
@@ -79,7 +106,7 @@ const preview: Preview = {
             backgroundColor: tokens.background.DEFAULT,
           },
         },
-        React.createElement(Story, context.args)
+        React.createElement(Story, context.args),
       );
     },
   ],
