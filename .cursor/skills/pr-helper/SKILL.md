@@ -13,8 +13,6 @@ Use this skill whenever you need to:
 - **Write or improve** a PR title and body for the current changes
 - Summarize the impact of a branch or set of commits
 
-In this repo, when this skill runs you should **assume that an actual PR will be created via `gh pr create`**, not just that text will be drafted. Only skip calling `gh pr create` when the user **explicitly** asks for “text only” or similar.
-
 Trigger phrases include: "open a PR", "create a pull request", "raise PR", "write PR description", "write PR message", or "PR title".
 
 Always follow the workflow below and keep the user updated in short, concrete messages.
@@ -124,14 +122,7 @@ Guidelines:
 
 ### 5. Confirm with the User (If Needed)
 
-By default in this repo you should **go ahead and create the PR** (step 6) after drafting the title and body, without an extra confirmation step, as long as the user has asked you to “open a PR”, “create a pull request”, etc.
-
-Use a confirmation step only when:
-
-- The user says they want to review or tweak the text before creation, or
-- The scope of changes to include in the PR is ambiguous and needs clarification.
-
-In that case:
+Before actually creating the PR:
 
 - Show the **proposed PR title** and **PR body**.
 - Ask whether the user wants to:
@@ -139,9 +130,11 @@ In that case:
   - Edit the title or body
   - Cancel or delay creating the PR
 
+If the user has previously asked you to "just handle PRs automatically" or responds that the defaults are fine, you can skip confirmation for future PRs in this session unless requirements change.
+
 ### 6. Create the PR via GitHub CLI
 
-This repo’s convention is that when `pr-helper` runs, you **create the PR via `gh pr create`** (unless the user has explicitly requested “text only” output):
+When the user explicitly wants an actual PR (not just the text):
 
 1. Ensure all intended changes are committed:
    - Use `git status` to confirm a clean working tree for the changes that should be in the PR.

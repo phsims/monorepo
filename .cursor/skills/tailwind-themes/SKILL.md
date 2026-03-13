@@ -95,19 +95,16 @@ Default assumption for this skill:
 
 ### 3. Shared Theme Modules
 
-This repo keeps reusable theme definitions under a root-level `themes` folder. **Repo path aliases** (including `themes/*`) are defined in the root config chain: `tsconfig.json` extends `tsconfig.base.json`, and `tsconfig.base.json` holds `baseUrl` and `paths`. Do not redefine these aliases in app-level configs; use the repo alias so that Nx and ESLint resolve imports correctly (e.g. `@nx/enforce-module-boundaries` accepts `themes/*` when the alias is from the root/base config). App-level configs that extend the base (e.g. `apps/design-system/tsconfig.storybook.json`) may set `baseUrl` (e.g. `"../../"`) so that the inherited paths resolve from the repo root, but should not duplicate the `paths` block.
+This repo keeps reusable theme definitions under a root-level `themes` folder with a TypeScript path alias:
 
-- Path alias in `tsconfig.base.json` (and thus available via root `tsconfig.json`):
+- Path alias in `tsconfig.base.json`:
 
   ```json
   {
     "compilerOptions": {
       "baseUrl": ".",
       "paths": {
-        "themes/*": ["themes/*"],
-        "components/react/atoms/*": ["libs/components/react/atoms/src/lib/*"],
-        "components/react/molecules/*": ["libs/components/react/molecules/src/lib/*"],
-        "components/react/organisms/*": ["libs/components/react/organisms/src/lib/*"]
+        "themes/*": ["themes/*"]
       }
     }
   }
@@ -155,7 +152,7 @@ This repo keeps reusable theme definitions under a root-level `themes` folder. *
     };
     ```
 
-Use this pattern for additional themes: add `themes/tailwind-themes/<theme-name>.ts` (or `.js`), export a theme object matching `TailwindThemeDefinition`, and wire it into Storybook’s theme registry and toolbar (see Storybook Integration below). Import themes using the repo alias: `import { someTheme } from 'themes/tailwind-themes/<theme-name>'`.
+Use this pattern for additional themes: add `themes/tailwind-themes/<theme-name>.ts` (or `.js`) and extend Storybook/tooling to recognize them.
 
 ## Implementation Workflow
 
@@ -322,22 +319,15 @@ To see and test themes in Storybook (design-system app), follow this pattern.
 
 ### 2. Shared Themes in Storybook
 
-Use Storybook’s `globalTypes` and `decorators` together with the shared `themes/*` modules to control both the active theme and light/dark mode. Import theme modules via the **repo alias** (`themes/tailwind-themes/...`) so that Nx and ESLint resolve them correctly. Use a **theme registry** (a `Record<string, TailwindThemeDefinition>`) keyed by theme id so the decorator can look up the active theme; add each new theme to the registry and to the theme toolbar items.
+Use Storybook’s `globalTypes` and `decorators` together with the shared `themes/*` modules to control both the active theme and light/dark mode.
 
-Current pattern in `apps/design-system/.storybook/preview.ts`:
+Current implementation in `apps/design-system/.storybook/preview.ts`:
 
 ```ts
 import React from 'react';
-import type { Preview, StoryContext } from '@storybook/react';
-import { cookbookTheme, type TailwindThemeDefinition, type TailwindThemeMode, type TailwindThemePalette } from 'themes/tailwind-themes/cookbook';
-import { oceanTheme } from 'themes/tailwind-themes/ocean';
+import type { Preview } from '@storybook/react';
+import { cookbookTheme, type TailwindThemeMode, type TailwindThemePalette } from 'themes/tailwind-themes/cookbook';
 import '../src/styles.css';
-
-const themeRegistry: Record<string, TailwindThemeDefinition> = {
-  default: cookbookTheme,
-  cookbook: cookbookTheme,
-  ocean: oceanTheme,
-};
 
 export const globalTypes = {
   themeMode: {
@@ -356,14 +346,10 @@ export const globalTypes = {
   theme: {
     name: 'Theme',
     description: 'Shared UI theme',
-    defaultValue: 'default',
+    defaultValue: 'cookbook',
     toolbar: {
       icon: 'paintbrush',
-      items: [
-        { value: 'default', title: 'Default' },
-        { value: 'cookbook', title: 'Cookbook' },
-        { value: 'ocean', title: 'Ocean' },
-      ],
+      items: [{ value: 'cookbook', title: 'Cookbook' }],
       dynamicTitle: true,
     },
   },
@@ -373,8 +359,8 @@ const preview: Preview = {
   decorators: [
     (Story, context) => {
       const mode = (context.globals.themeMode as TailwindThemeMode) || 'light';
-      const themeId = (context.globals.theme as string) || 'default';
-      const themeDef = themeRegistry[themeId] ?? cookbookTheme;
+      const themeId = (context.globals.theme as string) || 'cookbook';
+      const themeDef = themeId === cookbookTheme.id ? cookbookTheme : cookbookTheme;
       const tokens: TailwindThemePalette = themeDef.modes[mode];
 
       if (typeof document !== 'undefined') {
