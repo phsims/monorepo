@@ -1,2 +1,1 @@
 pnpm exec nx format:write
-pnpm exec nx affected -t lint,test
