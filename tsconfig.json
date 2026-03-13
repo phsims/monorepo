@@ -4,12 +4,6 @@
   "files": [],
   "references": [
     {
-      "path": "./apps/CookbookKeeper-e2e"
-    },
-    {
-      "path": "./apps/CookbookKeeper"
-    },
-    {
       "path": "./libs/components/react/atoms"
     },
     {
@@ -20,6 +14,15 @@
     },
     {
       "path": "./apps/design-system"
+    },
+    {
+      "path": "./apps/CookbookKeeper-e2e"
+    },
+    {
+      "path": "./apps/CookbookKeeper"
+    },
+    {
+      "path": "./libs/api/spoonacular"
     }
   ]
 }
