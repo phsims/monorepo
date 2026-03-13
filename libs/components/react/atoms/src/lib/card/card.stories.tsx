@@ -1,6 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Card, CardHeader, CardContent, CardFooter, type CardProps } from './card';
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardFooter,
+  type CardProps,
+} from './card';
 
 const meta: Meta<CardProps> = {
   title: 'React/Atoms/Card',
@@ -20,11 +26,7 @@ type Story = StoryObj<CardProps>;
 export const Default: Story = {
   args: {
     variant: 'elevated',
-    children: (
-      <>
-        <CardContent>Card content goes here.</CardContent>
-      </>
-    ),
+    children: <CardContent>Card content goes here.</CardContent>,
   },
 };
 

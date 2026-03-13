@@ -60,7 +60,9 @@ export const Small: Story = {
 export const Removable: Story = {
   args: {
     children: 'Removable chip',
-    onRemove: () => {},
+    onRemove: () => {
+      /* noop */
+    },
   },
 };
 

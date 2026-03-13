@@ -5,7 +5,8 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "jsx": "preserve",
-    "rootDir": "../../"
+    "rootDir": "../../",
+    "lib": ["es2022", "dom", "dom.iterable"]
   },
   "exclude": [
     "src/**/*.spec.ts",
@@ -24,7 +25,8 @@
     "src/**/*.stories.tsx",
     "src/**/*.stories.mdx",
     ".storybook/*.js",
-    ".storybook/*.ts"
+    ".storybook/*.ts",
+    "../../themes/tailwind-themes/cookbook.ts"
   ],
   "references": [
     {

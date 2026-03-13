@@ -4,11 +4,7 @@
   "references": [
     {
       "path": "./tsconfig.lib.json"
-    },
-    {
-      "path": "./tsconfig.storybook.json"
     }
   ],
-  "extends": "../../tsconfig.base.json",
-  "ignorePatterns": ["!**/*", ".storybook/*"]
+  "extends": "../../tsconfig.base.json"
 }

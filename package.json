@@ -40,6 +40,7 @@
     "@swc/helpers": "~0.5.18",
     "@swc/jest": "~0.2.38",
     "@testing-library/dom": "10.4.0",
+    "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "16.3.0",
     "@types/jest": "^30.0.0",
     "@types/node": "20.19.9",

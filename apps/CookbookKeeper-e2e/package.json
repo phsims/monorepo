@@ -1,10 +1,10 @@
 {
-  "name": "@monorepo/CookbookKeeper-e2e",
+  "name": "CookbookKeeper-e2e",
   "version": "0.0.1",
   "private": true,
   "nx": {
     "implicitDependencies": [
-      "@monorepo/CookbookKeeper"
+      "CookbookKeeper"
     ]
   }
 }

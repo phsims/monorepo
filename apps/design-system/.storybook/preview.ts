@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Preview } from '@storybook/react';
+import type { Preview, StoryContext } from '@storybook/react';
 import {
   cookbookTheme,
   type TailwindThemeMode,
@@ -38,7 +38,7 @@ export const globalTypes = {
 
 const preview: Preview = {
   decorators: [
-    (Story, context) => {
+    (Story: React.ComponentType, context: StoryContext) => {
       const mode = (context.globals.themeMode as TailwindThemeMode) || 'light';
       const themeId = (context.globals.theme as string) || 'default';
       const themeDef =

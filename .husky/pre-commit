@@ -1,2 +1,2 @@
 pnpm exec nx format:write
-pnpm exec nx affected -t lint,test
+pnpm exec nx run-many -t lint,test,typecheck
