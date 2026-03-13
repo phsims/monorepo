@@ -2,6 +2,12 @@
   "name": "@monorepo/CookbookKeeper",
   "version": "0.0.1",
   "private": true,
+  "nx": {
+    "name": "CookbookKeeper",
+    "tags": [
+      "nextjs"
+    ]
+  },
   "dependencies": {
     "next": "~16.0.1",
     "react": "^19.0.0",

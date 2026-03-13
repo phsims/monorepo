@@ -10,6 +10,7 @@ export default [
       '**/out-tsc',
       '**/test-output',
       '**/vite.config.*.timestamp*',
+      '**/storybook-static/**',
     ],
   },
   {
