@@ -4,11 +4,11 @@ Shared semantic theme definitions for the monorepo. Each theme provides a consis
 
 ## Available themes
 
-| Theme          | Id           | Purpose                                                                                         |
-| -------------- | ------------ | ----------------------------------------------------------------------------------------------- |
-| **Cookbook**   | `cookbook`   | Recipe Companion / warm palette (orange, green, yellow). Default for CookbookKeeper.            |
-| **Ocean**      | `ocean`      | Cool blue/teal palette. Alternative for design-system demos and apps that need a distinct look. |
-| **Wildflowers**| `wildflowers`| Mint, forest green, dusk pink, lavender. Palette: #A8DCAB, #519755, #DBAAA7, #BE91BE.          |
+| Theme           | Id            | Purpose                                                                                         |
+| --------------- | ------------- | ----------------------------------------------------------------------------------------------- |
+| **Cookbook**    | `cookbook`    | Recipe Companion / warm palette (orange, green, yellow). Default for CookbookKeeper.            |
+| **Ocean**       | `ocean`       | Cool blue/teal palette. Alternative for design-system demos and apps that need a distinct look. |
+| **Wildflowers** | `wildflowers` | Mint, forest green, dusk pink, lavender. Palette: #A8DCAB, #519755, #DBAAA7, #BE91BE.           |
 
 ## Usage
 
