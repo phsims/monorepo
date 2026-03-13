@@ -1,5 +1,5 @@
 {
-  "name": "@monorepo/CookbookKeeper",
+  "name": "CookbookKeeper",
   "version": "0.0.1",
   "private": true,
   "nx": {
