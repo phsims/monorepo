@@ -168,11 +168,39 @@ When adding or updating themes for an app:
 
 ### Step 2: Define Semantic Color Tokens
 
-1. Choose **concrete color values** (Tailwind color strings or raw hex values).
-2. For consistency across apps:
-   - Prefer sticking to the same **token names** in every app.
+You can either **choose colors yourself** or, preferably, the user will provide a **color palette** in the form:
+
+- `#A8DCAB secondary light`
+- `#519755 secondary`
+- `#DBAAA7 primary light`
+- `#BE91BE primary`
+
+Handle palettes like this as follows:
+
+1. **Parse each line** into:
+   - A hex color value (e.g. `#A8DCAB`).
+   - A semantic role and optional shade descriptor (e.g. `secondary light`, `primary`).
+2. **Map semantic roles to tokens**:
+   - Base roles (no shade word): map to `DEFAULT` for that token:
+     - `primary` → `primary.DEFAULT`
+     - `secondary` → `secondary.DEFAULT`
+   - `light` shade:
+     - Where tokens support a light variant via CSS variables, prefer mapping to a **light-variant variable** (e.g. `--theme-primary-light`) rather than a separate Tailwind token.
+     - When needed directly in Tailwind theme, you may introduce `primaryLight`, `secondaryLight`, or use a `light` nested key if the existing design supports it.
+3. **Set foreground colors**:
+   - If the user does not provide explicit foreground values, compute a reasonable default:
+     - Use a simple contrast heuristic (light backgrounds → dark text, dark backgrounds → light text), or choose:
+       - `#000000` for light backgrounds.
+       - `#ffffff` for darker backgrounds.
+   - Store these in the `foreground` field (e.g. `primary.foreground`).
+4. **Ensure consistency across apps**:
+   - Prefer sticking to the same **token names** (`primary`, `secondary`, `accent`, `success`, `warning`, `danger`, `neutral`) in every app.
    - Reuse values where you want a shared brand identity; diverge only when the app intentionally differs.
-3. When the user does not provide explicit colors:
+
+If the user does **not** provide a palette:
+
+1. Choose **concrete color values** (Tailwind color strings or raw hex values).
+2. When the user does not provide explicit colors:
    - Pick reasonable defaults using Tailwind’s standard palette (e.g. `blue-600` for primary, `gray-900` for neutral).
    - Clearly call out any assumptions in the explanation back to the user.
 
@@ -232,10 +260,7 @@ Below is an example of how to evolve an Nx app Tailwind config toward this patte
 ```js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './{src,pages,components,app}/**/*.{ts,tsx,js,jsx,html}',
-    '!./{src,pages,components,app}/**/*.{stories,spec}.{ts,tsx,js,jsx,html}',
-  ],
+  content: ['./{src,pages,components,app}/**/*.{ts,tsx,js,jsx,html}', '!./{src,pages,components,app}/**/*.{stories,spec}.{ts,tsx,js,jsx,html}'],
   theme: {
     extend: {
       colors: {
@@ -301,11 +326,7 @@ Current implementation in `apps/design-system/.storybook/preview.ts`:
 ```ts
 import React from 'react';
 import type { Preview } from '@storybook/react';
-import {
-  cookbookTheme,
-  type TailwindThemeMode,
-  type TailwindThemePalette,
-} from 'themes/tailwind-themes/cookbook';
+import { cookbookTheme, type TailwindThemeMode, type TailwindThemePalette } from 'themes/tailwind-themes/cookbook';
 import '../src/styles.css';
 
 export const globalTypes = {
@@ -348,44 +369,20 @@ const preview: Preview = {
         root.setAttribute('data-theme-id', themeDef.id);
 
         root.style.setProperty('--theme-primary-main', tokens.primary.DEFAULT);
-        root.style.setProperty(
-          '--theme-primary-foreground',
-          tokens.primary.foreground
-        );
+        root.style.setProperty('--theme-primary-foreground', tokens.primary.foreground);
         root.style.setProperty('--theme-primary-light', tokens.accent.DEFAULT);
-        root.style.setProperty(
-          '--theme-primary-light-foreground',
-          tokens.accent.foreground
-        );
+        root.style.setProperty('--theme-primary-light-foreground', tokens.accent.foreground);
         root.style.setProperty('--theme-secondary-main', tokens.secondary.DEFAULT);
-        root.style.setProperty(
-          '--theme-secondary-foreground',
-          tokens.secondary.foreground
-        );
+        root.style.setProperty('--theme-secondary-foreground', tokens.secondary.foreground);
         root.style.setProperty('--theme-success-main', tokens.success.DEFAULT);
-        root.style.setProperty(
-          '--theme-success-foreground',
-          tokens.success.foreground
-        );
+        root.style.setProperty('--theme-success-foreground', tokens.success.foreground);
         root.style.setProperty('--theme-warning-main', tokens.warning.DEFAULT);
-        root.style.setProperty(
-          '--theme-warning-foreground',
-          tokens.warning.foreground
-        );
+        root.style.setProperty('--theme-warning-foreground', tokens.warning.foreground);
         root.style.setProperty('--theme-danger-main', tokens.danger.DEFAULT);
-        root.style.setProperty(
-          '--theme-danger-foreground',
-          tokens.danger.foreground
-        );
+        root.style.setProperty('--theme-danger-foreground', tokens.danger.foreground);
         root.style.setProperty('--theme-neutral-main', tokens.neutral.DEFAULT);
-        root.style.setProperty(
-          '--theme-neutral-foreground',
-          tokens.neutral.foreground
-        );
-        root.style.setProperty(
-          '--theme-background-default',
-          tokens.background.DEFAULT
-        );
+        root.style.setProperty('--theme-neutral-foreground', tokens.neutral.foreground);
+        root.style.setProperty('--theme-background-default', tokens.background.DEFAULT);
         root.style.setProperty('--theme-background-paper', tokens.background.paper);
       }
 
@@ -397,7 +394,7 @@ const preview: Preview = {
             backgroundColor: tokens.background.DEFAULT,
           },
         },
-        React.createElement(Story, context.args)
+        React.createElement(Story, context.args),
       );
     },
   ],
@@ -457,4 +454,3 @@ After using this skill to update themes:
    - Provide a short example of using the tokens in JSX, e.g. `className="bg-primary text-primary-foreground"`.
 3. **Call out assumptions**:
    - If you chose default colors or a particular token mapping without explicit user input, mention those assumptions so they can be tweaked later.
-

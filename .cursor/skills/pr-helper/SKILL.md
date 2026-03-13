@@ -42,33 +42,50 @@ Always follow the workflow below and keep the user updated in short, concrete me
    - A short list of **key changes** (e.g., features, fixes, refactors)
    - Any **breaking changes** or migrations
    - Which **tests** are added, updated, or run
+3. Derive **ticket metadata and type**:
+   - Infer `ticket_number` and `ticket_title` from:
+     - The current branch name when it follows `<type>/<ticket_number>-<title>` (for example `feat/20-set-up-2-new-pipeline-skills-to-automate-component-and-theme-lifecycle`).
+     - The conversation (the user may have already provided the ticket number and title).
+   - Infer `<type>` from:
+     - Branch prefix when present (`feat`, `fix`, `chore`, `docs`, etc.).
+     - Ticket labels when available, mapping:
+       - `bug` → `fix`
+       - `feature` → `feat`
+       - `chore` → `chore`
+       - `documentation` / `docs` → `docs`
+   - If you cannot reliably infer these values, ask the user to provide:
+     - `ticket_number`
+     - `ticket_title`
+     - Optional `type` (default to `feat` if not specified).
 
 This analysis will feed directly into the PR title and body.
 
-### 3. Draft PR Title (feat: <ticket_number> <ticket_title>)
+### 3. Draft PR Title (<type>: <ticket_number> <ticket_title>)
 
-Always use this exact format for the PR title:
+Always use this format for the PR title:
 
-`feat: <ticket_number> <ticket_title>`
+`<type>: <ticket_number> <ticket_title>`
 
 Where:
-- `<ticket_number>` is the work item ID (for example `ABC-123`)
-- `<ticket_title>` is a short, human-readable summary from the ticket (for example `add ingredient tags to recipes`)
+
+- `<type>` is the conventional-commit style prefix derived above (for example `feat`, `fix`, `chore`, `docs`). Default to `feat` when no better type can be inferred.
+- `<ticket_number>` is the work item ID (for example `ABC-123` or `20`).
+- `<ticket_title>` is a short, human-readable summary from the ticket (for example `set up 2 new pipeline skills to automate component and theme lifecycle`).
 
 Rules:
+
 - Do **not** include a scope in parentheses.
-- Keep `<ticket_title>` concise (aim for ~60 characters or less when possible).
+- Keep `<ticket_title>` concise (aim for ~60 characters or less when possible, but it may be longer if needed for clarity).
 - Use sentence-style capitalization unless the team has specified a different convention in the conversation.
 
 If the ticket information is missing or unclear:
+
 - Try to infer `ticket_number` and `ticket_title` from:
-  - The branch name (e.g. `feature/ABC-123-add-ingredient-tags`)
-  - The conversation (user may have already mentioned the ticket)
+  - The branch name (e.g. `feat/20-set-up-2-new-pipeline-skills-to-automate-component-and-theme-lifecycle`).
+  - The conversation (user may have already mentioned the ticket).
 - If you still cannot reliably infer them, ask the user to provide:
   - `ticket_number`
   - `ticket_title`
-
-Only deviate from the `feat:` prefix if the user explicitly instructs a different type (such as `fix:` or `chore:`) for a specific PR.
 
 ### 4. Draft PR Body
 
@@ -76,16 +93,20 @@ Use this template and fill it with concrete details from the change analysis and
 
 ```markdown
 ## Summary
+
 - [1–3 bullets summarizing what this PR does]
 
 ## Details
+
 - [Key implementation details or architectural changes]
 - [Important edge cases or constraints]
 
 ## Breaking Changes
+
 - [Yes/No] – if Yes, explain what breaks and how to migrate.
 
 ## Tests
+
 - [ ] Unit tests
 - [ ] Integration/end-to-end tests
 - [ ] Manual testing
@@ -94,6 +115,7 @@ Describe what you actually tested and which areas were covered (for example “M
 ```
 
 Guidelines:
+
 - Prefer **clear, concrete bullets** over prose paragraphs.
 - Explicitly mention any new configuration, migrations, or environment changes.
 - If there are **no tests**, call that out honestly rather than checking boxes.
@@ -101,6 +123,7 @@ Guidelines:
 ### 5. Confirm with the User (If Needed)
 
 Before actually creating the PR:
+
 - Show the **proposed PR title** and **PR body**.
 - Ask whether the user wants to:
   - Accept as-is
@@ -127,8 +150,7 @@ When the user explicitly wants an actual PR (not just the text):
 3. Create the PR using GitHub CLI (`gh`) via Shell:
    - For a single-line body:
      - `gh pr create --title "<PR_TITLE>" --body "<PR_BODY>"`
-   - For a multi-line body, prefer a heredoc:
-     - `gh pr create --title "<PR_TITLE>" --body "$(cat <<'EOF'
+   - For a multi-line body, prefer a heredoc: - `gh pr create --title "<PR_TITLE>" --body "$(cat <<'EOF'
 <PR_BODY_CONTENT>
 EOF
 )"`
@@ -146,6 +168,7 @@ After running `gh pr create`:
    - The **PR URL**
 
 If the CLI command fails:
+
 - Explain in plain language what went wrong (for example authentication issues, missing `gh` CLI, no upstream branch).
 - Suggest or request concrete next steps:
   - Ask the user to log in with `gh auth login` if needed.
@@ -157,4 +180,3 @@ If the CLI command fails:
 - Do not change git configuration (remotes, user settings, hooks) unless explicitly instructed.
 - Avoid committing secrets or environment files (for example `.env`, credential files). If such files are staged or modified, warn the user and ask how to proceed.
 - Follow any project-specific commit or PR conventions mentioned in this repository or the conversation. If conventions conflict with defaults in this skill, prefer the project’s conventions.
-
