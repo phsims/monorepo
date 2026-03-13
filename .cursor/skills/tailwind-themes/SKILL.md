@@ -329,12 +329,7 @@ Current pattern in `apps/design-system/.storybook/preview.ts`:
 ```ts
 import React from 'react';
 import type { Preview, StoryContext } from '@storybook/react';
-import {
-  cookbookTheme,
-  type TailwindThemeDefinition,
-  type TailwindThemeMode,
-  type TailwindThemePalette,
-} from 'themes/tailwind-themes/cookbook';
+import { cookbookTheme, type TailwindThemeDefinition, type TailwindThemeMode, type TailwindThemePalette } from 'themes/tailwind-themes/cookbook';
 import { oceanTheme } from 'themes/tailwind-themes/ocean';
 import '../src/styles.css';
 
