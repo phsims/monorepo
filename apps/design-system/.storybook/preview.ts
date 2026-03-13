@@ -7,12 +7,14 @@ import {
   type TailwindThemePalette,
 } from 'themes/tailwind-themes/cookbook';
 import { oceanTheme } from 'themes/tailwind-themes/ocean';
+import { wildflowersTheme } from 'themes/tailwind-themes/wildflowers';
 import '../src/styles.css';
 
 const themeRegistry: Record<string, TailwindThemeDefinition> = {
   default: cookbookTheme,
   cookbook: cookbookTheme,
   ocean: oceanTheme,
+  wildflowers: wildflowersTheme,
 };
 
 export const globalTypes = {
@@ -39,6 +41,7 @@ export const globalTypes = {
         { value: 'default', title: 'Default' },
         { value: 'cookbook', title: 'Cookbook' },
         { value: 'ocean', title: 'Ocean' },
+        { value: 'wildflowers', title: 'Wildflowers' },
       ],
       dynamicTitle: true,
     },

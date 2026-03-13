@@ -28,7 +28,8 @@
     ".storybook/*.js",
     ".storybook/*.ts",
     "../../themes/tailwind-themes/cookbook.ts",
-    "../../themes/tailwind-themes/ocean.ts"
+    "../../themes/tailwind-themes/ocean.ts",
+    "../../themes/tailwind-themes/wildflowers.ts"
   ],
   "references": [
     {
