@@ -2,10 +2,18 @@ import React from 'react';
 import type { Preview, StoryContext } from '@storybook/react';
 import {
   cookbookTheme,
+  type TailwindThemeDefinition,
   type TailwindThemeMode,
   type TailwindThemePalette,
 } from 'themes/tailwind-themes/cookbook';
+import { oceanTheme } from 'themes/tailwind-themes/ocean';
 import '../src/styles.css';
+
+const themeRegistry: Record<string, TailwindThemeDefinition> = {
+  default: cookbookTheme,
+  cookbook: cookbookTheme,
+  ocean: oceanTheme,
+};
 
 export const globalTypes = {
   themeMode: {
@@ -30,6 +38,7 @@ export const globalTypes = {
       items: [
         { value: 'default', title: 'Default' },
         { value: 'cookbook', title: 'Cookbook' },
+        { value: 'ocean', title: 'Ocean' },
       ],
       dynamicTitle: true,
     },
@@ -41,8 +50,7 @@ const preview: Preview = {
     (Story: React.ComponentType, context: StoryContext) => {
       const mode = (context.globals.themeMode as TailwindThemeMode) || 'light';
       const themeId = (context.globals.theme as string) || 'default';
-      const themeDef =
-        themeId === cookbookTheme.id ? cookbookTheme : cookbookTheme;
+      const themeDef = themeRegistry[themeId] ?? cookbookTheme;
       const tokens: TailwindThemePalette = themeDef.modes[mode];
 
       if (typeof document !== 'undefined') {
