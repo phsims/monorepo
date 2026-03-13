@@ -1,0 +1,8 @@
+{
+  "name": "spoonacular-api",
+  "root": "libs/api/spoonacular",
+  "sourceRoot": "libs/api/spoonacular/src",
+  "projectType": "library",
+  "tags": []
+}
+
