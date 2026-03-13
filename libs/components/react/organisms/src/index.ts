@@ -1,1 +1,1 @@
-export * from './lib/react-organisms';
+export {};

@@ -20,6 +20,9 @@
     },
     {
       "path": "./apps/CookbookKeeper"
+    },
+    {
+      "path": "./libs/api/spoonacular"
     }
   ]
 }

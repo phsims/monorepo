@@ -14,6 +14,7 @@ module.exports = {
   transform: {
     '^.+\\.[tj]sx?$': ['@swc/jest', swcJestConfig],
   },
+  setupFilesAfterEnv: ['<rootDir>/../../../../test-setup.ts'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: 'test-output/jest/coverage',
 };
