@@ -5,7 +5,8 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "jsx": "preserve",
-    "rootDir": "../../"
+    "rootDir": "../../",
+    "lib": ["es2022", "dom", "dom.iterable"]
   },
   "exclude": [
     "src/**/*.spec.ts",
