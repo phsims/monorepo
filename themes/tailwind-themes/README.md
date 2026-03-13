@@ -4,10 +4,11 @@ Shared semantic theme definitions for the monorepo. Each theme provides a consis
 
 ## Available themes
 
-| Theme        | Id         | Purpose                                                                                         |
-| ------------ | ---------- | ----------------------------------------------------------------------------------------------- |
-| **Cookbook** | `cookbook` | Recipe Companion / warm palette (orange, green, yellow). Default for CookbookKeeper.            |
-| **Ocean**    | `ocean`    | Cool blue/teal palette. Alternative for design-system demos and apps that need a distinct look. |
+| Theme          | Id           | Purpose                                                                                         |
+| -------------- | ------------ | ----------------------------------------------------------------------------------------------- |
+| **Cookbook**   | `cookbook`   | Recipe Companion / warm palette (orange, green, yellow). Default for CookbookKeeper.            |
+| **Ocean**      | `ocean`      | Cool blue/teal palette. Alternative for design-system demos and apps that need a distinct look. |
+| **Wildflowers**| `wildflowers`| Mint, forest green, dusk pink, lavender. Palette: #A8DCAB, #519755, #DBAAA7, #BE91BE.          |
 
 ## Usage
 
@@ -18,7 +19,7 @@ Shared semantic theme definitions for the monorepo. Each theme provides a consis
 
 ### In Storybook (design-system)
 
-The design-system app’s Storybook is wired to these themes. Use the **Theme** toolbar (paintbrush icon) to switch between **Default** (Cookbook), **Cookbook**, and **Ocean**. Use **Mode** to toggle light/dark.
+The design-system app’s Storybook is wired to these themes. Use the **Theme** toolbar (paintbrush icon) to switch between **Default** (Cookbook), **Cookbook**, **Ocean**, and **Wildflowers**. Use **Mode** to toggle light/dark. Component stories (Button, Card, Chip, etc.) use semantic tokens (`bg-primary`, `text-primary-foreground`, `bg-secondary`, etc.) and will reflect the selected theme.
 
 ### Adding a new theme
 
