@@ -9,12 +9,11 @@ const swcJestConfig = JSON.parse(
 swcJestConfig.swcrc = false;
 
 module.exports = {
-  displayName: 'spoonacular-api',
+  displayName: 'react-components',
   preset: '../../../jest.preset.js',
-  testEnvironment: 'node',
   transform: {
-    '^.+\\.[tj]s$': ['@swc/jest', swcJestConfig],
+    '^.+\\.[tj]sx?$': ['@swc/jest', swcJestConfig],
   },
-  moduleFileExtensions: ['ts', 'js', 'html'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: 'test-output/jest/coverage',
 };

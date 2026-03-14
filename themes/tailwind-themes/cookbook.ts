@@ -84,40 +84,39 @@ export const cookbookTheme: TailwindThemeDefinition = {
     dark: {
       primary: {
         // from dark primary.main
-        DEFAULT: '#FF7840',
-        foreground: '#FFFFFF',
+        DEFAULT: '#ff5e28',
+        foreground: '#141414',
       },
       secondary: {
         // from dark secondary.main
-        DEFAULT: '#7BBF4A',
-        foreground: '#111827',
+        DEFAULT: '#69bf30',
+        foreground: '#141414',
       },
       accent: {
         // from dark primary.light
-        DEFAULT: '#FF9A66',
-        foreground: '#111827',
+        DEFAULT: '#fdd100',
+        foreground: '#e2e4e9',
       },
       success: {
-        DEFAULT: '#16a34a',
-        foreground: '#FFFFFF',
+        DEFAULT: '#13dd5e',
+        foreground: '#141414',
       },
       warning: {
-        DEFAULT: '#eab308',
-        foreground: '#000000',
+        DEFAULT: '#ffcf3c',
+        foreground: '#e6e6e6',
       },
       danger: {
-        DEFAULT: '#dc2626',
-        foreground: '#FFFFFF',
+        DEFAULT: '#e8dfdf',
+        foreground: '#141414',
       },
       neutral: {
-        DEFAULT: '#111827',
-        foreground: '#F9FAFB',
+        DEFAULT: '#141414',
+        foreground: '#e2e4e9',
       },
       background: {
-        DEFAULT: '#111827', // from background.default
-        paper: '#020617', // from background.paper
+        DEFAULT: '#141414', // from background.default
+        paper: '#141414', // from background.paper
       },
     },
   },
 };
-

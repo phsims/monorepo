@@ -14,7 +14,7 @@ description: >
 Use this skill whenever the user wants an **end-to-end pipeline** for a frontend ticket in this monorepo:
 
 - Start from a **GitHub ticket** (issue or a card in a GitHub Project that links to an issue).
-- Implement or update **React components** in `libs/components/react/*` using atomic design.
+- Implement or update **React components** in the single lib `libs/components/react` (atoms, molecules, organisms as folders under `src/lib/`) using atomic design.
 - Run a **structured frontend code review** on the changes.
 - Open a **GitHub pull request** with a clear title and body tied to the ticket.
 
@@ -70,10 +70,10 @@ Based on the ticket text (from GitHub or the user), quickly:
    - Expected behavior, states, and any key variants.
 2. Decide or confirm:
    - **Atomic level** for each component (`atom`, `molecule`, `organism`).
-   - Which **Nx lib** in `libs/components/react/*` is affected.
+   - Which **folder** in `libs/components/react` is affected (`src/lib/atoms/`, `src/lib/molecules/`, or `src/lib/organisms/`).
 3. Summarize back to the user in a few bullets:
    - What you will build or change.
-   - Which libs/components you will touch.
+   - Which components lib (and which atomic folder) you will touch.
 
 ## Step 2.5 – Create Branch Using Conventional Commits Format
 
@@ -81,10 +81,10 @@ When a new branch is needed for this ticket (and the user has not already create
 
 - **Format**: `<type>/<ticket_number>-<title>`
 - Examples:
-  - `feature/ABC-123-add-card-component`
-  - `bug/ABC-456-fix-card-padding`
+  - `feat/ABC-123-add-card-component`
+  - `fix/ABC-456-fix-card-padding`
   - `chore/ABC-789-update-dependencies`
-  - `documentation/ABC-101-update-readme`
+  - `docs/ABC-101-update-readme`
 
 Follow these rules:
 
@@ -115,11 +115,11 @@ If scope is ambiguous in a way that could cause wasted work, ask **one focused f
 For the implementation phase:
 
 1. **Follow the `react-atomic-components` skill** for all component work:
-   - Use the correct lib per atomic level:
-     - Atoms: `libs/components/react/atoms`
-     - Molecules: `libs/components/react/molecules`
-     - Organisms: `libs/components/react/organisms`
-   - Use folder-per-component structure (`src/lib/<component-name>/...`).
+   - Use the single lib `libs/components/react` with the correct folder per atomic level:
+     - Atoms: `libs/components/react/src/lib/atoms/`
+     - Molecules: `libs/components/react/src/lib/molecules/`
+     - Organisms: `libs/components/react/src/lib/organisms/`
+   - Use folder-per-component structure within each atomic folder (`src/lib/atoms/<component-name>/...`, etc.).
    - Create or update:
      - Component implementation (`*.tsx`).
      - Tests (`*.spec.tsx`) with `@testing-library/react`.

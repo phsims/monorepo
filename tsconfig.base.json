@@ -20,12 +20,12 @@
     "baseUrl": ".",
     "paths": {
       "themes/*": ["themes/*"],
-      "components/react/atoms/*": ["libs/components/react/atoms/src/lib/*"],
+      "components/react/atoms/*": ["libs/components/react/src/lib/atoms/*"],
       "components/react/molecules/*": [
-        "libs/components/react/molecules/src/lib/*"
+        "libs/components/react/src/lib/molecules/*"
       ],
       "components/react/organisms/*": [
-        "libs/components/react/organisms/src/lib/*"
+        "libs/components/react/src/lib/organisms/*"
       ]
     }
   }
