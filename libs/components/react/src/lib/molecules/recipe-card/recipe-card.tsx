@@ -1,6 +1,6 @@
 import type { HTMLAttributes, ReactNode } from 'react';
 
-import { HeartIcon } from '@heroicons/react/24/outline';
+import { ClockIcon, HeartIcon, UsersIcon } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid';
 import { TrashIcon } from '@heroicons/react/24/outline';
 
@@ -157,12 +157,14 @@ export function RecipeCard({
         <dl className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
           {timeParts.length > 0 && (
             <div className="flex items-center gap-1">
+              <ClockIcon className="h-4 w-4" aria-hidden />
               <dt className="sr-only">Time</dt>
               <dd>{timeParts.join(' • ')}</dd>
             </div>
           )}
           {servings != null && servings > 0 && (
             <div className="flex items-center gap-1">
+              <UsersIcon className="h-4 w-4" aria-hidden />
               <dt className="sr-only">Servings</dt>
               <dd>{servings} servings</dd>
             </div>

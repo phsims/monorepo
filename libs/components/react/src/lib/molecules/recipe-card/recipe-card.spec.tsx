@@ -1,5 +1,4 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import { RecipeCard } from './recipe-card';
 
@@ -77,7 +76,7 @@ describe('RecipeCard', () => {
     expect(screen.getByText(/4 servings/)).toBeTruthy();
   });
 
-  it('should call onFavorite when favorite button is clicked', async () => {
+  it('should call onFavorite when favorite button is clicked', () => {
     const onFavorite = jest.fn();
     render(
       <RecipeCard
@@ -89,11 +88,11 @@ describe('RecipeCard', () => {
     const favoriteBtn = screen.getByRole('button', {
       name: 'Add to favorites',
     });
-    await userEvent.click(favoriteBtn);
+    fireEvent.click(favoriteBtn);
     expect(onFavorite).toHaveBeenCalledTimes(1);
   });
 
-  it('should call onDelete when delete button is clicked', async () => {
+  it('should call onDelete when delete button is clicked', () => {
     const onDelete = jest.fn();
     render(
       <RecipeCard
@@ -103,7 +102,7 @@ describe('RecipeCard', () => {
       />,
     );
     const deleteBtn = screen.getByRole('button', { name: 'Delete recipe' });
-    await userEvent.click(deleteBtn);
+    fireEvent.click(deleteBtn);
     expect(onDelete).toHaveBeenCalledTimes(1);
   });
 
