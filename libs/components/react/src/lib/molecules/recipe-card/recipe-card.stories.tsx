@@ -1,10 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
 
 import { RecipeCard, type RecipeCardProps } from './recipe-card';
 
 const meta: Meta<RecipeCardProps> = {
   title: 'React/Molecules/RecipeCard',
   component: RecipeCard,
+  decorators: [
+    (Story) => (
+      <div
+        className="w-full max-w-[420px] mx-auto"
+        style={{ maxWidth: 420, marginLeft: 'auto', marginRight: 'auto' }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
   argTypes: {
     isFavorite: { control: 'boolean' },
     onFavorite: { action: 'favorite' },
@@ -23,7 +34,7 @@ export const Default: Story = {
   args: {
     title: 'Classic Margherita Pizza',
     summary: defaultSummary,
-    cuisine: 'Italian',
+    cuisine: ['Italian', 'Pizza'],
     readyInMinutes: 45,
     servings: 2,
     onFavorite: undefined,
@@ -37,7 +48,7 @@ export const WithImage: Story = {
     image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400',
     title: 'Classic Margherita Pizza',
     summary: defaultSummary,
-    cuisine: 'Italian',
+    cuisine: ['Italian', 'Pizza'],
     readyInMinutes: 45,
     prepMinutes: 15,
     cookMinutes: 30,

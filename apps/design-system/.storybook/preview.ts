@@ -34,11 +34,10 @@ export const globalTypes = {
   theme: {
     name: 'Theme',
     description: 'Shared UI theme',
-    defaultValue: 'default',
+    defaultValue: 'cookbook',
     toolbar: {
       icon: 'paintbrush',
       items: [
-        { value: 'default', title: 'Default' },
         { value: 'cookbook', title: 'Cookbook' },
         { value: 'ocean', title: 'Ocean' },
         { value: 'wildflowers', title: 'Wildflowers' },
@@ -66,7 +65,12 @@ const preview: Preview = {
           '--theme-primary-foreground',
           tokens.primary.foreground,
         );
-        root.style.setProperty('--theme-primary-light', tokens.accent.DEFAULT);
+        if (tokens.primary.light) {
+          root.style.setProperty('--theme-primary-light', tokens.primary.light);
+        }
+        if (tokens.primary.dark) {
+          root.style.setProperty('--theme-primary-dark', tokens.primary.dark);
+        }
         root.style.setProperty(
           '--theme-primary-light-foreground',
           tokens.accent.foreground,
@@ -79,6 +83,18 @@ const preview: Preview = {
           '--theme-secondary-foreground',
           tokens.secondary.foreground,
         );
+        if (tokens.secondary.light) {
+          root.style.setProperty(
+            '--theme-secondary-light',
+            tokens.secondary.light,
+          );
+        }
+        if (tokens.secondary.dark) {
+          root.style.setProperty(
+            '--theme-secondary-dark',
+            tokens.secondary.dark,
+          );
+        }
         root.style.setProperty('--theme-success-main', tokens.success.DEFAULT);
         root.style.setProperty(
           '--theme-success-foreground',

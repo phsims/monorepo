@@ -1,7 +1,4 @@
-import type {
-  TailwindThemeDefinition,
-  TailwindThemeMode,
-} from 'themes/tailwind-themes/cookbook';
+import type { TailwindThemeDefinition } from './types';
 
 /**
  * Ocean theme – cool blue/teal palette for the design system.

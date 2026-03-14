@@ -4,6 +4,12 @@ import userEvent from '@testing-library/user-event';
 import { RecipeCard } from './recipe-card';
 
 describe('RecipeCard', () => {
+  it('should match snapshot', () => {
+    const { container } = render(
+      <RecipeCard title="Classic Margherita Pizza" />,
+    );
+    expect(container).toMatchSnapshot();
+  });
   it('should render title', () => {
     render(<RecipeCard title="Classic Margherita Pizza" />);
     expect(
@@ -41,9 +47,16 @@ describe('RecipeCard', () => {
     expect(img.alt).toBe('Close-up of plated pasta');
   });
 
-  it('should render cuisine as chip when provided', () => {
-    render(<RecipeCard title="Pasta" cuisine="Italian" />);
+  it('should render cuisine as chips when provided', () => {
+    render(
+      <RecipeCard
+        title="Pasta"
+        image="https://example.com/pasta.jpg"
+        cuisine={['Italian', 'Pizza']}
+      />,
+    );
     expect(screen.getByText('Italian')).toBeTruthy();
+    expect(screen.getByText('Pizza')).toBeTruthy();
   });
 
   it('should render summary when provided', () => {
@@ -66,7 +79,13 @@ describe('RecipeCard', () => {
 
   it('should call onFavorite when favorite button is clicked', async () => {
     const onFavorite = jest.fn();
-    render(<RecipeCard title="Recipe" onFavorite={onFavorite} />);
+    render(
+      <RecipeCard
+        title="Recipe"
+        image="https://example.com/recipe.jpg"
+        onFavorite={onFavorite}
+      />,
+    );
     const favoriteBtn = screen.getByRole('button', {
       name: 'Add to favorites',
     });
@@ -76,14 +95,27 @@ describe('RecipeCard', () => {
 
   it('should call onDelete when delete button is clicked', async () => {
     const onDelete = jest.fn();
-    render(<RecipeCard title="Recipe" onDelete={onDelete} />);
+    render(
+      <RecipeCard
+        title="Recipe"
+        image="https://example.com/recipe.jpg"
+        onDelete={onDelete}
+      />,
+    );
     const deleteBtn = screen.getByRole('button', { name: 'Delete recipe' });
     await userEvent.click(deleteBtn);
     expect(onDelete).toHaveBeenCalledTimes(1);
   });
 
   it('should show solid heart when isFavorite is true', () => {
-    render(<RecipeCard title="Recipe" onFavorite={jest.fn()} isFavorite />);
+    render(
+      <RecipeCard
+        title="Recipe"
+        image="https://example.com/recipe.jpg"
+        onFavorite={jest.fn()}
+        isFavorite
+      />,
+    );
     expect(
       screen.getByRole('button', { name: 'Remove from favorites' }),
     ).toBeTruthy();
@@ -93,6 +125,7 @@ describe('RecipeCard', () => {
     render(
       <RecipeCard
         title="Recipe"
+        image="https://example.com/recipe.jpg"
         actions={<button type="button">Custom action</button>}
       />,
     );

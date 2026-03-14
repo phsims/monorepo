@@ -1,38 +1,4 @@
-export type TailwindThemeMode = 'light' | 'dark';
-
-export interface TailwindSemanticColor {
-  DEFAULT: string;
-  foreground: string;
-}
-
-export interface TailwindThemePalette {
-  primary: TailwindSemanticColor;
-  secondary: TailwindSemanticColor;
-  accent: TailwindSemanticColor;
-  success: TailwindSemanticColor;
-  warning: TailwindSemanticColor;
-  danger: TailwindSemanticColor;
-  neutral: TailwindSemanticColor;
-  background: {
-    DEFAULT: string;
-    paper: string;
-  };
-}
-
-export interface TailwindThemeDefinition {
-  /**
-   * Stable identifier for this theme.
-   */
-  id: string;
-  /**
-   * Human‑readable label for UIs like pickers.
-   */
-  label: string;
-  /**
-   * Tailwind-style semantic tokens for light and dark modes.
-   */
-  modes: Record<TailwindThemeMode, TailwindThemePalette>;
-}
+import { TailwindThemeDefinition } from './types';
 
 /**
  * Tailwind semantic theme based on the Recipe Companion palette.
@@ -48,11 +14,15 @@ export const cookbookTheme: TailwindThemeDefinition = {
         // from primary.main
         DEFAULT: '#FF5E28',
         foreground: '#FFFFFF',
+        light: '#FDD100',
+        dark: '#D44429',
       },
       secondary: {
         // from secondary.main
         DEFAULT: '#528E2A',
         foreground: '#FFFFFF',
+        light: '#528E2A',
+        dark: '#014A3F',
       },
       accent: {
         // from primary.light

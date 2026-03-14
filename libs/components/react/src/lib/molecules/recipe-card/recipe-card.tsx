@@ -4,14 +4,9 @@ import { HeartIcon } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid';
 import { TrashIcon } from '@heroicons/react/24/outline';
 
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from '../../atoms/card/card';
-import { Button } from '../../atoms/button/button';
+import { Card, CardContent, CardHeader } from '../../atoms/card/card';
 import { Chip } from '../../atoms/chip/chip';
+import { RoundIconButton } from '../../atoms/round-icon-button/round-icon-button';
 
 /**
  * Props for the Recipe Card molecule, aligned with Spoonacular API fields
@@ -26,8 +21,8 @@ export interface RecipeCardProps extends HTMLAttributes<HTMLDivElement> {
   title: string;
   /** Short summary or description (plain text; strip HTML before passing if needed) */
   summary?: string;
-  /** Cuisine label, e.g. "Italian" */
-  cuisine?: string;
+  /** Cuisine labels, e.g. ["Italian", "Pizza"] */
+  cuisine?: string[];
   /** Total ready time in minutes */
   readyInMinutes?: number;
   /** Prep time in minutes (optional, for display) */
@@ -91,28 +86,24 @@ export function RecipeCard({
   const defaultActions = (
     <div className="flex flex-wrap items-center gap-2">
       {onFavorite != null && (
-        <Button
-          type="button"
-          variant="ghost"
-          ariaLabel={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-          title=""
-          iconLeft={
+        <RoundIconButton
+          icon={
             isFavorite ? (
-              <HeartIconSolid className="h-5 w-5 text-danger" aria-hidden />
+              <HeartIconSolid className="h-5 w-5 text-secondary" aria-hidden />
             ) : (
               <HeartIcon className="h-5 w-5" aria-hidden />
             )
           }
+          ariaLabel={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+          variant="white"
           onClick={onFavorite}
         />
       )}
       {onDelete != null && (
-        <Button
-          type="button"
-          variant="ghost"
+        <RoundIconButton
+          icon={<TrashIcon className="h-5 w-5 " aria-hidden />}
           ariaLabel="Delete recipe"
-          title=""
-          iconLeft={<TrashIcon className="h-5 w-5 text-danger" aria-hidden />}
+          variant="white"
           onClick={onDelete}
         />
       )}
@@ -126,23 +117,32 @@ export function RecipeCard({
       {...rest}
     >
       {image && (
-        <div className="relative aspect-[4/3] w-full overflow-hidden bg-neutral">
+        <div className="group relative h-48 w-full overflow-hidden bg-neutral">
           <img
             src={image}
             alt={imgAlt}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-110"
             loading="lazy"
             decoding="async"
           />
+          {(actions != null || onFavorite != null || onDelete != null) && (
+            <div className="absolute inset-x-0 top-0 flex justify-end p-3">
+              {actions ?? defaultActions}
+            </div>
+          )}
+          {cuisine && cuisine.length > 0 && (
+            <div className="absolute inset-x-0 bottom-0 flex flex-wrap gap-2 bg-gradient-to-t from-black/70 to-transparent p-3">
+              {cuisine.map((c) => (
+                <Chip key={c} variant="primary" size="md">
+                  {c}
+                </Chip>
+              ))}
+            </div>
+          )}
         </div>
       )}
 
       <CardHeader className="flex flex-col gap-2">
-        {cuisine && (
-          <Chip variant="secondary" size="sm">
-            {cuisine}
-          </Chip>
-        )}
         <h3 className="text-lg font-semibold text-foreground leading-tight">
           {title}
         </h3>
@@ -169,12 +169,6 @@ export function RecipeCard({
           )}
         </dl>
       </CardContent>
-
-      {(actions != null || onFavorite != null || onDelete != null) && (
-        <CardFooter className="border-t border-border">
-          {actions ?? defaultActions}
-        </CardFooter>
-      )}
     </Card>
   );
 }
