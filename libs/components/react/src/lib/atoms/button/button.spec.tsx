@@ -25,7 +25,9 @@ describe('Button', () => {
   it('should be disabled when disabled prop is true', () => {
     render(<Button title="Click me" disabled />);
 
-    expect((screen.getByRole('button') as HTMLButtonElement).disabled).toBe(true);
+    expect((screen.getByRole('button') as HTMLButtonElement).disabled).toBe(
+      true,
+    );
   });
 
   it('should call onClick when clicked', () => {
@@ -50,7 +52,7 @@ describe('Button', () => {
         title="Submit"
         ariaLabel="Submit form"
         ariaDescribedby="hint-id"
-      />
+      />,
     );
 
     const button = screen.getByRole('button');
@@ -60,7 +62,11 @@ describe('Button', () => {
 
   it('should render iconLeft and iconRight', () => {
     render(
-      <Button title="Actions" iconLeft={<span>L</span>} iconRight={<span>R</span>} />
+      <Button
+        title="Actions"
+        iconLeft={<span>L</span>}
+        iconRight={<span>R</span>}
+      />,
     );
 
     const button = screen.getByRole('button');
@@ -69,4 +75,3 @@ describe('Button', () => {
     expect(button.textContent).toContain('Actions');
   });
 });
-

@@ -25,20 +25,35 @@ export function Input({
 }: InputProps) {
   const id = idProp ?? `input-${Math.random().toString(36).slice(2, 9)}`;
   const widthClass = fullWidth ? 'w-full' : '';
-  const errorClasses = error ? 'border-danger focus-visible:ring-danger' : 'border-input';
+  const errorClasses = error
+    ? 'border-danger focus-visible:ring-danger'
+    : 'border-input';
 
   const inputClasses = [baseClasses, errorClasses, widthClass, inputClassName]
     .filter(Boolean)
     .join(' ');
 
   return (
-    <div className={[widthClass, className].filter(Boolean).join(' ') || undefined}>
+    <div
+      className={[widthClass, className].filter(Boolean).join(' ') || undefined}
+    >
       {label && (
-        <label htmlFor={id} className="mb-1 block text-sm font-medium text-foreground">
+        <label
+          htmlFor={id}
+          className="mb-1 block text-sm font-medium text-foreground"
+        >
           {label}
         </label>
       )}
-      <input id={id} className={inputClasses} aria-invalid={!!error} aria-describedby={hint ? `${id}-hint` : error ? `${id}-error` : undefined} {...props} />
+      <input
+        id={id}
+        className={inputClasses}
+        aria-invalid={!!error}
+        aria-describedby={
+          hint ? `${id}-hint` : error ? `${id}-error` : undefined
+        }
+        {...props}
+      />
       {hint && !error && (
         <p id={`${id}-hint`} className="mt-1 text-xs text-muted-foreground">
           {hint}

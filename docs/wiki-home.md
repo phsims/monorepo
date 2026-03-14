@@ -55,4 +55,3 @@ This wiki is **read-only** from GitHub’s wiki UI perspective — edits should 
   - Manual runs from the Actions tab
 
 For details, see the `docs/wiki-sync.md` page in the repo or in the wiki.
-

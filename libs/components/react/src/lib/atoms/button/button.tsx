@@ -51,11 +51,23 @@ export function Button({
     .filter(Boolean)
     .join(' ');
 
-  return <button className={classes} onClick={onClick} disabled={disabled} type={type} title={title} aria-label={ariaLabel} aria-describedby={ariaDescribedby} {...props} >
-    {iconLeft && <span className="flex items-center gap-2">{iconLeft}</span>}
-    {!loading && <span className="flex items-center gap-2">{title}</span>}
-    {loading && <span className="ml-2">Loading...</span>}
-    {iconRight && <span className="flex items-center gap-2">{iconRight}</span>}
-  </button>;
+  return (
+    <button
+      className={classes}
+      onClick={onClick}
+      disabled={disabled}
+      type={type}
+      title={title}
+      aria-label={ariaLabel}
+      aria-describedby={ariaDescribedby}
+      {...props}
+    >
+      {iconLeft && <span className="flex items-center gap-2">{iconLeft}</span>}
+      {!loading && <span className="flex items-center gap-2">{title}</span>}
+      {loading && <span className="ml-2">Loading...</span>}
+      {iconRight && (
+        <span className="flex items-center gap-2">{iconRight}</span>
+      )}
+    </button>
+  );
 }
-

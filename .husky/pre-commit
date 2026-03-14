@@ -1,2 +1,5 @@
 pnpm exec nx format:write
-pnpm exec nx run-many -t lint,test,typecheck
+git add -u
+pnpm exec nx run-many -t lint -- --fix
+git add -u
+pnpm exec nx run-many -t test,typecheck

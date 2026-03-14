@@ -7,7 +7,7 @@ describe('Card', () => {
     render(
       <Card>
         <CardContent>Body</CardContent>
-      </Card>
+      </Card>,
     );
 
     expect(screen.getByText('Body')).toBeTruthy();
@@ -17,7 +17,7 @@ describe('Card', () => {
     render(
       <Card variant="outlined" data-testid="card">
         <CardContent>Content</CardContent>
-      </Card>
+      </Card>,
     );
 
     const card = screen.getByTestId('card');
@@ -30,7 +30,7 @@ describe('Card', () => {
         <CardHeader>Title</CardHeader>
         <CardContent>Body text</CardContent>
         <CardFooter>Footer</CardFooter>
-      </Card>
+      </Card>,
     );
 
     expect(screen.getByText('Title')).toBeTruthy();
@@ -42,7 +42,7 @@ describe('Card', () => {
     render(
       <Card data-testid="my-card" id="card-1">
         <CardContent>Content</CardContent>
-      </Card>
+      </Card>,
     );
 
     const card = screen.getByTestId('my-card');
