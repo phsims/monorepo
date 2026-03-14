@@ -104,7 +104,7 @@ Follow these rules:
    - If no matching label exists, ask the user which type to use (or, if they previously specified a default, apply that).
 2. **Determine `<ticket_number>`**:
    - Prefer an explicit key from the ticket or branch name (e.g. `ABC-123`).
-   - If only a GitHub issue number is available, you may construct a stable identifier, for example `GH-<issue_number>`.
+   - If only a GitHub issue number is available, use the issue number as the ticket identifier (e.g. `35` for issue #35). Do not prefix with `GH-`.
 3. **Determine `<title>`**:
    - Start from the GitHub issue title or the user-provided ticket title.
    - Convert to **kebab-case**, removing or simplifying punctuation (e.g. `New cookbook theme` → `new-cookbook-theme`).
@@ -176,7 +176,7 @@ When the theme changes are ready:
      - Issue title.
      - Branch name.
      - User-provided context.
-   - If there is no such key, construct a stable identifier from the issue number, e.g. `GH-<issue_number>`.
+   - If there is no such key, use the issue number as the ticket identifier (e.g. `35`). Do not prefix with `GH-`.
    - Use the GitHub issue title (possibly lightly shortened) as `<ticket_title>`.
 3. Call the `pr-helper` workflow:
    - Follow its rule to format the title: `feat: <ticket_number> <ticket_title>` (or `fix:` / `chore:` / `docs:` if the user specifies).
