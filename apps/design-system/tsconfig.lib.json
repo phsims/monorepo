@@ -13,7 +13,6 @@
     "jsx": "react-jsx",
     "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo"
   },
-
   "exclude": [
     "out-tsc",
     "dist",
