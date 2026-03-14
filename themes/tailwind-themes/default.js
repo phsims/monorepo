@@ -26,12 +26,17 @@ const defaultTailwindExtend = {
   colors: {
     primary: {
       DEFAULT: 'var(--theme-primary-main)',
-      foreground: 'var(--theme-primary-foreground, var(--theme-background-paper))',
+      foreground:
+        'var(--theme-primary-foreground, var(--theme-background-paper))',
+      light: 'var(--theme-primary-light, var(--theme-primary-main))',
+      dark: 'var(--theme-primary-dark, var(--theme-primary-main))',
     },
     secondary: {
       DEFAULT: 'var(--theme-secondary-main)',
       foreground:
         'var(--theme-secondary-foreground, var(--theme-background-paper))',
+      light: 'var(--theme-secondary-light, var(--theme-secondary-main))',
+      dark: 'var(--theme-secondary-dark, var(--theme-secondary-main))',
     },
     accent: {
       DEFAULT: 'var(--theme-primary-light)',
@@ -40,7 +45,8 @@ const defaultTailwindExtend = {
     },
     success: {
       DEFAULT: 'var(--theme-success-main, #16a34a)',
-      foreground: 'var(--theme-success-foreground, var(--theme-background-paper))',
+      foreground:
+        'var(--theme-success-foreground, var(--theme-background-paper))',
     },
     warning: {
       DEFAULT: 'var(--theme-warning-main, #eab308)',
@@ -48,7 +54,8 @@ const defaultTailwindExtend = {
     },
     danger: {
       DEFAULT: 'var(--theme-danger-main, #dc2626)',
-      foreground: 'var(--theme-danger-foreground, var(--theme-background-paper))',
+      foreground:
+        'var(--theme-danger-foreground, var(--theme-background-paper))',
     },
     neutral: {
       DEFAULT: 'var(--theme-neutral-main, var(--theme-background-default))',
@@ -60,4 +67,3 @@ const defaultTailwindExtend = {
 module.exports = {
   defaultTailwindExtend,
 };
-

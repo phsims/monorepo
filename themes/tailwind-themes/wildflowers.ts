@@ -1,7 +1,4 @@
-import type {
-  TailwindThemeDefinition,
-  TailwindThemeMode,
-} from 'themes/tailwind-themes/cookbook';
+import type { TailwindThemeDefinition } from './types';
 
 /**
  * Wildflowers theme – mint, forest green, dusk pink, and lavender palette.

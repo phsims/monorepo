@@ -11,6 +11,7 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
 export interface CardHeaderProps {
   children: ReactNode;
   className?: string;
+  border?: boolean;
 }
 
 export interface CardContentProps {
@@ -21,6 +22,7 @@ export interface CardContentProps {
 export interface CardFooterProps {
   children: ReactNode;
   className?: string;
+  border?: boolean;
 }
 
 const variantClasses: Record<CardVariant, string> = {
@@ -52,8 +54,16 @@ export function Card({
   );
 }
 
-export function CardHeader({ children, className = '' }: CardHeaderProps) {
-  const classes = ['px-4 py-3 border-b border-border', className]
+export function CardHeader({
+  children,
+  className = '',
+  border = false,
+}: CardHeaderProps) {
+  const classes = [
+    'px-4 py-3',
+    border ? 'border-b border-border' : 'border-none',
+    className,
+  ]
     .filter(Boolean)
     .join(' ');
   return <div className={classes}>{children}</div>;
@@ -64,8 +74,16 @@ export function CardContent({ children, className = '' }: CardContentProps) {
   return <div className={classes}>{children}</div>;
 }
 
-export function CardFooter({ children, className = '' }: CardFooterProps) {
-  const classes = ['px-4 py-3 border-t border-border', className]
+export function CardFooter({
+  children,
+  className = '',
+  border = false,
+}: CardFooterProps) {
+  const classes = [
+    'px-4 py-3',
+    border ? 'border-t border-border' : 'border-none',
+    className,
+  ]
     .filter(Boolean)
     .join(' ');
   return <div className={classes}>{children}</div>;
