@@ -1,0 +1,10 @@
+{
+    "name": "design-system",
+    "sourceRoot": "libs/design-system/src",
+    "projectType": "library",
+    "targets": {},
+    "implicitDependencies": [
+        "components"
+    ]
+
+  }
