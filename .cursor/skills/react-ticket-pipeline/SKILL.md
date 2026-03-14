@@ -41,6 +41,15 @@ Always collect or infer the following:
 
 If some details are missing, make reasonable assumptions and clearly state them when summarizing back to the user.
 
+## Step 0 – Sync with main
+
+Before fetching the ticket or creating a branch:
+
+1. **Checkout main**: run `git checkout main` (or the repo’s default branch if different).
+2. **Pull latest**: run `git pull` (or `git pull origin main` if needed) so the pipeline starts from an up-to-date base.
+
+If the user is already on a feature branch they want to continue, you may skip this step and state that you are building on the current branch.
+
 ## Step 1 – Fetch Ticket Details from GitHub
 
 When the user provides a ticket reference, try to **pull canonical details from GitHub first**:
