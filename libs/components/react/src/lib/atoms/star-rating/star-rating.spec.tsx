@@ -74,4 +74,20 @@ describe('StarRating', () => {
       screen.getByRole('img', { name: /rating 5 out of 5/i }),
     ).toBeTruthy();
   });
+
+  it('should show exactly 2 full stars for rating 2 (not 2.5)', () => {
+    render(
+      <StarRating rating={2} readOnly={false} onRatingChange={jest.fn()} />,
+    );
+
+    const segment2 = screen.getByRole('radio', {
+      name: /set rating to 2 out of 5/i,
+    });
+    const segment25 = screen.getByRole('radio', {
+      name: /set rating to 2\.5 out of 5/i,
+    });
+
+    expect(segment2.getAttribute('aria-checked')).toBe('true');
+    expect(segment25.getAttribute('aria-checked')).toBe('false');
+  });
 });

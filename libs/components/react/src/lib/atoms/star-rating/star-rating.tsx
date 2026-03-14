@@ -1,5 +1,7 @@
+import { StarIcon } from '@heroicons/react/24/outline';
+import { StarIcon as StarIconSolid } from '@heroicons/react/24/solid';
 import type { KeyboardEvent } from 'react';
-import { useCallback, useId, useRef } from 'react';
+import { useCallback, useRef } from 'react';
 
 export interface StarRatingProps {
   /** Current rating from 0 to maxRating in 0.5 increments. Rounded to nearest 0.5 for display. */
@@ -18,10 +20,11 @@ export interface StarRatingProps {
   'aria-label'?: string;
 }
 
-const sizeClasses = {
-  sm: 'w-4 h-4',
-  md: 'w-5 h-5',
-  lg: 'w-6 h-6',
+/** Size of each star (Heroicons are 24x24). */
+const starSizeClasses = {
+  sm: 'size-4',
+  md: 'size-5',
+  lg: 'size-6',
 };
 
 /** Clamp value to nearest 0.5 step in [0, max]. */
@@ -30,15 +33,9 @@ function clampToHalfStep(value: number, max: number): number {
   return Math.round(clamped * 2) / 2;
 }
 
-/** Star path (viewBox 0 0 24 24), centered. */
-function StarPath({ className }: { className?: string }) {
-  return (
-    <path
-      className={className}
-      d="M12 2l2.5 7.5H22l-6 4.5 2.25 6.75L12 15.5l-6.25 4.25L8 14 2 9.5h7.5L12 2z"
-      fill="currentColor"
-    />
-  );
+/** Compare rating to segment value in half-steps (avoids float drift). Segment value is 0.5, 1, 1.5, ... */
+function isSegmentFilled(displayRating: number, segmentValue: number): boolean {
+  return Math.round(displayRating * 2) >= Math.round(segmentValue * 2);
 }
 
 export function StarRating({
@@ -52,8 +49,7 @@ export function StarRating({
 }: StarRatingProps) {
   const displayRating = clampToHalfStep(rating, maxRating);
   const starCount = Math.floor(maxRating);
-  const sizeClass = sizeClasses[size];
-  const groupId = useId();
+  const starSizeClass = starSizeClasses[size];
   const segmentRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const getStarFill = useCallback(
@@ -101,107 +97,98 @@ export function StarRating({
       <div
         role="img"
         aria-label={groupAriaLabel}
-        className={`inline-flex items-center gap-0.5 text-warning ${className}`}
+        className={`inline-flex shrink-0 items-center gap-0.5 text-warning ${className}`}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 120 24"
-          className={sizeClass}
-          aria-hidden
-        >
-          <defs>
-            <clipPath id={`${groupId}-left`}>
-              <rect x="0" y="0" width="12" height="24" />
-            </clipPath>
-            <clipPath id={`${groupId}-right`}>
-              <rect x="12" y="0" width="12" height="24" />
-            </clipPath>
-          </defs>
-          {Array.from({ length: starCount }, (_, i) => {
-            const fill = getStarFill(i);
-            const x = i * 24;
-            return (
-              <g key={i} transform={`translate(${x}, 0)`}>
-                {fill === 'full' && <StarPath className="text-warning" />}
-                {fill === 'half' && (
-                  <>
-                    <StarPath className="text-warning/30" />
-                    <g clipPath={`url(#${groupId}-left)`}>
-                      <StarPath className="text-warning" />
-                    </g>
-                  </>
-                )}
-                {fill === 'empty' && <StarPath className="text-warning/30" />}
-              </g>
-            );
-          })}
-        </svg>
+        {Array.from({ length: starCount }, (_, i) => {
+          const fill = getStarFill(i);
+          return (
+            <span
+              key={i}
+              className={`relative inline-block shrink-0 ${starSizeClass}`}
+              aria-hidden
+            >
+              {fill === 'full' && (
+                <StarIconSolid className={`${starSizeClass} text-warning`} />
+              )}
+              {fill === 'half' && (
+                <>
+                  <StarIcon
+                    className={`${starSizeClass} text-warning/30`}
+                    aria-hidden
+                  />
+                  <span className="absolute left-0 top-0 h-full w-1/2 overflow-hidden">
+                    <StarIconSolid
+                      className={`${starSizeClass} text-warning`}
+                      aria-hidden
+                    />
+                  </span>
+                </>
+              )}
+              {fill === 'empty' && (
+                <StarIcon
+                  className={`${starSizeClass} text-warning/30`}
+                  aria-hidden
+                />
+              )}
+            </span>
+          );
+        })}
       </div>
     );
   }
 
-  const segmentCount = starCount * 2;
   return (
     <div
       role="radiogroup"
       aria-label={groupAriaLabel}
       className={`inline-flex items-center gap-0.5 text-warning ${className}`}
     >
-      {Array.from({ length: segmentCount }, (_, segmentIndex) => {
-        const value = (segmentIndex + 1) * 0.5;
-        const isFilled = displayRating >= value;
-        const isChecked = displayRating === value;
-        return (
-          <button
-            key={segmentIndex}
-            ref={(el) => {
-              segmentRefs.current[segmentIndex] = el;
-            }}
-            type="button"
-            role="radio"
-            aria-label={`Set rating to ${value} out of ${maxRating}`}
-            aria-checked={isChecked}
-            onClick={() => handleSegmentClick(segmentIndex)}
-            onKeyDown={(e) => handleSegmentKeyDown(e, segmentIndex)}
-            className="inline-flex items-center justify-center p-0.5 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-primary"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              className={sizeClass}
-              aria-hidden
-            >
-              <defs>
-                <clipPath id={`${groupId}-btn-left-${segmentIndex}`}>
-                  <rect x="0" y="0" width="12" height="24" />
-                </clipPath>
-                <clipPath id={`${groupId}-btn-right-${segmentIndex}`}>
-                  <rect x="12" y="0" width="12" height="24" />
-                </clipPath>
-              </defs>
-              {segmentIndex % 2 === 0 ? (
-                <>
-                  <g clipPath={`url(#${groupId}-btn-left-${segmentIndex})`}>
-                    <StarPath
-                      className={isFilled ? 'text-warning' : 'text-warning/30'}
-                    />
-                  </g>
-                  <StarPath className="text-warning/30" />
-                </>
-              ) : (
-                <>
-                  <StarPath className="text-warning/30" />
-                  <g clipPath={`url(#${groupId}-btn-right-${segmentIndex})`}>
-                    <StarPath
-                      className={isFilled ? 'text-warning' : 'text-warning/30'}
-                    />
-                  </g>
-                </>
-              )}
-            </svg>
-          </button>
-        );
-      })}
+      {Array.from({ length: starCount }, (_, starIndex) => (
+        <span
+          key={starIndex}
+          className={`inline-flex shrink-0 ${starSizeClass}`}
+        >
+          {[0, 1].map((half) => {
+            const segmentIndex = starIndex * 2 + half;
+            const value = (segmentIndex + 1) * 0.5;
+            const isFilled = isSegmentFilled(displayRating, value);
+            const isChecked = displayRating === value;
+            const isLeftHalf = half === 0;
+            return (
+              <button
+                key={segmentIndex}
+                ref={(el) => {
+                  segmentRefs.current[segmentIndex] = el;
+                }}
+                type="button"
+                role="radio"
+                aria-label={`Set rating to ${value} out of ${maxRating}`}
+                aria-checked={isChecked}
+                onClick={() => handleSegmentClick(segmentIndex)}
+                onKeyDown={(e) => handleSegmentKeyDown(e, segmentIndex)}
+                className={`flex min-w-0 flex-1 overflow-hidden rounded p-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-primary ${
+                  isLeftHalf ? 'justify-start' : 'justify-end'
+                }`}
+              >
+                <span className={`relative shrink-0 ${starSizeClass}`}>
+                  <StarIcon
+                    className={`${starSizeClass} text-warning/30`}
+                    aria-hidden
+                  />
+                  {isFilled && (
+                    <span className="absolute inset-0">
+                      <StarIconSolid
+                        className={`${starSizeClass} text-warning`}
+                        aria-hidden
+                      />
+                    </span>
+                  )}
+                </span>
+              </button>
+            );
+          })}
+        </span>
+      ))}
     </div>
   );
 }

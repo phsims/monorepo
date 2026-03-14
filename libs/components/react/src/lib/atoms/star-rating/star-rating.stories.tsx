@@ -85,7 +85,10 @@ export const Interactive: Story = {
           onRatingChange={setRating}
           aria-label="Your rating"
         />
-        <p className="text-sm text-foreground">Current: {rating}</p>
+        <p className="text-sm text-foreground">
+          Current: {rating % 1 === 0 ? String(rating) : rating.toFixed(1)} — 5
+          stars total; 0.5 = half first star, 1 = first star full
+        </p>
       </div>
     );
   },
