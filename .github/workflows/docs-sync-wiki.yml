@@ -5,17 +5,17 @@ on:
     branches:
       - main
     paths:
-      - "docs/**"
+      - 'docs/**'
   workflow_dispatch:
     inputs:
       full_overwrite:
-        description: "When true, completely replace wiki contents from repository docs"
+        description: 'When true, completely replace wiki contents from repository docs'
         required: false
-        default: "false"
+        default: 'false'
         type: choice
         options:
-          - "false"
-          - "true"
+          - 'false'
+          - 'true'
 
 permissions:
   contents: write
@@ -32,9 +32,10 @@ jobs:
 
       - name: Configure git author
         run: |
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
+      # Wiki must be enabled in repo Settings, and at least one page created, so the wiki git repo exists.
       - name: Clone wiki repository
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -46,7 +47,7 @@ jobs:
 
       - name: Prepare wiki contents
         env:
-          FULL_OVERWRITE: ${{ github.event_name == 'workflow_dispatch' && inputs.full_overwrite == 'true' && 'true' || 'false' }}
+          FULL_OVERWRITE: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.full_overwrite == 'true' && 'true' || 'false' }}
         run: |
           set -e
 
@@ -61,37 +62,30 @@ jobs:
           # Ensure wiki directory exists
           mkdir -p wiki
 
-          # Map wiki home:
-          # - Prefer docs/wiki-home.md if present
-          # - Fall back to the root README.md
+          # Only files under docs/ are synced to the wiki; all other READMEs and docs are ignored.
+
+          # Wiki home: prefer docs/wiki-home.md, else docs/README.md (only from docs/)
           if [ -f "docs/wiki-home.md" ]; then
             cp "docs/wiki-home.md" "wiki/Home.md"
-          elif [ -f "README.md" ]; then
-            cp "README.md" "wiki/Home.md"
+          elif [ -f "docs/README.md" ]; then
+            cp "docs/README.md" "wiki/Home.md"
           fi
 
-          # Sync docs/ folder (if present) into wiki/docs
+          # Custom sidebar at wiki root (GitHub uses _Sidebar.md for the wiki sidebar)
+          if [ -f "docs/_Sidebar.md" ]; then
+            cp "docs/_Sidebar.md" "wiki/_Sidebar.md"
+          fi
+
+          # Sync docs/ into wiki/docs (exclude _Sidebar.md so it only lives at wiki root)
           if [ -d "docs" ]; then
             mkdir -p "wiki/docs"
-            rsync -av --delete \
+            rsync -av --delete --exclude='_Sidebar.md' \
               "docs/" "wiki/docs/"
           fi
 
-          # Copy all README.md files from the repo, preserving relative paths inside the wiki
-          # This keeps app/lib/theme READMEs available in the wiki in a one-way fashion.
-          while IFS= read -r -d '' file; do
-            rel_path="${file#./}"
-            dest="wiki/${rel_path}"
-            mkdir -p "$(dirname "${dest}")"
-            cp "${file}" "${dest}"
-          done < <(find . -name "README.md" -print0)
-
-          # Special mapping: expose Tailwind themes README as a top-level wiki page
-          if [ -f "themes/tailwind-themes/README.md" ]; then
-            cp "themes/tailwind-themes/README.md" "wiki/Tailwind-themes.md"
-          fi
-
       - name: Commit and push wiki changes
+        env:
+          GITHUB_SHA: ${{ github.sha }}
         run: |
           set -e
 
@@ -104,4 +98,3 @@ jobs:
           else
             echo "No changes to sync to wiki."
           fi
-
