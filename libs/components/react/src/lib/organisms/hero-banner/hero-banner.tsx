@@ -4,6 +4,8 @@ export type HeroBannerSplit = '50-50' | '30-70' | '70-30';
 
 export type HeroBannerLayout = 'fullWidth' | 'contained';
 
+export type HeroBannerOverlay = 'none' | 'light' | 'dark';
+
 export interface HeroBannerProps extends HTMLAttributes<HTMLElement> {
   /**
    * Content for the left side of the banner (or first on mobile when stacked).
@@ -41,12 +43,21 @@ export interface HeroBannerProps extends HTMLAttributes<HTMLElement> {
    * When true, on small screens content stacks vertically (left on top, right below).
    */
   stackOnMobile?: boolean;
+  /**
+   * Optional overlay tone displayed over the background image.
+   */
+  overlay?: HeroBannerOverlay;
 }
 
 const splitToGridCols: Record<HeroBannerSplit, string> = {
   '50-50': 'md:grid-cols-[1fr_1fr]',
   '30-70': 'md:grid-cols-[3fr_7fr]',
   '70-30': 'md:grid-cols-[7fr_3fr]',
+};
+
+const overlayToClass: Record<Exclude<HeroBannerOverlay, 'none'>, string> = {
+  light: 'bg-white/50',
+  dark: 'bg-neutral-950/50',
 };
 
 /**
@@ -65,13 +76,14 @@ export function HeroBanner({
   backgroundImage,
   stackOnMobile = true,
   className,
+  overlay = 'none',
   ...rest
 }: HeroBannerProps) {
   const gridColClass = splitToGridCols[split];
   const isContained = layout === 'contained';
 
   const sectionClasses = [
-    'w-full',
+    'relative isolate w-full',
     background,
     backgroundImage ? 'bg-cover bg-center bg-no-repeat' : '',
     className,
@@ -99,7 +111,15 @@ export function HeroBanner({
       aria-label="Banner"
       {...rest}
     >
-      <div className={wrapperClasses}>
+      {overlay !== 'none' && (
+        <div
+          className={[
+            'pointer-events-none absolute inset-0 z-0',
+            overlayToClass[overlay],
+          ].join(' ')}
+        />
+      )}
+      <div className={['relative z-10', wrapperClasses].join(' ')}>
         <div
           className={[
             'flex min-h-[160px] flex-col justify-center',

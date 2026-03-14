@@ -47,6 +47,22 @@ export const Default: Story = {
   },
 };
 
+export const ImageBackground: Story = {
+  args: {
+    ...Default.args,
+    background: 'bg-primary',
+    backgroundImage: 'https://picsum.photos/1920/1080',
+    overlay: 'light',
+    leftContent: (
+      <div className="px-4 py-6 sm:px-6">
+        <h2 className="text-2xl font-semibold text-neutral-900">
+          Welcome to the design system
+        </h2>
+      </div>
+    ),
+  },
+};
+
 export const Split30_70: Story = {
   args: {
     ...Default.args,
@@ -54,10 +70,10 @@ export const Split30_70: Story = {
     leftContent: (
       <div className="px-4 py-6 sm:px-6">
         <h2 className="text-2xl font-semibold text-neutral-900">
-          Short headline
+          Welcome to the design system
         </h2>
-        <p className="mt-1 text-neutral-600">
-          Less width on the left, more space for media on the right.
+        <p className="mt-2 text-lg text-neutral-600">
+          Build consistent, accessible UIs with reusable components and tokens.
         </p>
       </div>
     ),
