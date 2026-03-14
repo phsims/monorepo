@@ -4,7 +4,7 @@ import { ClockIcon, HeartIcon, UsersIcon } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid';
 import { TrashIcon } from '@heroicons/react/24/outline';
 
-import { Card, CardContent, CardHeader } from '../../atoms/card/card';
+import { Card, CardContent, CardFooter, CardHeader } from '../../atoms/card/card';
 import { Chip } from '../../atoms/chip/chip';
 import { RoundIconButton } from '../../atoms/round-icon-button/round-icon-button';
 
@@ -150,11 +150,14 @@ export function RecipeCard({
 
       <CardContent className="space-y-3">
         {summaryText && (
-          <p className="text-sm text-muted-foreground line-clamp-3">
+          <p className="text-md text-muted-foreground line-clamp-3">
             {summaryText}
           </p>
         )}
-        <dl className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
+
+      </CardContent>
+      <CardFooter>
+      <dl className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
           {timeParts.length > 0 && (
             <div className="flex items-center gap-1">
               <ClockIcon className="h-4 w-4" aria-hidden />
@@ -170,7 +173,7 @@ export function RecipeCard({
             </div>
           )}
         </dl>
-      </CardContent>
+      </CardFooter>
     </Card>
   );
 }

@@ -70,10 +70,27 @@ describe('RecipeCard', () => {
     ).toBeTruthy();
   });
 
+  it('should strip HTML tags from summary text', () => {
+    render(
+      <RecipeCard
+        title="Pizza"
+        summary="<p>A <strong>classic</strong> tomato pizza.</p>"
+      />,
+    );
+
+    expect(screen.getByText('A classic tomato pizza.')).toBeTruthy();
+  });
+
   it('should render readyInMinutes and servings', () => {
     render(<RecipeCard title="Soup" readyInMinutes={30} servings={4} />);
     expect(screen.getByText(/30 min/)).toBeTruthy();
     expect(screen.getByText(/4 servings/)).toBeTruthy();
+  });
+
+  it('should render prep/cook fallback when readyInMinutes is not provided', () => {
+    render(<RecipeCard title="Soup" prepMinutes={10} cookMinutes={20} />);
+
+    expect(screen.getByText('Prep 10 min, Cook 20 min')).toBeTruthy();
   });
 
   it('should call onFavorite when favorite button is clicked', () => {

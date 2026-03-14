@@ -1,10 +1,9 @@
 {
     "name": "design-system",
-    "sourceRoot": "libs/design-system/src",
+    "sourceRoot": "apps/design-system/src",
     "projectType": "library",
     "targets": {},
     "implicitDependencies": [
-        "components"
+        "react-components"
     ]
-
-  }
+}
