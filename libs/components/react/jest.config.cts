@@ -1,4 +1,3 @@
-/* eslint-disable */
 const { readFileSync } = require('fs');
 
 // Reading the SWC compilation config for the spec files
@@ -10,8 +9,8 @@ const swcJestConfig = JSON.parse(
 swcJestConfig.swcrc = false;
 
 module.exports = {
-  displayName: 'react-organisms',
-  preset: '../../../../jest.preset.js',
+  displayName: 'react-components',
+  preset: '../../../jest.preset.js',
   transform: {
     '^.+\\.[tj]sx?$': ['@swc/jest', swcJestConfig],
   },

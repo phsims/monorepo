@@ -1,5 +1,5 @@
 {
-  "name": "@monorepo/react-organisms",
+  "name": "@monorepo/react-components",
   "version": "0.0.1",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
@@ -12,10 +12,13 @@
     "./package.json": "./package.json"
   },
   "nx": {
-    "name": "react-organisms",
+    "name": "react-components",
     "tags": [
-      "react",
-      "components"
+      "components",
+      "react"
     ]
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.2.0"
   }
 }

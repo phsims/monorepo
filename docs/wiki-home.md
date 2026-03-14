@@ -41,6 +41,7 @@ Theme tokens and shared color systems are defined under `themes/tailwind-themes`
 Additional documentation lives in the `docs/` folder in the repository and is mirrored to the wiki under `docs/`:
 
 - `docs/agents.md` – AI agents and skills overview
+- `docs/libs.md` – List of shared libraries and what they do
 - `docs/wiki-sync.md` – How the docs → wiki synchronization works
 - Any future docs you add under `docs/**` will automatically appear in the wiki.
 

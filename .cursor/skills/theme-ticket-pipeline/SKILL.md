@@ -88,18 +88,18 @@ When a new branch is needed for this ticket (and the user has not already create
 
 - **Format**: `<type>/<ticket_number>-<title>`
 - Examples:
-  - `feature/ABC-123-new-cookbook-theme`
+  - `feat/ABC-123-new-cookbook-theme`
   - `chore/ABC-456-update-theme-tokens`
-  - `documentation/ABC-789-update-theme-docs`
+  - `docs/ABC-789-update-theme-docs`
 
 Follow these rules:
 
 1. **Determine `<type>` from ticket tags/labels**:
    - Map labels to one of:
-     - `bug` → `bug`
-     - `feature` → `feature`
+     - `bug` → `fix`
+     - `feature` → `feat`
      - `chore` → `chore`
-     - `documentation` / `docs` → `documentation`
+     - `documentation` / `docs` → `docs`
    - If multiple such labels exist, pick the **most specific**.
    - If no matching label exists, ask the user which type to use (or, if they previously specified a default, apply that).
 2. **Determine `<ticket_number>`**:
