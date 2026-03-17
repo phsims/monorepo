@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
 import { SearchBar, type SearchBarProps } from './search-bar';
+import React from 'react';
 
 const meta: Meta<SearchBarProps> = {
   title: 'React/Molecules/SearchBar',
@@ -83,26 +84,6 @@ export const Controlled: Story = {
         />
         <p className="text-sm text-muted-foreground">
           Current value: &quot;{value || '(empty)'}&quot;
-        </p>
-      </div>
-    );
-  },
-};
-
-export const WithDebounce: Story = {
-  render: function DebounceStory() {
-    const [lastSearch, setLastSearch] = useState('');
-
-    return (
-      <div className="flex flex-col gap-2">
-        <SearchBar
-          placeholder="Type to search (300ms debounce)"
-          ariaLabel="Debounced search"
-          debounceMs={300}
-          onChange={setLastSearch}
-        />
-        <p className="text-sm text-muted-foreground">
-          Last debounced value: &quot;{lastSearch || '(none yet)'}&quot;
         </p>
       </div>
     );

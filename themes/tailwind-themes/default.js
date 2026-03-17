@@ -21,7 +21,7 @@
  *   };
  */
 
-/** @type {{ colors: Record<string, any> }} */
+/** @type {{ colors: Record<string, any>, spacing: Record<string, string>, borderRadius: Record<string, string>, borderWidth: Record<string, string> }} */
 const defaultTailwindExtend = {
   colors: {
     primary: {
@@ -61,6 +61,42 @@ const defaultTailwindExtend = {
       DEFAULT: 'var(--theme-neutral-main, var(--theme-background-default))',
       foreground: 'var(--theme-neutral-foreground, var(--theme-primary-main))',
     },
+  },
+  /**
+   * Shared spacing scale used for both padding and margin utilities
+   * (e.g. `p-md`, `px-lg`, `mt-sm`). These values are intentionally
+   * conservative and map cleanly to Tailwind’s defaults.
+   */
+  spacing: {
+    xs: '0.25rem',
+    sm: '0.5rem',
+    md: '0.75rem',
+    lg: '1rem',
+    xl: '1.5rem',
+    '2xl': '2rem',
+  },
+  /**
+   * Shared border radius tokens for components (e.g. `rounded-sm`,
+   * `rounded-md`, `rounded-lg`). Use these instead of hard‑coded
+   * radii in component classes so themes can evolve consistently.
+   */
+  borderRadius: {
+    sm: '0.25rem',
+    md: '0.375rem',
+    lg: '0.5rem',
+    xl: '0.75rem',
+    full: '9999px',
+  },
+  /**
+   * Shared border width tokens used by utilities like `border`,
+   * `border-2`, etc. These mirror Tailwind’s defaults so existing
+   * expectations still hold.
+   */
+  borderWidth: {
+    DEFAULT: '1px',
+    0: '0px',
+    2: '2px',
+    4: '4px',
   },
 };
 

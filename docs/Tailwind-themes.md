@@ -1,6 +1,6 @@
 # Tailwind themes
 
-Shared semantic theme definitions for the monorepo. Each theme provides a consistent set of tokens (`primary`, `secondary`, `accent`, `success`, `warning`, `danger`, `neutral`, `background`) in both light and dark modes.
+Shared semantic theme definitions for the monorepo. Each theme provides a consistent set of **color tokens** (`primary`, `secondary`, `accent`, `success`, `warning`, `danger`, `neutral`, `background`) in both light and dark modes, plus a shared **spacing and border scale** that components can rely on for consistent layout.
 
 ## Available themes
 
@@ -15,7 +15,11 @@ Shared semantic theme definitions for the monorepo. Each theme provides a consis
 ### In an app
 
 1. Use `defaultTailwindExtend` from `themes/tailwind-themes/default.js` in your app's `tailwind.config.js` so classes like `bg-primary` and `text-primary-foreground` resolve to CSS variables.
-2. Set the active theme by applying the desired theme's tokens to CSS variables (e.g. at `:root` or `[data-theme="…"]`). See the design-system Storybook preview for the variable names and pattern.
+2. The same `defaultTailwindExtend` also defines shared layout tokens:
+   - **Spacing**: `spacing.xs`, `spacing.sm`, `spacing.md`, `spacing.lg`, `spacing.xl`, `spacing.2xl` (used by utilities like `p-sm`, `px-lg`, `mt-md`, etc.).
+   - **Border radius**: `borderRadius.sm`, `borderRadius.md`, `borderRadius.lg`, `borderRadius.xl`, `borderRadius.full` (used by `rounded-*` utilities).
+   - **Border width**: `borderWidth.DEFAULT`, `borderWidth.0`, `borderWidth.2`, `borderWidth.4` (used by `border`, `border-2`, `border-4`, etc.).
+3. Set the active theme by applying the desired theme's tokens to CSS variables (e.g. at `:root` or `[data-theme="…"]`). See the design-system Storybook preview for the variable names and pattern.
 
 ### In Storybook (design-system)
 
