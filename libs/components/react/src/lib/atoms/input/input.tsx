@@ -8,10 +8,12 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
   inputClassName?: string;
   id?: string;
+  /** When true, renders the input without a visible border. */
+  borderless?: boolean;
 }
 
 const baseClasses =
-  'rounded-md border bg-transparent px-3 py-2 text-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
+  'rounded-md bg-transparent px-3 py-2 text-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
 
 export function Input({
   label,
@@ -21,15 +23,19 @@ export function Input({
   className = '',
   inputClassName = '',
   id: idProp,
+  borderless,
   ...props
 }: InputProps) {
   const id = idProp ?? `input-${Math.random().toString(36).slice(2, 9)}`;
   const widthClass = fullWidth ? 'w-full' : '';
-  const errorClasses = error
-    ? 'border-danger focus-visible:ring-danger'
-    : 'border-input';
 
-  const inputClasses = [baseClasses, errorClasses, widthClass, inputClassName]
+  const borderClasses = borderless
+    ? ''
+    : error
+      ? 'border border-danger focus-visible:ring-danger'
+      : 'border border-input';
+
+  const inputClasses = [baseClasses, borderClasses, widthClass, inputClassName]
     .filter(Boolean)
     .join(' ');
 

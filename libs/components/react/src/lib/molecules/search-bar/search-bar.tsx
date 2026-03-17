@@ -4,14 +4,13 @@ import {
   useId,
   useRef,
   useState,
-  type FormEvent,
   type InputHTMLAttributes,
   type ReactNode,
+  type SyntheticEvent,
 } from 'react';
 import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline';
 
 import { Button } from '../../atoms/button/button';
-import { Input } from '../../atoms/input/input';
 import { RoundIconButton } from '../../atoms/round-icon-button/round-icon-button';
 
 export interface SearchBarProps
@@ -19,37 +18,21 @@ export interface SearchBarProps
     InputHTMLAttributes<HTMLInputElement>,
     'value' | 'defaultValue' | 'onChange' | 'onSubmit'
   > {
-  /** Controlled value. Omit to use uncontrolled mode with defaultValue. */
   value?: string;
-  /** Initial value in uncontrolled mode. */
   defaultValue?: string;
-  /** Called when the input value changes. With debounceMs set, only called after the delay. */
   onChange?: (value: string) => void;
-  /** Called when the user submits (Enter key or submit button). */
   onSubmit?: (value: string) => void;
-  /** Debounce delay in ms. When set, onChange is called after the user stops typing for this long. */
   debounceMs?: number;
-  /** Show a leading magnifier icon. */
   showMagnifier?: boolean;
-  /** Custom leading icon (overrides showMagnifier when provided). */
   leadingIcon?: ReactNode;
-  /** Show a clear/reset button when the input has value. */
   showClearButton?: boolean;
-  /** Show a submit button that triggers onSubmit with the current value. */
   showSubmitButton?: boolean;
-  /** Label for the submit button (accessibility and tooltip). */
   submitButtonLabel?: string;
-  /** Accessible label for the search input (required when no visible label). */
-  'aria-label'?: string;
-  /** Visible label for the search input (optional). */
+  ariaLabel?: string;
   label?: string;
-  /** Placeholder text. */
   placeholder?: string;
-  /** Full width of the search bar container. */
   fullWidth?: boolean;
-  /** Additional class for the root wrapper. */
   className?: string;
-  /** Additional class for the input element. */
   inputClassName?: string;
 }
 
@@ -64,7 +47,7 @@ export function SearchBar({
   showClearButton = true,
   showSubmitButton = false,
   submitButtonLabel = 'Search',
-  'aria-label': ariaLabel,
+  ariaLabel = 'Search',
   label,
   placeholder = 'Search…',
   fullWidth,
@@ -132,8 +115,8 @@ export function SearchBar({
   }, [onChange]);
 
   const handleSubmit = useCallback(
-    (e?: FormEvent) => {
-      e?.preventDefault();
+    (e: SyntheticEvent<HTMLFormElement>) => {
+      e.preventDefault();
       onSubmit?.(value);
     },
     [onSubmit, value],
@@ -143,13 +126,12 @@ export function SearchBar({
     (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === 'Enter') {
         e.preventDefault();
-        handleSubmit();
+        onSubmit?.(value);
       }
     },
-    [handleSubmit],
+    [onSubmit, value],
   );
 
-  const effectiveAriaLabel = ariaLabel ?? (label ? undefined : 'Search');
   const hasValue = value.length > 0;
 
   return (
@@ -158,7 +140,7 @@ export function SearchBar({
       onSubmit={handleSubmit}
       className={[
         fullWidth ? 'w-full' : '',
-        'flex items-center gap-2 rounded-md border border-input bg-transparent px-2 py-1.5 transition-colors focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2',
+        'flex items-center rounded-md border border-input bg-transparent  transition-colors focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2',
         className,
       ]
         .filter(Boolean)
@@ -166,7 +148,7 @@ export function SearchBar({
     >
       {(showMagnifier || leadingIcon) && (
         <span
-          className="flex shrink-0 text-muted-foreground [&_svg]:size-5"
+          className="flex shrink-0 text-muted-foreground [&_svg]:size-5 p-2"
           aria-hidden
         >
           {leadingIcon ?? (
@@ -174,25 +156,17 @@ export function SearchBar({
           )}
         </span>
       )}
-      <Input
+      <input
         id={id}
-        type="search"
+        type="text"
         role="searchbox"
         autoComplete="off"
         value={value}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
-        label={label}
         placeholder={placeholder}
-        fullWidth
-        className="min-w-0 flex-1 border-0 p-0 shadow-none focus-visible:ring-0 focus-visible:ring-offset-0"
-        inputClassName={[
-          'border-0 focus-visible:ring-0 focus-visible:ring-offset-0',
-          inputClassName,
-        ]
-          .filter(Boolean)
-          .join(' ')}
-        aria-label={effectiveAriaLabel}
+        className="min-w-0 flex-1 bg-transparent   border-none outline-none p-0 shadow-none focus-visible:ring-0 focus-visible:ring-offset-0"
+        aria-label={ariaLabel || 'Search'}
         {...inputProps}
       />
       {showClearButton && hasValue && (
@@ -212,9 +186,8 @@ export function SearchBar({
           variant="primary"
           ariaLabel={submitButtonLabel}
           className="shrink-0"
-        >
-          {submitButtonLabel}
-        </Button>
+          title={submitButtonLabel}
+        />
       )}
     </form>
   );

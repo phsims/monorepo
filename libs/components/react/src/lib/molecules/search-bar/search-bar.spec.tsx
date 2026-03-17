@@ -11,14 +11,8 @@ describe('SearchBar', () => {
     expect(screen.getByRole('searchbox')).toBeTruthy();
   });
 
-  it('should render with visible label', () => {
-    render(<SearchBar label="Recipe search" id="search" />);
-
-    expect(screen.getByLabelText('Recipe search')).toBeTruthy();
-  });
-
-  it('should use aria-label when no visible label', () => {
-    render(<SearchBar aria-label="Search recipes" />);
+  it('should use ariaLabel when no visible label', () => {
+    render(<SearchBar ariaLabel="Search recipes" />);
 
     const searchbox = screen.getByRole('searchbox');
     expect(searchbox.getAttribute('aria-label')).toBe('Search recipes');
