@@ -14,37 +14,47 @@ export const cookbookTheme: TailwindThemeDefinition = {
         // from primary.main
         DEFAULT: '#FF5E28',
         foreground: '#FFFFFF',
-        light: '#FDD100',
-        dark: '#D44429',
+        light: 'color-mix(in srgb, var(--color-primary) 50%, white)',
+        dark: 'color-mix(in srgb, var(--color-primary) 50%, black)',
       },
       secondary: {
         // from secondary.main
         DEFAULT: '#528E2A',
         foreground: '#FFFFFF',
-        light: '#528E2A',
-        dark: '#014A3F',
+        light: 'color-mix(in srgb, var(--color-secondary) 50%, white)',
+        dark: 'color-mix(in srgb, var(--color-secondary) 50%, black)',
       },
       accent: {
         // from primary.light
         DEFAULT: '#FDD100',
         foreground: '#111827',
+        light: 'color-mix(in srgb, var(--color-accent) 50%, white)',
+        dark: 'color-mix(in srgb, var(--color-accent) 50%, black)',
       },
       success: {
         DEFAULT: '#16a34a',
         foreground: '#FFFFFF',
+        light: 'color-mix(in srgb, var(--color-success) 50%, white)',
+        dark: 'color-mix(in srgb, var(--color-success) 50%, black)',
       },
       warning: {
         DEFAULT: '#eab308',
         foreground: '#000000',
+        light: 'color-mix(in srgb, var(--color-warning) 50%, white)',
+        dark: 'color-mix(in srgb, var(--color-warning) 50%, black)',
       },
       danger: {
         DEFAULT: '#dc2626',
         foreground: '#FFFFFF',
+        light: 'color-mix(in srgb, var(--color-danger) 50%, white)',
+        dark: 'color-mix(in srgb, var(--color-danger) 50%, black)',
       },
       neutral: {
         // tie to background + body text
         DEFAULT: '#FAFAFA',
         foreground: '#111827',
+        light: 'color-mix(in srgb, var(--color-neutral) 50%, white)',
+        dark: 'color-mix(in srgb, var(--color-neutral) 50%, black)',
       },
       background: {
         DEFAULT: '#FAFAFA', // from background.default

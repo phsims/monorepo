@@ -1,4 +1,14 @@
 import './global.css';
+import { Header } from 'components/react/organisms/header';
+import { Button } from 'components/react/atoms/button';
+import {
+  resolveTheme,
+  resolveThemeTokens,
+} from 'themes/tailwind-themes/registry';
+import type { TailwindThemeMode } from 'themes/tailwind-themes/types';
+
+const APP_THEME_ID = process.env.NEXT_PUBLIC_THEME_ID ?? 'cookbook';
+const APP_THEME_MODE: TailwindThemeMode = 'light';
 
 export const metadata = {
   title: 'Welcome to CookbookKeeper',
@@ -10,9 +20,51 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const themeDef = resolveTheme(APP_THEME_ID);
+  const tokens = resolveThemeTokens(APP_THEME_ID, APP_THEME_MODE);
+
+  const themeStyle = {
+    '--theme-primary-main': tokens.primary.DEFAULT,
+    '--theme-primary-foreground': tokens.primary.foreground,
+    '--theme-secondary-main': tokens.secondary.DEFAULT,
+    '--theme-secondary-foreground': tokens.secondary.foreground,
+    '--theme-success-main': tokens.success.DEFAULT,
+    '--theme-success-foreground': tokens.success.foreground,
+    '--theme-warning-main': tokens.warning.DEFAULT,
+    '--theme-warning-foreground': tokens.warning.foreground,
+    '--theme-danger-main': tokens.danger.DEFAULT,
+    '--theme-danger-foreground': tokens.danger.foreground,
+    '--theme-neutral-main': tokens.neutral.DEFAULT,
+    '--theme-neutral-foreground': tokens.neutral.foreground,
+    '--theme-background-default': tokens.background.DEFAULT,
+    '--theme-background-paper': tokens.background.paper,
+  } as React.CSSProperties;
+
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html
+      lang="en"
+      data-theme={APP_THEME_MODE}
+      data-theme-id={themeDef.id}
+      style={themeStyle}
+    >
+      <body className="bg-background text-foreground min-h-screen flex flex-col">
+        <Header
+          actions={
+            <Button ariaLabel="Sign in" title="Sign in" variant="primary" />
+          }
+          brand={
+            <a className="text-lg font-semibold text-primary" href="/">
+              Cookbook
+            </a>
+          }
+          navLinks={[
+            { href: '/recipes', label: 'Recipes' },
+            { href: '/collections', label: 'Collections' },
+            { href: '/planner', label: 'Meal Planner' },
+          ]}
+        />
+        {children}
+      </body>
     </html>
   );
 }

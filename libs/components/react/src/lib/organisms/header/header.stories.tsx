@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from '../../atoms/button/button';
 
 import { Header, type HeaderProps } from './header';
+import React from 'react';
 
 const meta: Meta<HeaderProps> = {
   title: 'React/Organisms/Header',

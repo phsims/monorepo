@@ -9,6 +9,11 @@ describe('Header', () => {
     { label: 'Collections', href: '/collections' },
   ];
 
+  it('should match snapshot', () => {
+    const { container } = render(<Header brand={brand} />);
+    expect(container).toMatchSnapshot();
+  });
+
   it('renders the brand content', () => {
     render(<Header brand={brand} />);
 

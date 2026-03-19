@@ -1,0 +1,56 @@
+:root {
+  // colors
+  --color-primary: #ff5e28;
+  --color-primary-light: color-mix(in srgb, var(--color-primary) 50%, white);
+  --color-primary-dark: color-mix(in srgb, var(--color-primary) 50%, black);
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #528e2a;
+  --color-secondary-light: color-mix(
+    in srgb,
+    var(--color-secondary) 50%,
+    white
+  );
+  --color-secondary-dark: color-mix(in srgb, var(--color-secondary) 50%, black);
+  --color-secondary-foreground: #ffffff;
+  --color-accent: #fdd100;
+  --color-accent-light: color-mix(in srgb, var(--color-accent) 50%, white);
+  --color-accent-dark: color-mix(in srgb, var(--color-accent) 50%, black);
+  --color-accent-foreground: #111827;
+  --color-success: #16a34a;
+  --color-success-light: color-mix(in srgb, var(--color-success) 50%, white);
+  --color-success-dark: color-mix(in srgb, var(--color-success) 50%, black);
+  --color-success-foreground: #ffffff;
+  --color-warning: #eab308;
+  --color-warning-light: color-mix(in srgb, var(--color-warning) 50%, white);
+  --color-warning-dark: color-mix(in srgb, var(--color-warning) 50%, black);
+  --color-warning-foreground: #000000;
+  --color-danger: #dc2626;
+  --color-danger-light: color-mix(in srgb, var(--color-danger) 50%, white);
+  --color-danger-dark: color-mix(in srgb, var(--color-danger) 50%, black);
+  --color-danger-foreground: #ffffff;
+  --color-neutral: #111827;
+  --color-neutral-foreground: #ffffff;
+  --color-background: #fafafa;
+  --color-background-light: color-mix(
+    in srgb,
+    var(--color-background) 50%,
+    white
+  );
+  --color-background-dark: color-mix(
+    in srgb,
+    var(--color-background) 50%,
+    black
+  );
+  --color-background-paper: #ffffff;
+  --color-background-paper-light: color-mix(
+    in srgb,
+    var(--color-background-paper) 50%,
+    white
+  );
+  --color-background-paper-dark: color-mix(
+    in srgb,
+    var(--color-background-paper) 50%,
+    black
+  );
+  --color-background-paper-foreground: #111827;
+}

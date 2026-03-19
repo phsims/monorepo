@@ -25,22 +25,35 @@ export interface GetRecipeInformationOptions {
   addTasteData?: boolean;
 }
 
-/** Minimal recipe shape returned by Get Random Recipes (same as Get Recipe Information). */
+/** Options for searching recipes by text query. */
+export interface SearchRecipesOptions {
+  query: string;
+  /** Number of recipes to return (1–100). Default 8. */
+  number?: number;
+}
+
+/** Response from `recipes/complexSearch`. */
+export interface ComplexSearchResponse {
+  results: SpoonacularRecipe[];
+  totalResults: number;
+}
+
+/** Minimal recipe shape returned by Spoonacular recipe endpoints. */
 export interface SpoonacularRecipe {
   id: number;
   title: string;
-  image: string;
-  imageType: string;
-  servings: number;
-  readyInMinutes: number;
+  image?: string;
+  imageType?: string;
+  servings?: number;
+  readyInMinutes?: number;
   cookingMinutes?: number;
   preparationMinutes?: number;
   sourceUrl?: string;
   spoonacularSourceUrl?: string;
   summary?: string;
-  cuisines: string[];
-  dishTypes: string[];
-  diets: string[];
+  cuisines?: string[];
+  dishTypes?: string[];
+  diets?: string[];
   vegan?: boolean;
   vegetarian?: boolean;
   dairyFree?: boolean;
@@ -60,8 +73,8 @@ export interface RandomRecipesResponse {
 export interface SimilarRecipe {
   id: number;
   title: string;
-  imageType: string;
-  readyInMinutes: number;
-  servings: number;
-  sourceUrl: string;
+  imageType?: string;
+  readyInMinutes?: number;
+  servings?: number;
+  sourceUrl?: string;
 }

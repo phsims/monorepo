@@ -94,6 +94,9 @@
       "dependsOn": ["^build"]
     }
   },
+  "sync": {
+    "applyChanges": true
+  },
   "generators": {
     "@nx/next": {
       "application": {

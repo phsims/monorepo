@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "baseUrl": ".",
     "jsx": "preserve",
     "noEmit": true,
     "emitDeclarationOnly": false,
@@ -17,11 +18,22 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "components/react/atoms/*": [
+        "../../libs/components/react/src/lib/atoms/*"
+      ],
+      "components/react/molecules/*": [
+        "../../libs/components/react/src/lib/molecules/*"
+      ],
+      "components/react/organisms/*": [
+        "../../libs/components/react/src/lib/organisms/*"
+      ],
+      "themes/*": ["../../themes/*"],
+      "api/spoonacular": ["../../libs/api/spoonacular/src/index.ts"]
     },
     "types": ["jest", "node"],
     "outDir": "dist",
-    "rootDir": "src",
+    "rootDir": "../..",
     "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo"
   },
   "include": [
@@ -45,5 +57,10 @@
     "eslint.config.js",
     "eslint.config.cjs",
     "eslint.config.mjs"
+  ],
+  "references": [
+    {
+      "path": "../../libs/components/react"
+    }
   ]
 }
