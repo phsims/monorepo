@@ -51,7 +51,7 @@ describe('RecipeCard', () => {
       <RecipeCard
         title="Pasta"
         image="https://example.com/pasta.jpg"
-        cuisine={['Italian', 'Pizza']}
+        cuisines={['Italian', 'Pizza']}
       />,
     );
     expect(screen.getByText('Italian')).toBeTruthy();

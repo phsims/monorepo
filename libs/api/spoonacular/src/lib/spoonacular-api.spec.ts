@@ -1,7 +1,4 @@
-import {
-  SpoonacularClient,
-  createSpoonacularClient,
-} from './spoonacular-api.js';
+import { SpoonacularClient, createSpoonacularClient } from './spoonacular-api';
 
 describe('createSpoonacularClient', () => {
   it('returns a SpoonacularClient', () => {

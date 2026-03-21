@@ -82,7 +82,6 @@
   },
   "workspaces": [
     "apps/*",
-    "libs/components/react/*",
     "libs/*"
   ]
 }

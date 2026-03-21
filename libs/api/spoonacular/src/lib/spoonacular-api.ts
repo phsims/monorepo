@@ -1,10 +1,12 @@
 import type {
   GetRandomRecipesOptions,
   GetRecipeInformationOptions,
+  SearchRecipesOptions,
+  ComplexSearchResponse,
   RandomRecipesResponse,
   SpoonacularRecipe,
   SimilarRecipe,
-} from './types.js';
+} from './types';
 
 const SPOONACULAR_BASE = 'https://api.spoonacular.com';
 
@@ -112,6 +114,36 @@ export class SpoonacularClient {
 
     return res.json() as Promise<SimilarRecipe[]>;
   }
+
+  /**
+   * Search recipes by a text query.
+   * Uses Spoonacular `recipes/complexSearch` endpoint.
+   */
+  async searchRecipes(
+    options: SearchRecipesOptions,
+  ): Promise<ComplexSearchResponse> {
+    const { query, number: numberOpt = 8 } = options;
+
+    const params = new URLSearchParams();
+    params.set('apiKey', this.apiKey);
+    params.set('query', query);
+    params.set('number', String(Math.min(100, Math.max(1, numberOpt ?? 8))));
+
+    // Include extra fields like summary/instructions when available.
+    params.set('addRecipeInformation', 'true');
+
+    const url = `${SPOONACULAR_BASE}/recipes/complexSearch?${params.toString()}`;
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(
+        `Spoonacular API error ${res.status}: ${text || res.statusText}`,
+      );
+    }
+
+    return res.json() as Promise<ComplexSearchResponse>;
+  }
 }
 
 /**
@@ -120,4 +152,25 @@ export class SpoonacularClient {
  */
 export function createSpoonacularClient(apiKey: string): SpoonacularClient {
   return new SpoonacularClient(apiKey);
+}
+
+/**
+ * Convenience helper for server components.
+ * Uses `process.env.SPOONACULAR_API_KEY` at runtime.
+ *
+ * If the API key is missing (e.g. local dev/CI), returns an empty result
+ * so builds don’t fail during prerender.
+ */
+export async function getRandomRecipes(
+  options: GetRandomRecipesOptions = {},
+): Promise<RandomRecipesResponse> {
+  const apiKey = process.env.SPOONACULAR_API_KEY;
+  if (!apiKey?.trim()) return { recipes: [] };
+
+  try {
+    const client = createSpoonacularClient(apiKey);
+    return await client.getRandomRecipes(options);
+  } catch {
+    return { recipes: [] };
+  }
 }

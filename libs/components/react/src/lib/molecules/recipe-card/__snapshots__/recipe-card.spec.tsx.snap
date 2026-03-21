@@ -9,7 +9,7 @@ exports[`RecipeCard should match snapshot 1`] = `
       class="px-4 py-3 border-none flex flex-col gap-2"
     >
       <h3
-        class="text-lg font-semibold text-foreground leading-tight"
+        class="text-lg font-semibold text-foreground leading-tight line-clamp-1 "
       >
         Classic Margherita Pizza
       </h3>

@@ -48,7 +48,7 @@ export function Header({
         .join(' ')}
       {...rest}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+      <div className="container  mx-auto flex  items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3">{brand}</div>
 
         {navLinks && navLinks.length > 0 ? (
@@ -61,7 +61,7 @@ export function Header({
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-sm font-medium text-neutral-700 transition-colors hover:text-primary-600"
+                    className="text-sm font-medium text-neutral-700 transition-colors hover:text-secondary-dark"
                   >
                     {link.label}
                   </a>

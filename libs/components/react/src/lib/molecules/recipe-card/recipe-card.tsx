@@ -4,7 +4,12 @@ import { ClockIcon, HeartIcon, UsersIcon } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid';
 import { TrashIcon } from '@heroicons/react/24/outline';
 
-import { Card, CardContent, CardFooter, CardHeader } from '../../atoms/card/card';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from '../../atoms/card/card';
 import { Chip } from '../../atoms/chip/chip';
 import { RoundIconButton } from '../../atoms/round-icon-button/round-icon-button';
 
@@ -22,7 +27,7 @@ export interface RecipeCardProps extends HTMLAttributes<HTMLDivElement> {
   /** Short summary or description (plain text; strip HTML before passing if needed) */
   summary?: string;
   /** Cuisine labels, e.g. ["Italian", "Pizza"] */
-  cuisine?: string[];
+  cuisines?: string[];
   /** Total ready time in minutes */
   readyInMinutes?: number;
   /** Prep time in minutes (optional, for display) */
@@ -60,7 +65,7 @@ export function RecipeCard({
   imageAlt,
   title,
   summary,
-  cuisine,
+  cuisines,
   readyInMinutes,
   prepMinutes,
   cookMinutes,
@@ -85,28 +90,24 @@ export function RecipeCard({
 
   const defaultActions = (
     <div className="flex flex-wrap items-center gap-2">
-      {onFavorite != null && (
-        <RoundIconButton
-          icon={
-            isFavorite ? (
-              <HeartIconSolid className="h-5 w-5 text-secondary" aria-hidden />
-            ) : (
-              <HeartIcon className="h-5 w-5" aria-hidden />
-            )
-          }
-          ariaLabel={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-          variant="white"
-          onClick={onFavorite}
-        />
-      )}
-      {onDelete != null && (
-        <RoundIconButton
-          icon={<TrashIcon className="h-5 w-5 " aria-hidden />}
-          ariaLabel="Delete recipe"
-          variant="white"
-          onClick={onDelete}
-        />
-      )}
+      <RoundIconButton
+        icon={
+          isFavorite ? (
+            <HeartIconSolid className="h-5 w-5 text-secondary" aria-hidden />
+          ) : (
+            <HeartIcon className="h-5 w-5" aria-hidden />
+          )
+        }
+        ariaLabel={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+        variant="white"
+        onClick={onFavorite}
+      />
+      <RoundIconButton
+        icon={<TrashIcon className="h-5 w-5 " aria-hidden />}
+        ariaLabel="Delete recipe"
+        variant="white"
+        onClick={onDelete}
+      />
     </div>
   );
 
@@ -125,16 +126,16 @@ export function RecipeCard({
             loading="lazy"
             decoding="async"
           />
-          {(actions != null || onFavorite != null || onDelete != null) && (
-            <div className="absolute inset-x-0 top-0 flex justify-end p-3">
-              {actions ?? defaultActions}
-            </div>
-          )}
-          {cuisine && cuisine.length > 0 && (
-            <div className="absolute inset-x-0 bottom-0 flex flex-wrap gap-2 bg-gradient-to-t from-black/70 to-transparent p-3">
-              {cuisine.map((c) => (
-                <Chip key={c} variant="primary" size="md">
-                  {c}
+
+          <div className="absolute inset-x-0 top-0 flex justify-end p-3">
+            {actions ?? defaultActions}
+          </div>
+
+          {cuisines && cuisines.length > 0 && (
+            <div className="absolute inset-x-0 bottom-0 flex flex-wrap gap-2 bg-gradient-to-t from-black/70 to-transparent p-3 line-clamp-1">
+              {cuisines.map((cuisine) => (
+                <Chip key={cuisine} variant="primary" size="md">
+                  {cuisine}
                 </Chip>
               ))}
             </div>
@@ -143,7 +144,7 @@ export function RecipeCard({
       )}
 
       <CardHeader className="flex flex-col gap-2">
-        <h3 className="text-lg font-semibold text-foreground leading-tight">
+        <h3 className="text-lg font-semibold text-foreground leading-tight line-clamp-1 ">
           {title}
         </h3>
       </CardHeader>
@@ -154,10 +155,9 @@ export function RecipeCard({
             {summaryText}
           </p>
         )}
-
       </CardContent>
       <CardFooter>
-      <dl className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
+        <dl className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
           {timeParts.length > 0 && (
             <div className="flex items-center gap-1">
               <ClockIcon className="h-4 w-4" aria-hidden />
