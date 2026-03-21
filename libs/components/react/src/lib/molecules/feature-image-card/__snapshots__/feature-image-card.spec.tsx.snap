@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
-exports[`RecipeCard should match snapshot 1`] = `
+exports[`FeatureImageCard should match snapshot 1`] = `
 <div>
   <div
     class="rounded-lg overflow-hidden transition-colors bg-background-paper shadow-md border border-border/50 overflow-hidden"

@@ -1,11 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
-import { RecipeCard, type RecipeCardProps } from './recipe-card';
+import {
+  FeatureImageCard,
+  type FeatureImageCardProps,
+} from './feature-image-card';
 
-const meta: Meta<RecipeCardProps> = {
-  title: 'React/Molecules/RecipeCard',
-  component: RecipeCard,
+const meta: Meta<FeatureImageCardProps> = {
+  title: 'React/Molecules/FeatureImageCard',
+  component: FeatureImageCard,
   decorators: [
     (Story) => (
       <div
@@ -25,7 +28,7 @@ const meta: Meta<RecipeCardProps> = {
 
 export default meta;
 
-type Story = StoryObj<RecipeCardProps>;
+type Story = StoryObj<FeatureImageCardProps>;
 
 const defaultSummary =
   'A classic Margherita pizza with fresh tomatoes, mozzarella, basil, and a thin crust. Simple and delicious.';
@@ -34,7 +37,7 @@ export const Default: Story = {
   args: {
     title: 'Classic Margherita Pizza',
     summary: defaultSummary,
-    cuisine: ['Italian', 'Pizza'],
+    cuisines: ['Italian', 'Pizza'],
     readyInMinutes: 45,
     servings: 2,
     onFavorite: undefined,
@@ -48,7 +51,7 @@ export const WithImage: Story = {
     image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400',
     title: 'Classic Margherita Pizza',
     summary: defaultSummary,
-    cuisine: ['Italian', 'Pizza'],
+    cuisines: ['Italian', 'Pizza'],
     readyInMinutes: 45,
     prepMinutes: 15,
     cookMinutes: 30,

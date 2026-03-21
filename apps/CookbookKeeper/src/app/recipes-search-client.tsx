@@ -1,10 +1,9 @@
 'use client';
 
-import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
 
 import { SearchBar } from 'components/react/molecules/search-bar';
-import { RecipeCard } from 'components/react/molecules/recipe-card';
+import { FeatureImageCard } from 'components/react/molecules/feature-image-card';
 import type { SpoonacularRecipe } from 'api/spoonacular';
 
 type RecipesSearchClientProps = {
@@ -58,7 +57,7 @@ export function RecipesSearchClient({
 
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {recipes.map((recipe) => (
-          <RecipeCard
+          <FeatureImageCard
             key={recipe.id}
             image={recipe.image}
             title={recipe.title}
@@ -68,16 +67,7 @@ export function RecipesSearchClient({
             prepMinutes={recipe.preparationMinutes}
             cookMinutes={recipe.cookingMinutes}
             servings={recipe.servings}
-          >
-            {recipe.image ? (
-              <Image
-                src={recipe.image}
-                alt={recipe.title}
-                width={100}
-                height={100}
-              />
-            ) : null}
-          </RecipeCard>
+          />
         ))}
       </div>
 

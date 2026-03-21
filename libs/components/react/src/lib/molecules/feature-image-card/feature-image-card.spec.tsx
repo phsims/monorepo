@@ -1,23 +1,25 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import { RecipeCard } from './recipe-card';
+import { FeatureImageCard } from './feature-image-card';
 
-describe('RecipeCard', () => {
+describe('FeatureImageCard', () => {
   it('should match snapshot', () => {
     const { container } = render(
-      <RecipeCard title="Classic Margherita Pizza" />,
+      <FeatureImageCard title="Classic Margherita Pizza" />,
     );
     expect(container).toMatchSnapshot();
   });
   it('should render title', () => {
-    render(<RecipeCard title="Classic Margherita Pizza" />);
+    render(<FeatureImageCard title="Classic Margherita Pizza" />);
     expect(
       screen.getByRole('heading', { name: 'Classic Margherita Pizza' }),
     ).toBeTruthy();
   });
 
   it('should render image when provided', () => {
-    render(<RecipeCard title="Test" image="https://example.com/image.jpg" />);
+    render(
+      <FeatureImageCard title="Test" image="https://example.com/image.jpg" />,
+    );
     const img = document.querySelector('img');
     expect(img).toBeTruthy();
     expect((img as HTMLImageElement).src).toContain('example.com/image.jpg');
@@ -25,18 +27,18 @@ describe('RecipeCard', () => {
 
   it('should default image alt to title when imageAlt not provided', () => {
     render(
-      <RecipeCard
+      <FeatureImageCard
         title="Pasta Carbonara"
         image="https://example.com/pasta.jpg"
       />,
     );
     const img = document.querySelector('img') as HTMLImageElement;
-    expect(img.alt).toBe('Pasta Carbonara — recipe');
+    expect(img.alt).toBe('Pasta Carbonara — featured image');
   });
 
   it('should use imageAlt prop when provided', () => {
     render(
-      <RecipeCard
+      <FeatureImageCard
         title="Pasta"
         image="https://example.com/pasta.jpg"
         imageAlt="Close-up of plated pasta"
@@ -48,7 +50,7 @@ describe('RecipeCard', () => {
 
   it('should render cuisine as chips when provided', () => {
     render(
-      <RecipeCard
+      <FeatureImageCard
         title="Pasta"
         image="https://example.com/pasta.jpg"
         cuisines={['Italian', 'Pizza']}
@@ -60,7 +62,7 @@ describe('RecipeCard', () => {
 
   it('should render summary when provided', () => {
     render(
-      <RecipeCard
+      <FeatureImageCard
         title="Pizza"
         summary="A classic tomato and mozzarella pizza."
       />,
@@ -72,7 +74,7 @@ describe('RecipeCard', () => {
 
   it('should strip HTML tags from summary text', () => {
     render(
-      <RecipeCard
+      <FeatureImageCard
         title="Pizza"
         summary="<p>A <strong>classic</strong> tomato pizza.</p>"
       />,
@@ -82,13 +84,13 @@ describe('RecipeCard', () => {
   });
 
   it('should render readyInMinutes and servings', () => {
-    render(<RecipeCard title="Soup" readyInMinutes={30} servings={4} />);
+    render(<FeatureImageCard title="Soup" readyInMinutes={30} servings={4} />);
     expect(screen.getByText(/30 min/)).toBeTruthy();
     expect(screen.getByText(/4 servings/)).toBeTruthy();
   });
 
   it('should render prep/cook fallback when readyInMinutes is not provided', () => {
-    render(<RecipeCard title="Soup" prepMinutes={10} cookMinutes={20} />);
+    render(<FeatureImageCard title="Soup" prepMinutes={10} cookMinutes={20} />);
 
     expect(screen.getByText('Prep 10 min, Cook 20 min')).toBeTruthy();
   });
@@ -96,7 +98,7 @@ describe('RecipeCard', () => {
   it('should call onFavorite when favorite button is clicked', () => {
     const onFavorite = jest.fn();
     render(
-      <RecipeCard
+      <FeatureImageCard
         title="Recipe"
         image="https://example.com/recipe.jpg"
         onFavorite={onFavorite}
@@ -112,20 +114,20 @@ describe('RecipeCard', () => {
   it('should call onDelete when delete button is clicked', () => {
     const onDelete = jest.fn();
     render(
-      <RecipeCard
+      <FeatureImageCard
         title="Recipe"
         image="https://example.com/recipe.jpg"
         onDelete={onDelete}
       />,
     );
-    const deleteBtn = screen.getByRole('button', { name: 'Delete recipe' });
+    const deleteBtn = screen.getByRole('button', { name: 'Delete item' });
     fireEvent.click(deleteBtn);
     expect(onDelete).toHaveBeenCalledTimes(1);
   });
 
   it('should show solid heart when isFavorite is true', () => {
     render(
-      <RecipeCard
+      <FeatureImageCard
         title="Recipe"
         image="https://example.com/recipe.jpg"
         onFavorite={jest.fn()}
@@ -139,7 +141,7 @@ describe('RecipeCard', () => {
 
   it('should render custom actions when provided', () => {
     render(
-      <RecipeCard
+      <FeatureImageCard
         title="Recipe"
         image="https://example.com/recipe.jpg"
         actions={<button type="button">Custom action</button>}
@@ -149,8 +151,14 @@ describe('RecipeCard', () => {
   });
 
   it('should pass through div attributes', () => {
-    render(<RecipeCard title="Recipe" data-testid="recipe-card" id="r1" />);
-    const card = screen.getByTestId('recipe-card');
+    render(
+      <FeatureImageCard
+        title="Recipe"
+        data-testid="feature-image-card"
+        id="r1"
+      />,
+    );
+    const card = screen.getByTestId('feature-image-card');
     expect(card.id).toBe('r1');
   });
 });
