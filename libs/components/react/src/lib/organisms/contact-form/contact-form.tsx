@@ -7,7 +7,8 @@ import {
   useId,
   useMemo,
   useState,
-  type FormEvent,
+  type ChangeEvent,
+  type SubmitEvent,
 } from 'react';
 
 import { Button } from '../../atoms/button/button';
@@ -18,17 +19,57 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export type ContactFormStatus = 'idle' | 'submitting' | 'success' | 'error';
 
+export type ContactFormFieldType = 'text' | 'email' | 'textarea';
+
+export interface ContactFormField {
+  /** JSON key sent to the server (e.g. `name`, `email`). */
+  name: string;
+  type: ContactFormFieldType;
+  label: string;
+  placeholder?: string;
+  autoComplete?: string;
+  rows?: number;
+  /** @default true */
+  required?: boolean;
+  minLength?: number;
+  maxLength?: number;
+  /** Error text when this field fails validation. */
+  validationMessage?: string;
+}
+
+export const defaultContactFormFields: ContactFormField[] = [
+  {
+    name: 'name',
+    type: 'text',
+    label: 'Name',
+    autoComplete: 'name',
+    maxLength: 200,
+    validationMessage: 'Please enter your name.',
+  },
+  {
+    name: 'email',
+    type: 'email',
+    label: 'Email',
+    autoComplete: 'email',
+    maxLength: 320,
+    validationMessage: 'Please enter a valid email address.',
+  },
+  {
+    name: 'message',
+    type: 'textarea',
+    label: 'Message',
+    rows: 6,
+    minLength: 10,
+    maxLength: 10000,
+    validationMessage: 'Please enter a message (at least 10 characters).',
+  },
+];
+
 export interface ContactFormCopy {
-  nameLabel?: string;
-  emailLabel?: string;
-  messageLabel?: string;
   submitLabel?: string;
   submittingLabel?: string;
   successMessage?: string;
   genericError?: string;
-  validationName?: string;
-  validationEmail?: string;
-  validationMessage?: string;
   turnstileHint?: string;
   turnstileExpired?: string;
 }
@@ -38,6 +79,12 @@ export interface ContactFormProps {
   turnstileSiteKey: string;
   /** POST endpoint; defaults to `/api/contact`. */
   submitUrl?: string;
+  /** Field definitions; defaults to name, email, message. */
+  fields?: ContactFormField[];
+  /** Section heading (visible). */
+  heading?: string;
+  /** Intro text under the heading. */
+  description?: string;
   className?: string;
   copy?: ContactFormCopy;
 }
@@ -50,41 +97,95 @@ function sanitizeOneLine(value: string, max: number): string {
 }
 
 const defaultCopy: Required<ContactFormCopy> = {
-  nameLabel: 'Name',
-  emailLabel: 'Email',
-  messageLabel: 'Message',
   submitLabel: 'Send message',
   submittingLabel: 'Sending…',
   successMessage:
     'Thanks — your message was sent. We will get back to you soon.',
   genericError:
     'Something went wrong. Please try again in a moment or email us directly.',
-  validationName: 'Please enter your name.',
-  validationEmail: 'Please enter a valid email address.',
-  validationMessage: 'Please enter a message (at least 10 characters).',
   turnstileHint: 'Complete the verification below to send your message.',
   turnstileExpired: 'Verification expired — please verify again.',
 };
 
+function defaultValidationMessage(field: ContactFormField): string {
+  if (field.validationMessage) return field.validationMessage;
+  if (field.type === 'email') {
+    return `Please enter a valid ${field.label.toLowerCase()}.`;
+  }
+  if (field.minLength != null && field.minLength > 1) {
+    return `Please enter at least ${field.minLength} characters for ${field.label.toLowerCase()}.`;
+  }
+  return `Please enter ${field.label.toLowerCase()}.`;
+}
+
+function validateField(field: ContactFormField, raw: string): string | null {
+  const required = field.required !== false;
+  const value = field.type === 'textarea' ? raw : raw.trim();
+
+  if (required && !value.trim()) {
+    return defaultValidationMessage(field);
+  }
+
+  if (!required && !value.trim()) {
+    return null;
+  }
+
+  if (field.type === 'email' && !EMAIL_RE.test(value.trim())) {
+    return defaultValidationMessage(field);
+  }
+
+  if (field.minLength != null && value.trim().length < field.minLength) {
+    return defaultValidationMessage(field);
+  }
+
+  if (field.maxLength != null && value.length > field.maxLength) {
+    return `${field.label} is too long.`;
+  }
+
+  return null;
+}
+
+function formatSubmitValue(field: ContactFormField, raw: string): string {
+  const max = field.maxLength ?? 10000;
+  if (field.type === 'textarea') {
+    return raw.trim().slice(0, max);
+  }
+  return sanitizeOneLine(raw, max);
+}
+
 /**
- * Accessible contact form with name, email, message, Cloudflare Turnstile, and
- * submit. Posts JSON `{ name, email, message, turnstileToken }` to `submitUrl`.
+ * Accessible contact form with configurable fields, Cloudflare Turnstile, and
+ * submit. Posts JSON `{ [field.name]: string, ..., turnstileToken }` to `submitUrl`.
  */
 export function ContactForm({
   turnstileSiteKey,
   submitUrl = '/api/contact',
+  fields: fieldsProp,
+  heading = 'Contact us',
+  description = 'Send a message — we will create a ticket so nothing gets lost.',
   className = '',
   copy: copyProp,
 }: ContactFormProps) {
+  const fields = fieldsProp ?? defaultContactFormFields;
   const copy = useMemo(() => ({ ...defaultCopy, ...copyProp }), [copyProp]);
   const formId = useId();
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
-  const [nameError, setNameError] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [messageError, setMessageError] = useState('');
+  const initialValues = useMemo(
+    () =>
+      Object.fromEntries(fields.map((f) => [f.name, ''])) as Record<
+        string,
+        string
+      >,
+    [fields],
+  );
+
+  const [values, setValues] = useState<Record<string, string>>(initialValues);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    setValues(initialValues);
+    setErrors({});
+  }, [initialValues]);
 
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [turnstileError, setTurnstileError] = useState('');
@@ -104,32 +205,32 @@ export function ContactForm({
   }, []);
 
   const validate = useCallback(() => {
+    const nextErrors: Record<string, string> = {};
     let ok = true;
-    setNameError('');
-    setEmailError('');
-    setMessageError('');
 
-    if (!name.trim()) {
-      setNameError(copy.validationName);
-      ok = false;
+    if (turnstileToken) {
+      setTurnstileError('');
     }
-    if (!email.trim() || !EMAIL_RE.test(email.trim())) {
-      setEmailError(copy.validationEmail);
-      ok = false;
+
+    for (const field of fields) {
+      const msg = validateField(field, values[field.name] ?? '');
+      if (msg) {
+        nextErrors[field.name] = msg;
+        ok = false;
+      }
     }
-    if (message.trim().length < 10) {
-      setMessageError(copy.validationMessage);
-      ok = false;
-    }
+
     if (!turnstileToken) {
       setTurnstileError(copy.turnstileHint);
       ok = false;
     }
+
+    setErrors(nextErrors);
     return ok;
-  }, [copy, email, message, name, turnstileToken]);
+  }, [copy.turnstileHint, fields, turnstileToken, values]);
 
   const handleSubmit = useCallback(
-    async (e: FormEvent<HTMLFormElement>) => {
+    async (e: SubmitEvent<HTMLFormElement>) => {
       e.preventDefault();
       setStatusDetail('');
       setIssueUrl(null);
@@ -139,15 +240,22 @@ export function ContactForm({
         return;
       }
 
+      const payload: Record<string, string> = {};
+      for (const field of fields) {
+        const formatted = formatSubmitValue(field, values[field.name] ?? '');
+        if (field.required === false && !formatted.trim()) {
+          continue;
+        }
+        payload[field.name] = formatted;
+      }
+
       setStatus('submitting');
       try {
         const res = await fetch(submitUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            name: sanitizeOneLine(name, 200),
-            email: sanitizeOneLine(email, 320),
-            message: message.trim().slice(0, 10000),
+            ...payload,
             turnstileToken,
           }),
         });
@@ -165,9 +273,8 @@ export function ContactForm({
 
         setStatus('success');
         setIssueUrl(data.issueUrl ?? null);
-        setName('');
-        setEmail('');
-        setMessage('');
+        setValues(initialValues);
+        setErrors({});
         resetTurnstileState();
       } catch {
         setStatus('error');
@@ -176,17 +283,26 @@ export function ContactForm({
     },
     [
       copy.genericError,
-      email,
-      message,
-      name,
+      fields,
+      initialValues,
       resetTurnstileState,
       submitUrl,
       turnstileToken,
       validate,
+      values,
     ],
   );
 
   const showForm = status !== 'success';
+
+  const setFieldValue = useCallback((name: string, value: string) => {
+    setValues((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => {
+      const next = { ...prev };
+      delete next[name];
+      return next;
+    });
+  }, []);
 
   return (
     <section
@@ -197,11 +313,11 @@ export function ContactForm({
         id={`${formId}-heading`}
         className="text-xl font-semibold text-foreground"
       >
-        Contact us
+        {heading}
       </h2>
-      <p className="mt-1 text-sm text-muted-foreground">
-        Send a message — we will create a ticket so nothing gets lost.
-      </p>
+      {description ? (
+        <p className="mt-1 text-sm text-muted-foreground">{description}</p>
+      ) : null}
 
       {status === 'success' ? (
         <div
@@ -239,44 +355,38 @@ export function ContactForm({
           onSubmit={handleSubmit}
           noValidate
         >
-          <Input
-            id={`${formId}-name`}
-            name="name"
-            type="text"
-            label={copy.nameLabel}
-            value={name}
-            onChange={(ev) => setName(ev.target.value)}
-            autoComplete="name"
-            fullWidth
-            required
-            error={nameError}
-            disabled={status === 'submitting'}
-          />
-          <Input
-            id={`${formId}-email`}
-            name="email"
-            type="email"
-            label={copy.emailLabel}
-            value={email}
-            onChange={(ev) => setEmail(ev.target.value)}
-            autoComplete="email"
-            fullWidth
-            required
-            error={emailError}
-            disabled={status === 'submitting'}
-          />
-          <Textarea
-            id={`${formId}-message`}
-            name="message"
-            label={copy.messageLabel}
-            value={message}
-            onChange={(ev) => setMessage(ev.target.value)}
-            rows={6}
-            fullWidth
-            required
-            error={messageError}
-            disabled={status === 'submitting'}
-          />
+          {fields.map((field) => {
+            const id = `${formId}-${field.name}`;
+            const common = {
+              id,
+              name: field.name,
+              label: field.label,
+              placeholder: field.placeholder,
+              fullWidth: true as const,
+              required: field.required !== false,
+              error: errors[field.name],
+              disabled: status === 'submitting',
+              value: values[field.name] ?? '',
+              onChange: (
+                ev: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+              ) => setFieldValue(field.name, ev.target.value),
+            };
+
+            if (field.type === 'textarea') {
+              return (
+                <Textarea key={field.name} {...common} rows={field.rows ?? 5} />
+              );
+            }
+
+            return (
+              <Input
+                key={field.name}
+                {...common}
+                type={field.type === 'email' ? 'email' : 'text'}
+                autoComplete={field.autoComplete}
+              />
+            );
+          })}
 
           <div className="flex flex-col gap-2">
             <span className="sr-only" id={`${formId}-turnstile-label`}>

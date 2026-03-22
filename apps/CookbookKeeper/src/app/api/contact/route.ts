@@ -1,11 +1,6 @@
 import { NextResponse } from 'next/server';
 
-type ContactBody = {
-  name?: string;
-  email?: string;
-  message?: string;
-  turnstileToken?: string;
-};
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function parseLabels(): string[] {
   const raw = process.env.CONTACT_GITHUB_LABELS?.trim();
@@ -16,40 +11,74 @@ function parseLabels(): string[] {
     .filter(Boolean);
 }
 
+function humanizeKey(key: string): string {
+  return key
+    .replace(/[_-]+/g, ' ')
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
 /**
  * Verifies Turnstile token and opens a GitHub issue in the configured repository.
+ * Accepts any string fields plus `turnstileToken` (e.g. `name`, `email`, `message`, or custom keys).
  *
  * @see https://developers.cloudflare.com/turnstile/get-started/server-side-validation/
  */
 export async function POST(req: Request) {
-  let body: ContactBody;
+  let raw: Record<string, unknown>;
   try {
-    body = (await req.json()) as ContactBody;
+    raw = (await req.json()) as Record<string, unknown>;
   } catch {
     return NextResponse.json({ error: 'Invalid JSON body.' }, { status: 400 });
   }
 
-  const { name, email, message, turnstileToken } = body;
+  const turnstileToken = raw.turnstileToken;
 
-  if (
-    typeof name !== 'string' ||
-    typeof email !== 'string' ||
-    typeof message !== 'string' ||
-    typeof turnstileToken !== 'string' ||
-    !name.trim() ||
-    !email.trim() ||
-    !message.trim() ||
-    !turnstileToken.trim()
-  ) {
+  if (typeof turnstileToken !== 'string' || !turnstileToken.trim()) {
     return NextResponse.json(
-      { error: 'Name, email, message, and verification are required.' },
+      { error: 'Verification token is required.' },
       { status: 400 },
     );
   }
 
-  if (message.length > 10000) {
+  const payload: Record<string, string> = {};
+  for (const [key, value] of Object.entries(raw)) {
+    if (key === 'turnstileToken') continue;
+    if (typeof value !== 'string') {
+      return NextResponse.json(
+        { error: `Field "${key}" must be a string.` },
+        { status: 400 },
+      );
+    }
+    const trimmed = value.trim();
+    if (!trimmed) {
+      return NextResponse.json(
+        { error: `Field "${key}" cannot be empty.` },
+        { status: 400 },
+      );
+    }
+    if (trimmed.length > 10000) {
+      return NextResponse.json(
+        { error: `Field "${key}" is too long.` },
+        { status: 400 },
+      );
+    }
+    payload[key] = trimmed;
+  }
+
+  if (Object.keys(payload).length === 0) {
     return NextResponse.json(
-      { error: 'Message is too long.' },
+      { error: 'At least one form field is required.' },
+      { status: 400 },
+    );
+  }
+
+  if (
+    Object.prototype.hasOwnProperty.call(payload, 'email') &&
+    !EMAIL_RE.test(payload.email)
+  ) {
+    return NextResponse.json(
+      { error: 'Please provide a valid email address.' },
       { status: 400 },
     );
   }
@@ -101,22 +130,27 @@ export async function POST(req: Request) {
   const owner = process.env.CONTACT_GITHUB_OWNER?.trim() || 'phsims';
   const repo = process.env.CONTACT_GITHUB_REPO?.trim() || 'monorepo';
 
-  const safeTitle = name
-    .trim()
+  const titleSource =
+    payload.name ??
+    payload.subject ??
+    payload.title ??
+    Object.values(payload)[0] ??
+    'Contact';
+
+  const safeTitle = titleSource
     .replace(/[\r\n]+/g, ' ')
+    .replace(/[[\]]/g, '')
     .slice(0, 120);
   const issueTitle = `[Contact] ${safeTitle}`;
+
+  const bodySections = Object.entries(payload).map(
+    ([key, val]) => `### ${humanizeKey(key)}\n\n${val}`,
+  );
 
   const issueBody = [
     '## Contact form submission',
     '',
-    `**Name:** ${name.trim()}`,
-    `**Email:** ${email.trim()}`,
-    '',
-    '### Message',
-    '',
-    message.trim(),
-    '',
+    ...bodySections.flatMap((block) => [block, '']),
     '---',
     '_Submitted via CookbookKeeper contact form._',
   ].join('\n');
