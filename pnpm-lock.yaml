@@ -226,6 +226,20 @@ importers:
 
   apps/design-system: {}
 
+  apps/webcraftpro:
+    dependencies:
+      next:
+        specifier: ~16.0.1
+        version: 16.0.11(@babel/core@7.29.0)(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.98.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
+
+  apps/webcraftpro-e2e: {}
+
   libs/components/react:
     dependencies:
       '@heroicons/react':
@@ -234,12 +248,6 @@ importers:
       '@marsidev/react-turnstile':
         specifier: ^1.4.2
         version: 1.4.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-
-  libs/components/react/atoms: {}
-
-  libs/components/react/molecules: {}
-
-  libs/components/react/organisms: {}
 
 packages:
   '@adobe/css-tools@4.4.4':
