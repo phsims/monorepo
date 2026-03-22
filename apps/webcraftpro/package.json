@@ -1,0 +1,16 @@
+{
+  "name": "@monorepo/WebCraft",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "name": "WebCraft",
+    "tags": [
+      "nextjs"
+    ]
+  },
+  "dependencies": {
+    "next": "~16.0.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}

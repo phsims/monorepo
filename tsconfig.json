@@ -17,6 +17,12 @@
     },
     {
       "path": "./libs/components/react"
+    },
+    {
+      "path": "./apps/webcraftpro-e2e"
+    },
+    {
+      "path": "./apps/webcraftpro"
     }
   ]
 }
