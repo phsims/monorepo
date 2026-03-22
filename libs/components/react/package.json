@@ -19,6 +19,7 @@
     ]
   },
   "dependencies": {
-    "@heroicons/react": "^2.2.0"
+    "@heroicons/react": "^2.2.0",
+    "@marsidev/react-turnstile": "^1.4.2"
   }
 }

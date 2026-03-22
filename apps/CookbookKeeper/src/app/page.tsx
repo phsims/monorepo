@@ -1,10 +1,12 @@
 import { HeroBanner } from 'components/react/organisms/hero-banner';
 import { Button } from 'components/react/atoms/button';
+import { ContactForm } from 'components/react/organisms/contact-form';
 import { getRandomRecipes } from 'api/spoonacular';
 import { RecipesSearchClient } from './recipes-search-client';
 
 export default async function Index() {
   const { recipes } = await getRandomRecipes({ number: 8 });
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? '';
 
   return (
     <div className="space-y-8">
@@ -38,6 +40,26 @@ export default async function Index() {
         split="50-50"
       />
       <RecipesSearchClient initialRecipes={recipes} />
+
+      <section className="border-t border-neutral-200 bg-neutral-50/80 py-12">
+        <div className="container mx-auto px-4">
+          {turnstileSiteKey ? (
+            <ContactForm turnstileSiteKey={turnstileSiteKey} />
+          ) : (
+            <p className="text-sm text-neutral-600">
+              Contact form is disabled. Set{' '}
+              <code className="rounded bg-neutral-200 px-1 py-0.5 text-xs">
+                NEXT_PUBLIC_TURNSTILE_SITE_KEY
+              </code>{' '}
+              and server env vars (see{' '}
+              <code className="rounded bg-neutral-200 px-1 py-0.5 text-xs">
+                apps/CookbookKeeper/.env.example
+              </code>
+              ).
+            </p>
+          )}
+        </div>
+      </section>
     </div>
   );
 }
