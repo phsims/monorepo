@@ -14,19 +14,19 @@ import { Chip } from '../../atoms/chip/chip';
 import { RoundIconButton } from '../../atoms/round-icon-button/round-icon-button';
 
 /**
- * Props for the Recipe Card molecule, aligned with Spoonacular API fields
+ * Props for the Feature Image Card molecule, aligned with Spoonacular API fields
  * where applicable. All display fields are optional to support partial data.
  */
-export interface RecipeCardProps extends HTMLAttributes<HTMLDivElement> {
-  /** Recipe image URL */
+export interface FeatureImageCardProps extends HTMLAttributes<HTMLDivElement> {
+  /** Feature / hero image URL */
   image?: string;
-  /** Accessible description for the image (defaults to title when not set) */
+  /** Accessible description for the image (defaults from title when not set) */
   imageAlt?: string;
-  /** Recipe title, e.g. "Classic Margherita Pizza" */
+  /** Card title, e.g. "Classic Margherita Pizza" */
   title: string;
   /** Short summary or description (plain text; strip HTML before passing if needed) */
   summary?: string;
-  /** Cuisine labels, e.g. ["Italian", "Pizza"] */
+  /** Labels shown as chips on the image, e.g. ["Italian", "Pizza"] */
   cuisines?: string[];
   /** Total ready time in minutes */
   readyInMinutes?: number;
@@ -40,7 +40,7 @@ export interface RecipeCardProps extends HTMLAttributes<HTMLDivElement> {
   onFavorite?: () => void;
   /** Called when delete action is clicked */
   onDelete?: () => void;
-  /** Whether the recipe is currently favorited/saved */
+  /** Whether the item is currently favorited/saved */
   isFavorite?: boolean;
   /** Optional class name for the root card */
   className?: string;
@@ -56,11 +56,11 @@ function stripHtml(html: string): string {
 }
 
 /**
- * Recipe Card molecule for CookbookKeeper. Displays recipe image, title,
- * summary, cuisine, times, servings, and action buttons (favorite, delete).
- * Uses design system tokens and is responsive and accessible.
+ * Feature Image Card molecule for CookbookKeeper and similar UIs. Displays a
+ * feature image, title, summary, labels, times, servings, and action buttons
+ * (favorite, delete). Uses design system tokens and is responsive and accessible.
  */
-export function RecipeCard({
+export function FeatureImageCard({
   image,
   imageAlt,
   title,
@@ -76,8 +76,8 @@ export function RecipeCard({
   actions,
   className = '',
   ...rest
-}: RecipeCardProps) {
-  const imgAlt = imageAlt ?? (title ? `${title} — recipe` : '');
+}: FeatureImageCardProps) {
+  const imgAlt = imageAlt ?? (title ? `${title} — featured image` : '');
   const summaryText = summary ? stripHtml(summary) : undefined;
 
   const timeParts: string[] = [];
@@ -104,7 +104,7 @@ export function RecipeCard({
       />
       <RoundIconButton
         icon={<TrashIcon className="h-5 w-5 " aria-hidden />}
-        ariaLabel="Delete recipe"
+        ariaLabel="Delete item"
         variant="white"
         onClick={onDelete}
       />
